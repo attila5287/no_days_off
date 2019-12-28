@@ -1,1 +1,1 @@
-web: gunicorn "nodaysoff:create_app()"
+web: gunicorn --workers=4 "nodaysoff:create_app()"
