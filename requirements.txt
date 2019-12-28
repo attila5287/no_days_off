@@ -23,5 +23,5 @@ Werkzeug==0.15.5
 wincertstore==0.2
 wrapt==1.11.2
 WTForms==2.2.1
-https://effbot.org/media/downloads/Imaging-1.1.7.tar.gz
+Pillow==5.4.1
 psycopg2==2.7.3.2
