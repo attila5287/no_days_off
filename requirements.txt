@@ -22,4 +22,5 @@ Werkzeug==0.15.5
 wincertstore==0.2
 wrapt==1.11.2
 WTForms==2.2.1
+-e hg+https://bitbucket.org/etienned/pil-2009-raclette/#egg=PIL
 psycopg2==2.7.3.2
