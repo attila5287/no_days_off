@@ -8,7 +8,7 @@ main = Blueprint('main', __name__)
 # Creates all tables, required if a new db-model to be tested
 from flask import g 
 
-@main.route("/")
+
 @main.route("/home")
 def home():
     pass
@@ -18,7 +18,7 @@ def home():
         permanent_post = Post(
             title = 'Page Moved',
             content = 'use Wall for all Home features',
-            author = current_user,
+            author = 'anon',
         )
         posts = [
             permanent_post
@@ -31,6 +31,7 @@ def home():
     
     return render_template('home.html', posts=posts)
 
+@main.route("/")
 @main.route("/about")
 def about():
     return render_template('about.html', title='About')
