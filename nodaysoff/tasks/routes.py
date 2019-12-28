@@ -33,13 +33,25 @@ def h0me():
 @tasks.route("/task/new", methods=['GET', 'POST'])
 @login_required
 def new_task():
+    if Task.query.first() == None:
+        pass
+        permanent_task = Post(
+            title = 'Page Moved',
+            content = 'use Wall for all Home features',
+            author = 'anon',
+        )
+        posts = [
+            permanent_post
+        ]
+    else:
     form = TaskForm()
+    
     if form.validate_on_submit():
-        task = Task(title=form.title.data, content=form.content.data, author=current_user)
+        task = Task(title=form.title.data, content=form.content.data, manag5r=current_user)
         db.session.add(task)
         db.session.commit()
         flash('Your task has been created!', 'success')
-        return redirect(url_for('main.home'))
+        return redirect(url_for('tasks.h0me'))
     return render_template('create_task.html', title='New Task',
                            form=form, legend='New Task')
 
