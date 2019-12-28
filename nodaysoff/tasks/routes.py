@@ -7,6 +7,29 @@ from nodaysoff.tasks.forms import TaskForm
 tasks = Blueprint('tasks', __name__)
 # db.create_all()
 
+@tasks.route("/h0me")
+def h0me():
+    pass
+
+    if Task.query.first() == None:
+        pass
+        permanent_task = Task(
+            title = 'Page Moved',
+            content = 'use Wall for all Home features',
+            manag5r = 'anon',
+        )
+        tasks = [
+            permanent_task
+        ]
+    else:
+        pass
+        page = request.args.get('page', 1, type=int)
+        tasks = Task.query.order_by(Task.date_posted.desc()).paginate(page=page, per_page=5)
+    
+    
+    return render_template('h0me.html', tasks=tasks)
+
+
 @tasks.route("/task/new", methods=['GET', 'POST'])
 @login_required
 def new_task():
