@@ -1,1 +1,1 @@
-web: gunicorn nodaysoff:app
+web: gunicorn "nodaysoff:create_app()"
