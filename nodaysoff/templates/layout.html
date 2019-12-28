@@ -11,21 +11,20 @@
     <link rel="icon" type="image/x-icon" class="favicon" href="
     https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_main_outline.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    
-    
     <style>
       :root {
   /***Colors***/
   /* Build-in BS colors*/
   /*Light*/
     --primary: #007bff;
-    --secondary: #a5cfc6ec;
+    --secondary: #c5dbd7ec;
     --success: #28a745;
     --danger: #c07167d7;
-    --warning: #3ee45ac9;
-    --info: #17a2b8;
+    --warning: #db9335fa;
+    --info: #97b8bd;
     --light: #f8f9fa;
     --dark: #343a40;
+      }
       body {
       background: #fafafa;
       color: #1613aa;
@@ -56,7 +55,7 @@
     }
 
     .content-section {
-      background: #1ae0ee;
+      background: #FECD82;
       padding: 10px 20px;
       border: 1px solid #dddddd;
       border-radius: 3px;
@@ -196,8 +195,6 @@
                 <img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menuedt.ico"
                   class="card-img-top mb-2">
                   {% if current_user.is_authenticated %}
-
-
                   <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
                     href="{{ url_for('main.home') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
                       <img
@@ -233,15 +230,22 @@
                       <a class="nav-item nav-link text-dark mb-2" href="{{ url_for('users.account') }}">
                         <i class="fa fa-key mr-2" aria-hidden="true">Account</i></a>
                     </div>
-                    <div class="col-xs-3">
-                        <a class="nav-item nav-link text-dark mb-2" href="{{ url_for('users.account') }}">
-                        <i class="fa fa-sign-out mr-2" aria-hidden="true">Logout </i></a>
-                    </div>
                   </div>
                 </div>
   
                 {% else %}
-                
+                <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
+                href="{{ url_for('main.home') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
+                  <img
+                    src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_register.ico"
+                    style="height: 2rem;">
+              </a>                                     
+              <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
+              href="{{ url_for('main.home') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
+                <img
+                  src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_login.ico"
+                  style="height: 2rem;">
+            </a>                                     
 
 
                 {% endif %}
