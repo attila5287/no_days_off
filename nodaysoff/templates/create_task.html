@@ -1,10 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="row">
-    <div class="col-sm-8">
+    <div class="col-sm-9">
         <div class="container-fluid my-2 p-1">
             <div class="row">
-
                 <div class="col-sm-4">
                     <img class="card-img-top mb-2"
                         src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_new.ico"
@@ -26,7 +25,6 @@
                         src="https://raw.githubusercontent.com/attila5287/payroll_management_app_assets/master/task_new_bottom.ico"
                         alt="">
                 </div>
-
                 <div class="col-sm-4">
                     <img class="card-img-top mb-2"
                         src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_list.ico"
@@ -64,33 +62,33 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <div class="container-fluid m-2 p-2">
             <div class="nav-flex-column" style="width: fit-content; height:max-content;">
                 <img class="card-img-top mb-2"
-                    src="https://raw.githubusercontent.com/attila5287/payroll_management_app_assets/master/task_matrix.ico">
+                    src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_info.ico">
 
-                <a class="nav-item btn btn-large btn-secondary nav-link text-light border-danger mb-2"
-                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
+                <a class="nav-item btn btn-large btn-secondary nav-link text-dark border-dark mb-2"
+                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;background-color: lightsalmon;"">
                     <i class="fa fa-bell mr-2" aria-hidden="true">Urgent</i><br>
                     <i class="fa fa-eye mr-2" aria-hidden="true">Important</i>
                 </a>
 
-                <a class="nav-item btn btn-large btn-secondary nav-link text-light border-warning mb-2"
-                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
+                <a class="nav-item btn btn-large btn-secondary nav-link text-dark border-dark mb-2"
+                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;background-color: bisque;">
                     <i class="fa fa-bell mr-2" aria-hidden="true">Urgent</i><br>
                     <i class="fa fa-eye-slash mr-2" aria-hidden="true">Not Important</i>
                 </a>
 
-                <a class="nav-item btn btn-large btn-secondary nav-link text-light border-primary mb-2"
-                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
+                <a class="nav-item btn btn-large btn-secondary nav-link text-dark border-dark mb-2"
+                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium; background-color: khaki;"">
                     <i class="fa fa-bell-slash mr-2" aria-hidden="true">Less Urgent</i>
                     <br>
                     <i class="fa fa-eye mr-2" aria-hidden="true">Important</i>
                 </a>
 
-                <a class="nav-item btn btn-large btn-secondary nav-link text-light border-info mb-2"
-                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
+                <a class="nav-item btn btn-large btn-secondary nav-link text-dark border-dark mb-2"
+                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium; background-color: lightblue;"">
                     <i class="fa fa-bell-slash mr-2" aria-hidden="true">Less Urgent</i><br>
                     <i class="fa fa-eye-slash mr-2" aria-hidden="true">Less Important</i>
                 </a>
