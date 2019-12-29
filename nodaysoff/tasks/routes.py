@@ -35,16 +35,16 @@ def h0me():
 def new_task():
     if Task.query.first() == None:
         pass
-        permanent_task = Post(
-            title = 'Page Moved',
-            content = 'use Wall for all Home features',
-            author = 'anon',
-        )
+        permanent_task = {
+            'title' : 'Page Moved',
+            'content' : 'use Wall for all Home features',
+            'author' : 'anon',
+        }
         posts = [
             permanent_post
         ]
     else:
-    form = TaskForm()
+        form = TaskForm()
     
     if form.validate_on_submit():
         task = Task(title=form.title.data, content=form.content.data, manag5r=current_user)

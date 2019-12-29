@@ -1,8 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
+{% if todos == [] %} 
+<a>
+  No tasks to do
+</a>
+{% else %}
     {% for task in tasks.items %}
         <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + task.manag5r.image_file) }}">
           <div class="media-body">
             <div class="article-metadata">
               <small class="text-muted">{{ task.date_posted.strftime('%Y-%m-%d') }}</small>
@@ -23,4 +27,6 @@
         ...
       {% endif %}
     {% endfor %}
+    
+{% endif %} 
 {% endblock content %}
