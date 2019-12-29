@@ -51,7 +51,7 @@ def new_task():
         db.session.add(task)
         db.session.commit()
         flash('Your task has been created!', 'success')
-        return redirect(url_for('tasks.h0me'))
+        return redirect(url_for('tasks.new_task'))
     return render_template('create_task.html', title='New Task',
                            form=form, legend='New Task')
 
@@ -81,13 +81,13 @@ def update_task(task_id):
     return render_template('create_task.html', title='Update Task',
                            form=form, legend='Update Task')
 
-# displays single task on update
+# displays all tasks and form
 @tasks.route('/task', methods=['POST', 'GET'])
 def tasks_list():
     pass
     TaskCreateForm = TaskForm()
     tasks = Task.query.all()
-    return render_template('create_task.html', tasks=tasks, TaskForm=TaskCreateForm)
+    return render_template('create_task.html', form=TaskCreateForm, tasks=tasks)
 
 
 # creates a task as well as attiributes for visual details, border colors, points etc
@@ -117,7 +117,7 @@ def add_task():
     flash('Task created!', task.border_style)
     db.session.add(task)
     db.session.commit()
-    return redirect('/')
+    return redirect('/task')
 
 
 # # delete task --> TODO: archive only
