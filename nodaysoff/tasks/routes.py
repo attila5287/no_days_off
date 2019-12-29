@@ -44,7 +44,7 @@ def new_task():
             permanent_post
         ]
     else:
-    form = TaskForm()
+        form = TaskForm()
     
     if form.validate_on_submit():
         task = Task(title=form.title.data, content=form.content.data, manag5r=current_user)
