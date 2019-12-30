@@ -5,8 +5,14 @@ main = Blueprint('main', __name__)
 
 # Drops all records, need to register again:DONT USE UNLESS NEW DB-MODEL 
 # db.drop_all()
+
 # Creates all tables, required if a new db-model to be tested
 from flask import g 
+
+@main.route("/")
+@main.route("/about")
+def about():
+    return render_template('about.html', title='About')
 
 
 @main.route("/home")
@@ -23,15 +29,10 @@ def home():
         posts = [
             permanent_post
         ]
+
     else:
         pass
         page = request.args.get('page', 1, type=int)
         posts = Post.query.order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
     
-    
     return render_template('home.html', posts=posts)
-
-@main.route("/")
-@main.route("/about")
-def about():
-    return render_template('about.html', title='About')
