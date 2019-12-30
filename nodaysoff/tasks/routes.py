@@ -120,17 +120,6 @@ def add_task():
     return redirect('/task')
 
 
-# # delete task --> TODO: archive only
-
-# @tasks.route('/delete/<int:task_id>')
-# def delete_task(task_id):
-#     pass
-#     task = Task.query.get(task_id)
-#     if not task:
-#         return redirect(url_for('tasks.tasks_list'))
-#     db.session.delete(task)
-#     db.session.commit()
-#     return redirect(url_for('tasks.tasks_list'))
 
 # strikes task header on interface, updates DB for task status
 @tasks.route('/done/<int:task_id>')
@@ -148,13 +137,26 @@ def resolve_task(task_id):
     return redirect(url_for('tasks.tasks_list'))
 
 
-@tasks.route("/task/<int:task_id>/delete", methods=['POST'])
-@login_required
+# @tasks.route("/task/<int:task_id>/delete", methods=['POST'])
+# @login_required
+# def delete_task(task_id):
+#     task = Task.query.get_or_404(task_id)
+#     if task.author != current_user:
+#         abort(403)
+#     db.session.delete(task)
+#     db.session.commit()
+#     flash('Your task has been deleted!', 'success')
+#     return redirect(url_for('main.home'))
+
+
+# delete task --> TODO: archive only
+
+@tasks.route('/delete/<int:task_id>')
 def delete_task(task_id):
-    task = Task.query.get_or_404(task_id)
-    if task.author != current_user:
-        abort(403)
+    pass
+    task = Task.query.get(task_id)
+    if not task:
+        return redirect(url_for('tasks.tasks_list'))
     db.session.delete(task)
     db.session.commit()
-    flash('Your task has been deleted!', 'success')
-    return redirect(url_for('main.home'))
+    return redirect(url_for('tasks.tasks_list'))

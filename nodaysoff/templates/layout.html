@@ -26,9 +26,7 @@
     --dark: #343a40;
       }
       body {
-      background: #fafafa;
-      color: #1613aa;
-      margin-top: 5rem;
+      margin-top: 3rem;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -36,9 +34,6 @@
       font-family: cursive;
     }
 
-    .bg-steel {
-      background-color: rgb(11, 172, 221);
-    }
     .bg-orange {
       background-color: #EEAA88;
     }
@@ -126,7 +121,8 @@
           <a class="navbar-brand mx-2" href="/">
             <img
               src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_icon.ico"
-              width="128" height="22"></a>            
+              width="128" height="22"></a>      
+              <a class="navbar-brand mx-2" href="/">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -164,13 +160,19 @@
                           <a class="nav-item nav-link text-dark" href="{{ url_for('users.logout') }}">
                             <i class="fas fa-sign-out-alt"></i>
                             Logout</a>
+                            <a class="mr-auto text-center mt-1"> <img
+                            src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_colorado_co_flag.ico"
+                            width="28" height="16"></a>            
                         {% else %}
                           <a class="nav-item nav-link text-dark" href="{{ url_for('users.login') }}">
                             <i class="fas fa-sign-in-alt"></i>
                             Login</a>
                           <a class="nav-item nav-link text-dark" href="{{ url_for('users.register') }}">
                             <i class="fa fa-address-book" aria-hidden="true"></i>
-                            Register</a>
+                            Register
+                          </a><a><img
+                            src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_colorado_co_flag.ico"
+                            width="28" height="16"></a>            
                         {% endif %}
                       </div>
           </div>
