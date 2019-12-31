@@ -1,121 +1,120 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/x-icon" class="favicon" href="
-    https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_main_outline.ico">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <style>
-      :root {
-  /***Colors***/
-  /* Build-in BS colors*/
-  /*Light*/
-    --primary: #1370d3af;
-    --secondary: #c5dbd7ec;
-    --success: #28a745;
-    --danger: #c07167d7;
-    --warning: #db9335fa;
-    --info: #97b8bd;
-    --light: #f8f9fa;
-    --dark: #343a40;
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="icon" type="image/x-icon" class="favicon" href="
+      https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_main_outline.ico">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+      <style>
+        :root {
+    /***Colors***/
+    /* Build-in BS colors*/
+    /*Light*/
+      --primary: #1370d3af;
+      --secondary: #c5dbd7ec;
+      --success: #28a745;
+      --danger: #c07167d7;
+      --warning: #db9335fa;
+      --info: #97b8bd;
+      --light: #f8f9fa;
+      --dark: #343a40;
+        }
+        body {
+        margin-top: 5rem;
       }
-      body {
-      margin-top: 5rem;
-    }
 
-    h1, h2, h3, h4, h5, h6 {
-      color: #000000;
-      font-family: cursive;
-    }
+      h1, h2, h3, h4, h5, h6 {
+        color: #000000;
+        font-family: cursive;
+      }
 
-    .bg-orange {
-      background-color: #EEAA88;
-    }
-    .bg-bisque {
-      background-color: rgb(250, 208, 184);
-    }
-    .site-header .navbar-nav .nav-link {
-      color: #3700b8;
-      font-family: monospace;
-    }
+      .bg-orange {
+        background-color: #EEAA88;
+      }
+      .bg-bisque {
+        background-color: rgb(250, 208, 184);
+      }
+      .site-header .navbar-nav .nav-link {
+        color: #3700b8;
+        font-family: monospace;
+      }
 
-    .site-header .navbar-nav .nav-link:hover {
-      color: #1823c4;
-    }
+      .site-header .navbar-nav .nav-link:hover {
+        color: #1823c4;
+      }
 
-    .site-header .navbar-nav .nav-link.active {
-      font-weight: 500;
-    }
+      .site-header .navbar-nav .nav-link.active {
+        font-weight: 500;
+      }
 
-    .content-section {
-      padding: 10px 20px;
-      margin-bottom: 20px;
-    }
+      .content-section {
+        padding: 10px 20px;
+        margin-bottom: 20px;
+      }
 
-    .article-title {
-      color: #091c44;
-    }
+      .article-title {
+        color: #091c44;
+      }
 
-    a.article-title:hover {
-      color: #428bca;
-      text-decoration: none;
-    }
+      a.article-title:hover {
+        color: #428bca;
+        text-decoration: none;
+      }
 
-    .article-content {
-      white-space: pre-line;
-    }
+      .article-content {
+        white-space: pre-line;
+      }
 
-    .article-img {
-      height: 65px;
-      width: 65px;
-      margin-right: 16px;
-    }
+      .article-img {
+        height: 65px;
+        width: 65px;
+        margin-right: 16px;
+      }
 
-    .article-metadata {
-      padding-bottom: 1px;
-      margin-bottom: 4px;
-      border-bottom: 1px solid #e3e3e3
-    }
+      .article-metadata {
+        padding-bottom: 1px;
+        margin-bottom: 4px;
+        border-bottom: 1px solid #e3e3e3
+      }
 
-    .article-metadata a:hover {
-      color: #333;
-      text-decoration: none;
-    }
+      .article-metadata a:hover {
+        color: #333;
+        text-decoration: none;
+      }
 
-    .article-svg {
-      width: 25px;
-      height: 25px;
-      vertical-align: middle;
-    }
+      .article-svg {
+        width: 25px;
+        height: 25px;
+        vertical-align: middle;
+      }
 
-    .account-img {
-      height: 125px;
-      width: 125px;
-      margin-right: 20px;
-      margin-bottom: 16px;
-    }
+      .account-img {
+        height: 125px;
+        width: 125px;
+        margin-right: 20px;
+        margin-bottom: 16px;
+      }
 
-    .account-heading {
-      font-size: 2.5rem;
-    }
+      .account-heading {
+        font-size: 2.5rem;
+      }
 
-  </style>
-    {% if title %}
-        <title>No Days Off | {{ title }}</title>
-    {% else %}
-        <title>No Days Off</title>
-    {% endif %}
-</head>
-<body style="background-color: #FECD82;" >
+    </style>
+      {% if title %}
+          <title>No Days Off | {{ title }}</title>
+      {% else %}
+          <title>No Days Off</title>
+      {% endif %}
+  </head>
+<body style="background-color: #FECD82;">
 
   <header class="site-header m-0 p-0">
-    
     <nav class="navbar navbar-expand-md navbar-light text-dark bg-orange fixed-top">
         <div class="container">
           <a class="navbar-brand mx-2" href="/">
@@ -151,135 +150,122 @@
             </a>
             {% endif %}
             </div>
-                       <!-- Navbar Right Side -->
-                       <div class="navbar-nav">
-                        {% if current_user.is_authenticated %}
-                          <a class="nav-item nav-link text-dark" href="{{ url_for('users.account') }}">
-                            <i class="fa fa-key" aria-hidden="true"></i>
-                            Account</a>
-                          <a class="nav-item nav-link text-dark" href="{{ url_for('users.logout') }}">
-                            <i class="fas fa-sign-out-alt"></i>
-                            Logout</a>
-                            <a class="mr-auto text-center mt-1"> <img
-                            src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_colorado_co_flag.ico"
-                            width="28" height="16"></a>            
-                        {% else %}
-                          <a class="nav-item nav-link text-dark" href="{{ url_for('users.login') }}">
-                            <i class="fas fa-sign-in-alt"></i>
-                            Login</a>
-                          <a class="nav-item nav-link text-dark" href="{{ url_for('users.register') }}">
-                            <i class="fa fa-address-book" aria-hidden="true"></i>
-                            Register
-                          </a><a><img
-                            src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_colorado_co_flag.ico"
-                            width="28" height="16"></a>            
-                        {% endif %}
-                      </div>
+              <!-- Navbar Right Side -->
+              <div class="navbar-nav">
+              {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link text-dark" href="{{ url_for('users.account') }}">
+                  <i class="fa fa-key" aria-hidden="true"></i>
+                  Account</a>
+                <a class="nav-item nav-link text-dark" href="{{ url_for('users.logout') }}">
+                  <i class="fas fa-sign-out-alt"></i>
+                  Logout</a>
+                  <a class="mr-auto text-center mt-1"> <img
+                  src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_colorado_co_flag.ico"
+                  width="28" height="16"></a>            
+              {% else %}
+                <a class="nav-item nav-link text-dark" href="{{ url_for('users.login') }}">
+                  <i class="fas fa-sign-in-alt"></i>
+                  Login</a>
+                <a class="nav-item nav-link text-dark" href="{{ url_for('users.register') }}">
+                  <i class="fa fa-address-book" aria-hidden="true"></i>
+                  Register
+                </a><a><img
+                  src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_colorado_co_flag.ico"
+                  width="28" height="16"></a>            
+              {% endif %}
+            </div>
           </div>
         </div>
     </nav>
   </header>
 
-    <main role="main" class="container my-2 p-2">
-      <div class="row">
-        <div class="col-md-9">
-          {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-              {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                  {{ message }}
-                </div>
-              {% endfor %}
-            {% endif %}
-          {% endwith %}
-          {% block content %}
-          {% endblock %}
-        </div>
-        <div class="col-md-3">
-          <div class="content-section">
-            <div class="container-fluid my-2 p-2">
-              <div class="nav-flex-column text-center" style="width: fit-content; height:max-content;">
-                <img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menuedt.ico"
-                  class="card-img-top mb-2">
-                  {% if current_user.is_authenticated %}
-                  <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-                    href="{{ url_for('main.home') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
-                      <img
-                        src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_list.ico"
-                        style="height: 2rem;">
-                  </a> 
-                  <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-                    href="{{ url_for('main.home') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
-                      <img
-                        src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_score.ico"
-                        style="height: 2rem;">
-                  </a> 
-                  <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-                    href="{{ url_for('main.home') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
-                      <img
-                        src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_new.ico"
-                        style="height: 2rem;">
-                  </a> 
-                  <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-                    href="{{ url_for('tasks.new_task') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
-                      <img
-                        src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_minion.ico"
-                        style="height: 2rem;">
-                  </a>                                     
-
-                <div class="container-fluid m-0 p-0">
-                  <div class="row">
-                    <div class="col-xs-6">
-                      <a class="nav-item nav-link text-dark mb-2" href="{{ url_for('users.account') }}">
-                        <i class="fas fa-wrench    "></i>
-                          Account
-                      </a>
-                    </div>
-                    <div class="col-xs-6">
-                      <a class="nav-item nav-link text-dark mb-2" href="{{ url_for('users.logout') }}">
-                        <i class="fas fa-sign-out-alt"></i>
-                          Logout</i></a>
-                    </div>
+  <main role="main" class="container my-2 p-2">
+    <div class="row">
+      <div class="col-md-9">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+        {% block content %}
+        {% endblock %}
+      </div>
+      <div class="col-md-3">
+        <div class="content-section">
+          <div class="container-fluid my-2 p-2">
+            <div class="nav-flex-column text-center" style="width: fit-content; height:max-content;">
+              <img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menuedt.ico"
+                class="card-img-top mb-2">
+                {% if current_user.is_authenticated %}
+                <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2" 
+                href="{{ url_for('tasks.h0me') }}"  data-toggle="tooltip" data-placement="right" title="lists all tasks one row at a time, swipe through your TODO list quickly" style="border-width: medium;">
+                    <img
+                      src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_list.ico"
+                      style="height: 2rem;">
+                </a>
+                <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
+                  href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
+                    <img
+                      src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_score.ico"
+                      style="height: 2rem;">
+                </a> 
+                <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
+                  href="{{ url_for('tasks.taskcreator') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
+                    <img
+                      src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_new.ico"
+                      style="height: 2rem;">
+                </a>       
+                <div class="row">
+                  <div class="col-sm-6">
+                    <a class="nav-item nav-link text-dark mb-2" href="{{ url_for('users.account') }}">
+                      <i class="fas fa-wrench mr-2">Account</i></a>
+                  </div>
+                  <div class="col-sm-6">
+                    <a class="nav-item nav-link text-dark mb-2" href="{{ url_for('users.logout') }}">
+                      <i class="fas fa-sign-out-alt mr-2">
+                        Logout</i></a>
                   </div>
                 </div>
-  
-                {% else %}
-                <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-                href="{{ url_for('main.about') }}"  data-toggle="tooltip" data-placement="right" title="info abt app: complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
-                  <img
-                    src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_info.ico"
-                    style="height: 2rem;">
-              </a> 
-                <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-                href="{{ url_for('users.register') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
-                  <img
-                    src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_register.ico"
-                    style="height: 2rem;">
-              </a>                                     
+
+              {% else %}
               <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-              href="{{ url_for('users.login') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
+              href="{{ url_for('main.about') }}"  data-toggle="tooltip" data-placement="right" title="info abt app: complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
                 <img
-                  src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_login.ico"
+                  src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_info.ico"
                   style="height: 2rem;">
-            </a>
+            </a> 
+              <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
+              href="{{ url_for('users.register') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
+                <img
+                  src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_register.ico"
+                  style="height: 2rem;">
+            </a>                                     
+            <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
+            href="{{ url_for('users.login') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
+              <img
+                src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_login.ico"
+                style="height: 2rem;">
+          </a>
 
 
-                {% endif %}
-                <img class="card-img-top mb-2"
-                  src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menu_bottomedt.ico">
-              </div>
+              {% endif %}
+              <img class="card-img-top mb-2"
+                src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menu_bottomedt.ico">
             </div>
           </div>
         </div>
       </div>
-    </main>
-    
+    </div>
+  </main>
 
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UsENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body style="background-color: bisque;" >
 </html>

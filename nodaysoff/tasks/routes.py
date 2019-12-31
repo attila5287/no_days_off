@@ -30,28 +30,28 @@ def h0me():
     return render_template('h0me.html', tasks=tasks)
 
 
+# conv from post ex
 @tasks.route("/task/new", methods=['GET', 'POST'])
 @login_required
 def new_task():
-    if Task.query.first() == None:
-        pass
-        permanent_task = {
-            'title' : 'Page Moved',
-            'content' : 'use Wall for all Home features',
-            'author' : 'anon',
-        }
-        posts = [
-            permanent_post
-        ]
-    else:
-        form = TaskForm()
+    pass
+    form = TaskForm()
     
     if form.validate_on_submit():
-        task = Task(title=form.title.data, content=form.content.data, manag5r=current_user)
+        task = Task(
+            title=form.title.data, 
+            content=form.content.data, 
+            manag5r=current_user, 
+        )
+        
         db.session.add(task)
+        
         db.session.commit()
+        
         flash('Your task has been created!', 'success')
+        
         return redirect(url_for('tasks.new_task'))
+    
     return render_template('create_task.html', title='New Task',
                            form=form, legend='New Task')
 
@@ -65,6 +65,7 @@ def task(task_id):
 @tasks.route("/task/<int:task_id>/update", methods=['GET', 'POST'])
 @login_required
 def update_task(task_id):
+    pass
     task = Task.query.get_or_404(task_id)
     if task.author != current_user:
         abort(403)
@@ -88,6 +89,13 @@ def tasks_list():
     TaskCreateForm = TaskForm()
     tasks = Task.query.all()
     return render_template('create_task.html', form=TaskCreateForm, tasks=tasks)
+
+# displays all tasks and form
+@tasks.route('/t4sk', methods=['POST', 'GET'])
+def taskcreator():
+    pass
+    TaskCreateForm = TaskForm()
+    return render_template('create_t4sk.html', form=TaskCreateForm)
 
 
 # creates a task as well as attiributes for visual details, border colors, points etc
@@ -118,8 +126,6 @@ def add_task():
     db.session.add(task)
     db.session.commit()
     return redirect('/task')
-
-
 
 # strikes task header on interface, updates DB for task status
 @tasks.route('/done/<int:task_id>')

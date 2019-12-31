@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+    .bg-zone11 {
+      background-color: rgb(212, 125, 119);
+    }
+    .bg-zone10 {
+      background-color: rgba(238, 156, 79, 0.966);
+    }
+    .bg-zone01 {
+      background-color: rgba(170, 177, 130, 0.877);
+    }
+    .bg-zone00 {
+      background-color: rgb(152, 170, 199, .7);
+    }            
+    </style>
+<div class="row">
+    <div class="col-sm-9">
+        <div class="container-fluid mt-0 p-1">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="container-fluid m-2 p-2">
+                        <div class="nav-flex-column" style="width: fit-content; height:max-content;">
+                            <img class="card-img-top mb-2"
+                                src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_info.ico"style="width: 60%;">
+                                <img class="card-img-top mb-2"
+                                src="https://raw.githubusercontent.com/attila5287/task_app_img/master/peak2deep_top.ico"
+                                alt="">
+                            <a class="nav-item btn btn-large nav-link bg-zone11 text-dark border-dark mb-2"
+                                href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium">
+                                <i class="fa fa-bell mr-2" aria-hidden="true">Urgent</i><br>
+                                <i class="fa fa-eye mr-2" aria-hidden="true">Important</i>
+                            </a>
+                            <a class="nav-item btn btn-large btn-secondary nav-link bg-zone10 text-dark border-dark mb-2"
+                                href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
+                                <i class="fa fa-bell mr-2" aria-hidden="true">
+                                Urgent</i><br>
+                                <i class="fa fa-eye-slash mr-2" aria-hidden="true">Not Important</i>
+                            </a>
+            
+                            <a class="nav-item btn btn-large btn-secondary nav-link bg-zone01 text-dark border-dark mb-2"
+                                href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
+                                <i class="fa fa-bell-slash mr-2" aria-hidden="true">Less Urgent</i>
+                                <br>
+                                <i class="fa fa-eye mr-2" aria-hidden="true">Important</i>
+                            </a>
+            
+                            <a class="nav-item btn btn-large btn-secondary bg-zone00 nav-link text-dark border-dark mb-2"
+                                href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
+                                <i class="fa fa-bell-slash mr-2" aria-hidden="true">Less Urgent</i><br>
+                                <i class="fa fa-eye-slash mr-2" aria-hidden="true">Less Important</i>
+                            </a>
+                        </div>
+                        <img class="card-img-top mb-2"
+                        src="https://raw.githubusercontent.com/attila5287/task_app_img/master/peak2deep_bottom.ico"
+                        alt="">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <img class="card-img-top mb-2"
+                        src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_score.ico"
+                        alt="" style="width: 60%;">
+
+                </div>
+                            <div class="col-sm-4">
+                    <img class="card-img-top mb-2"
+                        src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_new.ico"
+                        alt=""style="width: 60%;">
+                    <form action="/task/create" method="post">
+                        <div class="form-group"> 
+                            {{ form.hidden_tag() }}
+                            {% for field in form %}
+                            <span class="badge badge-light bg-orange border-secondary text-center" style="border-width:medium">
+                                <a>
+                                    <i class="fas fa-tree"></i>
+                                    {{ field.label}}
+                                </a>
+                            </span>
+                            {{ field(class="form-control form-control-md border-secondary mb-2",style="border-width:medium") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.content.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}
