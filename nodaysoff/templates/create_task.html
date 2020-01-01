@@ -11,44 +11,58 @@
       background-color: rgba(170, 177, 130, 0.877);
     }
     .bg-zone00 {
-      background-color: rgb(152, 170, 199, .7);
+      background-color: rgba(152, 170, 199, 0.883);
     }            
     </style>
 <div class="row">
     <div class="col-sm-9">
         <div class="container-fluid my-2 p-1">
             <div class="row">
-            <div class="col-sm-4">
-                    <img class="card-img-top mb-2"
-                        src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_new.ico"
-                        alt=""style="width: 60%;">
-                    <form action="/task/create" method="post">
-                        <div class="form-group"> 
-                            {% for field in form %}
-                            <span class="badge badge-light bg-orange border-secondary text-center" style="border-width:medium">
-                                <a>
-                                    <i class="fas fa-tree"></i>
-                                    {{ field.label}}
-                                </a>
-                            </span>
-                            {{ field(class="form-control form-control-md border-secondary mb-2",style="border-width:medium") }}
-                            {% endfor %}
-                        </div>
-                    </form>
-                </div>
                 <div class="col-sm-5">
                     <img class="card-img-top mb-2"
                         src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_list.ico"
                         alt="" style="width: 40%;">
-                        <img class="card-img-top mb-2"
-                        src="https://raw.githubusercontent.com/attila5287/task_app_img/master/peak2deep_top.ico"
+
+                    <img class="card-img-top mb-2"
+                    src="https://raw.githubusercontent.com/attila5287/task_app_img/master/peak2deep_top.ico"
+                    alt="">
+                    <div class="nav-flex-column" style="width: fit-content; height:max-content;">
+
+                        <a class="nav-item btn btn-large nav-link bg-zone11 text-dark border-dark mb-2"
+                            href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium">
+                            <i class="fa fa-bell mr-2" aria-hidden="true">Urgent</i><br>
+                            <i class="fa fa-eye mr-2" aria-hidden="true">Important</i>
+                        </a>
+                        <a class="nav-item btn btn-large btn-secondary nav-link bg-zone10 text-dark border-dark mb-2"
+                            href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
+                            <i class="fa fa-bell mr-2" aria-hidden="true">Urgent</i><br>
+                            <i class="fa fa-eye-slash mr-2" aria-hidden="true">Not Important</i>
+                        </a>
+        
+                        <a class="nav-item btn btn-large btn-secondary nav-link bg-zone01 text-dark border-dark mb-2"
+                            href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
+                            <i class="fa fa-bell-slash mr-2" aria-hidden="true">Less Urgent</i>
+                            <br>
+                            <i class="fa fa-eye mr-2" aria-hidden="true">Important</i>
+                        </a>
+        
+                        <a class="nav-item btn btn-large btn-secondary bg-zone00 nav-link text-dark border-dark mb-2"
+                            href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
+                            <i class="fa fa-bell-slash mr-2" aria-hidden="true">Less Urgent</i><br>
+                            <i class="fa fa-eye-slash mr-2" aria-hidden="true">Less Important</i>
+                        </a>                    <img class="card-img-top mb-2"
+                        src="https://raw.githubusercontent.com/attila5287/task_app_img/master/peak2deep_bottom.ico"
                         alt="">
+                    </div>
+                </div>        
+                <div class="col-sm-5">
                     {% for task in tasks %}
                     <div class="card border-dark mb-2" style="border-width: medium;">
                         <div class="card-header bg-zone{{ task.matrix_zone }} border-dark text-dark text-center mb-0"
                             style="border-bottom-width: medium;">
-                            <i class="fa fa-umbrella float-left ml-0" aria-hidden="true">{{ task.urg_points }}</i>
-                            <i class="fa fa-anchor float-left ml-2" aria-hidden="true">
+                            <i class="fas fa-umbrella ml-0"></i>
+                            {{ task.urg_points }}</i>
+                            <i class="fas fa-anchor"></i>
                                 {{ task.imp_points }}</i>
                             <a><strong>
                                     {% if task.done %}<strike>{% endif %}
@@ -70,41 +84,7 @@
                         </div>
                     </div>
                     {% endfor %}
-                    <img class="card-img-top mb-2"
-                        src="https://raw.githubusercontent.com/attila5287/task_app_img/master/peak2deep_bottom.ico"
-                        alt="">
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="container-fluid m-2 p-2">
-            <div class="nav-flex-column" style="width: fit-content; height:max-content;">
-                <img class="card-img-top mb-2"
-                    src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_info.ico"style="width: 60%;">
-                <a class="nav-item btn btn-large nav-link bg-zone11 text-dark border-dark mb-2"
-                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium">
-                    <i class="fa fa-bell mr-2" aria-hidden="true">Urgent</i><br>
-                    <i class="fa fa-eye mr-2" aria-hidden="true">Important</i>
-                </a>
-                <a class="nav-item btn btn-large btn-secondary nav-link bg-zone10 text-dark border-dark mb-2"
-                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;>
-                    <i class="fa fa-bell mr-2" aria-hidden="true">Urgent</i><br>
-                    <i class="fa fa-eye-slash mr-2" aria-hidden="true">Not Important</i>
-                </a>
-
-                <a class="nav-item btn btn-large btn-secondary nav-link bg-zone01 text-dark border-dark mb-2"
-                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
-                    <i class="fa fa-bell-slash mr-2" aria-hidden="true">Less Urgent</i>
-                    <br>
-                    <i class="fa fa-eye mr-2" aria-hidden="true">Important</i>
-                </a>
-
-                <a class="nav-item btn btn-large btn-secondary bg-zone00 nav-link text-dark border-dark mb-2"
-                    href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
-                    <i class="fa fa-bell-slash mr-2" aria-hidden="true">Less Urgent</i><br>
-                    <i class="fa fa-eye-slash mr-2" aria-hidden="true">Less Important</i>
-                </a>
             </div>
         </div>
     </div>

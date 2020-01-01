@@ -86,9 +86,8 @@ def update_task(task_id):
 @tasks.route('/task', methods=['POST', 'GET'])
 def tasks_list():
     pass
-    TaskCreateForm = TaskForm()
     tasks = Task.query.all()
-    return render_template('create_task.html', form=TaskCreateForm, tasks=tasks)
+    return render_template('create_task.html', tasks=tasks)
 
 # displays all tasks and form
 @tasks.route('/t4sk', methods=['POST', 'GET'])
