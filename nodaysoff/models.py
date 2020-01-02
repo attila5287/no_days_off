@@ -18,7 +18,8 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
     tasks = db.relationship('Task', backref='manag5r', lazy=True)
-
+    urg_pts= db.Column(db.Integer, default=int(19)) 
+    imp_pts = db.Column(db.Integer, default=int(19))
 
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -32,6 +33,32 @@ class User(db.Model, UserMixin):
         except:
             return None
         return User.query.get(user_id)
+
+    def init_points(self):
+        pass
+        if self.imp_pts == None:
+            self.imp_pts = 0
+            db.session.commit()
+        else:
+            pass            
+        if self.urg_pts == None:
+            self.urg_pts = 0
+            db.session.commit()
+        else:
+            pass
+        
+        
+    
+    def gain_points(self, task_urg_pts=29, task_imp_pts=29):
+        pass
+        self.imp_pts+=task_imp_pts
+        self.urg_pts+=task_urg_pts
+        
+    def lose_points(self, task_urg_pts=29, task_imp_pts=29):
+        pass
+        self.imp_pts-=task_imp_pts
+        self.urg_pts-=task_urg_pts        
+        
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"

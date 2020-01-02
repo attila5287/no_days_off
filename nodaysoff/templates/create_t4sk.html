@@ -60,13 +60,13 @@
                     <img class="card-img-top mb-2"
                         src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_score.ico"
                         alt="" style="width: 70%;">
-                    <div class="alert alert-secondary bg-orange border-dark" role="alert" style="border-width:medium;">
+                    <div class="alert alert-secondary bg-zone11 border-dark" role="alert" style="border-width:medium;">
                         <p>
                             <i class="fa fa-leaf" aria-hidden="true"></i>
                             Complete the tasks to score points!
                         </p>
                     </div>
-                    <div class="alert alert-secondary bg-orange border-dark" role="alert" 
+                    <div class="alert alert-secondary bg-zone10 border-dark" role="alert" 
                     style="border-width:medium;">
                         <p>
                             <i class="fa fa-leaf" aria-hidden="true"></i>
@@ -74,7 +74,7 @@
                         </p>
                     </div>
 
-                    <div class="alert alert-secondary bg-orange border-dark" role="alert"                     style="border-width:medium;">
+                    <div class="alert alert-secondary bg-zone01 border-dark" role="alert"                     style="border-width:medium;">
                         <p>
                             <i class="fas fa-leaf"></i>
                             Upper left corner of each task card has urgency points shown with umbrella
@@ -82,7 +82,7 @@
                             icon
                         </p>
                     </div>
-                    <div class="alert alert-secondary bg-orange border-dark" role="alert" style="border-width:medium;">
+                    <div class="alert alert-secondary bg-zone00 border-dark" role="alert" style="border-width:medium;">
                         <i class="fas fa-leaf"></i>
                         and importance points shown with anchor 
                         <i class="fas fa-anchor"></i>
@@ -97,13 +97,13 @@
                         <div class="form-group"> 
                             {{ form.hidden_tag() }}
                             {% for field in form %}
-                            <span class="badge badge-light bg-orange border-secondary text-center" style="border-width:medium">
+                            <span class="badge badge-light bg-zone11 border-secondary text-center" style="border-width:medium">
                                 <a>
                                     <i class="fas fa-tree"></i>
                                     {{ field.label}}
                                 </a>
                             </span>
-                            {{ field(class="form-control form-control-md border-secondary mb-2",style="border-width:medium") }}
+                            {{ field(class="form-control form-control-md bg-bisque border-secondary mb-2",style="border-width:medium") }}
                             <div class="invalid-feedback">
                                 {% for error in form.content.errors %}
                                     <span>{{ error }}</span>

@@ -82,14 +82,14 @@ def update_task(task_id):
     return render_template('create_task.html', title='Update Task',
                            form=form, legend='Update Task')
 
-# displays all tasks and form
+# displays all tasks and info
 @tasks.route('/task', methods=['POST', 'GET'])
 def tasks_list():
     pass
     tasks = Task.query.all()
     return render_template('create_task.html', tasks=tasks)
 
-# displays all tasks and form
+# form to create task and info
 @tasks.route('/t4sk', methods=['POST', 'GET'])
 def taskcreator():
     pass
@@ -135,10 +135,24 @@ def resolve_task(task_id):
         return redirect(url_for('tasks.tasks_list'))
     if task.done:
         task.done = False
+        current_user.init_points()
+        current_user.lose_points(
+            task_urg_pts = task.urg_points,
+            task_imp_pts = task.imp_points,
+        )
+        db.session.commit()
     else:
         task.done = True
+        current_user.init_points()
+        current_user.gain_points(
+            task_urg_pts = task.urg_points,
+            task_imp_pts = task.imp_points,
+        )
+        db.session.commit()
 
-    db.session.commit()
+    
+    
+    
     return redirect(url_for('tasks.tasks_list'))
 
 

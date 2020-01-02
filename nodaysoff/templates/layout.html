@@ -154,7 +154,7 @@
               <div class="navbar-nav">
               {% if current_user.is_authenticated %}
                 <a class="nav-item nav-link text-dark" href="{{ url_for('users.account') }}">
-                  <i class="fa fa-key" aria-hidden="true"></i>
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
                   Account</a>
                 <a class="nav-item nav-link text-dark" href="{{ url_for('users.logout') }}">
                   <i class="fas fa-sign-out-alt"></i>
@@ -220,12 +220,13 @@
                       style="height: 2rem;">
                 </a>       
                 <div class="row">
-                  <div class="col-sm-6">
-                    <a class="nav-item nav-link text-dark mb-2" href="{{ url_for('users.account') }}">
-                      <i class="fas fa-wrench mr-2">Account</i></a>
+                  <div class="col-xs-6">
+                    <a class="nav-item nav-link text-dark m-2" href="{{ url_for('users.account') }}">
+                      <i class="fas fa-cogs mr-2">Account</i>
+                    </a>
                   </div>
-                  <div class="col-sm-6">
-                    <a class="nav-item nav-link text-dark mb-2" href="{{ url_for('users.logout') }}">
+                  <div class="col-xs-6">
+                    <a class="nav-item nav-link text-dark m-2" href="{{ url_for('users.logout') }}">
                       <i class="fas fa-sign-out-alt mr-2">
                         Logout</i></a>
                   </div>
