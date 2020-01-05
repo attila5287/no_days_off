@@ -86,6 +86,8 @@ def update_task(task_id):
 @tasks.route('/task', methods=['POST', 'GET'])
 def tasks_list():
     pass
+    current_user.init_avatar()
+    current_user.update_avatar()
     tasks = Task.query.all()
     return render_template('create_task.html', tasks=tasks)
 
@@ -120,7 +122,7 @@ def add_task():
     
     # add importancy points for task completion per matrix zone
     task.add_importance_points()
-
+    
     flash('Task created!', task.border_style)
     db.session.add(task)
     db.session.commit()
@@ -129,31 +131,34 @@ def add_task():
 # strikes task header on interface, updates DB for task status
 @tasks.route('/done/<int:task_id>')
 def resolve_task(task_id):
+    # current_user.init_avatar()
+    current_user.init_points()
+    current_user.init_percs()
+    db.session.commit()
     task = Task.query.get(task_id)
-
+    
     if not task:
         return redirect(url_for('tasks.tasks_list'))
     if task.done:
         task.done = False
-        current_user.init_points()
         current_user.lose_points(
             task_urg_pts = task.urg_points,
             task_imp_pts = task.imp_points,
         )
+        current_user.update_avatar()
+        current_user.update_percs()
         db.session.commit()
     else:
         task.done = True
-        current_user.init_points()
         current_user.gain_points(
             task_urg_pts = task.urg_points,
             task_imp_pts = task.imp_points,
         )
+        current_user.update_avatar()
+        current_user.update_percs()
         db.session.commit()
-
-    
-    
-    
     return redirect(url_for('tasks.tasks_list'))
+    # return render_template('create_task.html')
 
 
 # @tasks.route("/task/<int:task_id>/delete", methods=['POST'])
