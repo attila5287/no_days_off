@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 from nodaysoff.models import User
@@ -14,6 +14,7 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
+    avatar_mode = SelectField(choices=[('mrrobot', 'Mr. Robot'), ('mrrobot', 'Mr. Robott')])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
@@ -41,6 +42,7 @@ class UpdateAccountForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    avatar_mode = SelectField(choices=[('mrrobot', 'Mr. Robot'), ('mrrobot', 'Mr. Robott')])
     submit = SubmitField('Update')
 
     def validate_username(self, username):

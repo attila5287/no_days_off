@@ -48,6 +48,19 @@
                         {% endfor %}
                     {% endif %}
                 </div>
+                <div class="form-group">
+                    {{ form.avatar_mode.label(class="form-control-label") }}
+                    {% if form.avatar_mode.errors %}
+                        {{ form.avatar_mode(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.avatar_mode.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.avatar_mode(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}

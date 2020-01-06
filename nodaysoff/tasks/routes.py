@@ -86,6 +86,7 @@ def update_task(task_id):
 @tasks.route('/task', methods=['POST', 'GET'])
 def tasks_list():
     pass
+    current_user.init_avatarmode()
     current_user.init_avatar()
     current_user.update_avatar()
     tasks = Task.query.all()

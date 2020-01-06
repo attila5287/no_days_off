@@ -23,6 +23,7 @@ class User(db.Model, UserMixin):
     total_pts = db.Column(db.Integer, default=int(38))
     imp_perc = db.Column(db.Integer, default=int(50))    
     urg_perc = db.Column(db.Integer, default=int(50))
+    avatar_mode = db.Column(db.String(20), nullable=False, default='mrrobot')
     avatar_img =  db.Column(db.String(20), nullable=False, default='default00.png')
     
 
@@ -98,9 +99,15 @@ class User(db.Model, UserMixin):
         else:
             pass
         
-    # def init_(self):
+    def init_avatarmode(self):
+        pass
+        if self.avatar_mode == None:
+            pass
+            self.avatar_mode = 'mrrobot'
+        else:
+            pass
         
-        
+
     def update_avatar(self):
         pass
         img_key = int(self.urg_perc)
