@@ -5,7 +5,6 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from flask_login import current_user
 from nodaysoff.models import User
 
-
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
@@ -14,7 +13,7 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
-    avatar_mode = SelectField(choices=[('mrrobot', 'Mr. Robot'), ('mrrobot', 'Mr. Robott')])
+    avatar_mode = SelectField(choices=[('mrrobot', 'Mr. Robot'), ('starwars', 'Star Wars')])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
@@ -27,7 +26,6 @@ class RegistrationForm(FlaskForm):
         if user:
             raise ValidationError('That email is taken. Please choose a different one.')
 
-
 class LoginForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
@@ -35,14 +33,13 @@ class LoginForm(FlaskForm):
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
 
-
 class UpdateAccountForm(FlaskForm):
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
-    avatar_mode = SelectField(choices=[('mrrobot', 'Mr. Robot'), ('mrrobot', 'Mr. Robott')])
+    avatar_mode = SelectField(choices=[('mrrobot', 'Mr. Robot'), ('starwars', 'Star Wars')])
     submit = SubmitField('Update')
 
     def validate_username(self, username):
