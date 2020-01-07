@@ -13,7 +13,14 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password',
                                      validators=[DataRequired(), EqualTo('password')])
-    avatar_mode = SelectField(choices=[('mrrobot', 'Mr. Robot'), ('starwars', 'Star Wars')])
+    avatar_mode = SelectField(
+        choices=[
+            ('wildanimals_', 'Mtn Wild Animals'),            
+            ('mrrobot', 'Mr. Robot'), 
+            ('starwars', 'Star Wars'),
+            ('starcraft_', 'Star Craft'),
+        ]
+    )
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
@@ -39,7 +46,14 @@ class UpdateAccountForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
-    avatar_mode = SelectField(choices=[('mrrobot', 'Mr. Robot'), ('starwars', 'Star Wars')])
+    avatar_mode = SelectField(
+        choices=[
+            ('wildanimals_', 'Mtn Wild Animals'),            
+            ('mrrobot', 'Mr. Robot'), 
+            ('starwars', 'Star Wars'),
+            ('starcraft_', 'Star Craft'),
+        ]
+    )
     submit = SubmitField('Update')
 
     def validate_username(self, username):
