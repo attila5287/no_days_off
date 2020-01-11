@@ -17,7 +17,7 @@
     /* Build-in BS colors*/
     /*Light*/
       --primary: #1370d3af;
-      --secondary: #c5dbd7ec;
+      --secondary: #c5dbd7;
       --success: #28a745;
       --danger: #c07167d7;
       --warning: #db9335fa;
@@ -135,7 +135,7 @@
               <a class="nav-item nav-link text-dark" href="{{ url_for('tasks.h0me') }}">
                 <i class="fas fa-flask icon-1x"></i>
                 h0me
-              </a>  
+              </a>
               <a class="nav-item nav-link text-dark" href="{{ url_for('tasks.new_task') }}">
                 <i class="fas fa-vials"></i>
                 Task
@@ -146,13 +146,16 @@
               </a>
               <a class="nav-item nav-link text-dark" href="{{ url_for('posts.new_post') }}">
                 <i class="fas fa-comment"></i>
-                Post</a>
+                 ost</a>
+
             {% else %}
             <a class="nav-item nav-link text-dark" href="{{ url_for('main.about') }}">
               <i class="fas fa-question mx-2"></i>
               | info
             </a>
+
             {% endif %}
+
             </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
@@ -205,32 +208,62 @@
               <img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menuedt.ico"
                 class="card-img-top mb-2">
                 {% if current_user.is_authenticated %}
-                <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2" 
-                href="{{ url_for('tasks.h0me') }}"  data-toggle="tooltip" data-placement="right" title="lists all tasks one row at a time, swipe through your TODO list quickly" style="border-width: medium;">
-                <i class="fas fa-mortar-pestle"> List All TODO's </i>
-                <i class="fas fa-mobile-alt    "></i>
-                </a>
+                <a class="nav-item btn btn-large bg-zone10 nav-link text-dark border-dark mb-2"
+                href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" data-placement="right" title="score points as you complete tasks color grouped depending on their urgency-importance levels with a score-dynamic avatar of user-preferred theme" style="border-width: medium;">
+                <i class="fas fa-trophy"> Task Hero </i>
+              </a> 
+
                 <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-                  href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" data-placement="right" title="score points as you complete tasks color grouped depending on their urgency-importance levels for dynamic avatar " style="border-width: medium;">
-                  <i class="fas fa-umbrella    "> Avatar Game </i>
-                  <i class="fas fa-anchor    "></i>
+                href="{{ url_for('tasks.taskcreator') }}"  data-toggle="tooltip" data-placement="right" title="create a new task, select urgency-importance so app will assign points then complete to score points" style="border-width: medium;">
+                <i class="fas fa-dolly    "> New Task </i>
+                </a> 
+
+                <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2" 
+                href="{{ url_for('tasks.h0me') }}"  data-toggle="tooltip" data-placement="right" title="lists all tasks in a minimalist front end design, swipe through your TODO list fast!" style="border-width: medium;">
+
+                <i class="fas fa-list-ul"> Mini~Ma~List </i>
+
+                </a>
+                <a class="nav-item btn btn-large bg-zone10 nav-link text-dark border-dark mb-2"
+                href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
+                data-placement="right" title="plan a productive day, print out or use app to keep your ProDay score!" style="border-width: medium;">
+                <i class="fas fa-football-ball    "> ProDay Score</i>
                 </a> 
                 <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-                  href="{{ url_for('tasks.taskcreator') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
-                    <img
-                      src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_new.ico"
-                      style="height: 2rem;">
-                </a>       
+                href="{{ url_for('tasks.taskcreator') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
+                <i class="fas fa-chevron-right mr-auto"></i>
+                <i class="fas fa-dolly    "> New Pro Day </i>
+                </a> 
+                
+                <a class="nav-item btn btn-large bg-zone01 nav-link text-dark border-dark mb-2"
+                href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
+                data-placement="right" title="inspired by Duhigg's smarter faster better, set goals under five key metrics" style="border-width: medium;">
+                <i class="fas fa-futbol"> S.M.A.R.T. Goals</i>
+                </a>                 
+                
+                <a class="nav-item btn btn-large bg-zone01 nav-link text-dark border-dark mb-2"
+                href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
+                data-placement="right" title="
+                introduced by Nancy Ratey, app will take you through this self-coaching strategy step by step to structure a sustainable strategy with easy-to-remember mechanics." style="border-width: medium;">
+                <i class="fas fa-puzzle-piece    ">
+                  ANSWER Self-Coaching</i>
+                </a>                 
+
+                <a class="nav-item btn btn-large bg-zone00 nav-link text-dark border-dark mb-2" href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
+                data-placement="right" title="generates random cards with quotes from inspirational figures, (e.g. Jim Rohn) authors, writers, motivational speakers, personal coaches; 1oo% dev's choices!" style="border-width: medium;">
+                <i class="fas fa-quote-left"> got Inspired? </i>
+                <i class="fas fa-quote-right"></i>
+                  
+                </a> 
                 <div class="row">
                   <div class="col-xs-6">
                     <a class="nav-item nav-link text-dark m-2" href="{{ url_for('users.account') }}">
-                      <i class="fas fa-cogs mr-2">Account</i>
+                      <i class="fas fa-cogs mr-2"> Account</i>
                     </a>
                   </div>
                   <div class="col-xs-6">
                     <a class="nav-item nav-link text-dark m-2" href="{{ url_for('users.logout') }}">
-                      <i class="fas fa-sign-out-alt mr-2">
-                        Logout</i></a>
+                      <i class="fas fa-sign-out-alt mr-2"> Logout</i></a>
                   </div>
                 </div>
 
@@ -252,12 +285,14 @@
               <img
                 src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_login.ico"
                 style="height: 2rem;">
-          </a>
+            </a>
 
+            {% endif %}
 
-              {% endif %}
               <img class="card-img-top mb-2"
                 src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menu_bottomedt.ico">
+
+                
             </div>
           </div>
         </div>
