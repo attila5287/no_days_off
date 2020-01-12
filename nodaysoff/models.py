@@ -5,10 +5,21 @@ from nodaysoff import db, login_manager
 from flask_login import UserMixin
 
 
+
+class Proday(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String (100), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    content = db.Column(db.Text, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Post('{self.title}', '{self.date_posted}')"
+
+# =============================
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -18,6 +29,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
     tasks = db.relationship('Task', backref='manag5r', lazy=True)
+    prodays = db.relationship('Proday', backref='planner', lazy=True)    
     urg_pts= db.Column(db.Integer, default=int(19)) 
     imp_pts = db.Column(db.Integer, default=int(19))
     total_pts = db.Column(db.Integer, default=int(38))
@@ -170,7 +182,6 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
-
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String (100), nullable=False)
@@ -180,7 +191,6 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
-
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -228,5 +238,3 @@ class Task(db.Model):
     def __repr__(self):
         return '<Task %s>' % self.title
 # ===================================
-
-

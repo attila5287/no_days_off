@@ -7,7 +7,6 @@ from nodaysoff.config import Config
 
 
 db = SQLAlchemy()
-# db.create_all()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'users.login'
@@ -27,11 +26,13 @@ def create_app(config_class=Config):
     from nodaysoff.users.routes import users
     from nodaysoff.posts.routes import posts
     from nodaysoff.tasks.routes import tasks
+    from nodaysoff.prodays.routes import prodays
     from nodaysoff.main.routes import main
     from nodaysoff.errors.handlers import errors
     app.register_blueprint(users)
     app.register_blueprint(posts)
     app.register_blueprint(tasks)
+    app.register_blueprint(prodays)
     app.register_blueprint(main)
     app.register_blueprint(errors)
 

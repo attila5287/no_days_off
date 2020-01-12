@@ -5,7 +5,6 @@ from nodaysoff.models import Task
 from nodaysoff.tasks.forms import TaskForm
 
 tasks = Blueprint('tasks', __name__)
-# db.create_all()
 
 @tasks.route("/h0me")
 def h0me():
@@ -13,14 +12,8 @@ def h0me():
 
     if Task.query.first() == None:
         pass
-        permanent_task = Task(
-            title = 'Page Moved',
-            content = 'use Wall for all Home features',
-            manag5r = 'anon',
-        )
-        tasks = [
-            permanent_task
-        ]
+        tasks = []
+        flash('No task to do, impressive!')
     else:
         pass
         page = request.args.get('page', 1, type=int)
@@ -69,7 +62,7 @@ def update_task(task_id):
     task = Task.query.get_or_404(task_id)
     if task.author != current_user:
         abort(403)
-    form = TaskForm()
+    form = ProdayForm()
     if form.validate_on_submit():
         task.title = form.title.data
         task.content = form.content.data
