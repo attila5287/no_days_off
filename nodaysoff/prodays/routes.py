@@ -7,16 +7,17 @@ from nodaysoff.prodays.forms import ProDayForm
 
 prodays = Blueprint('prodays', __name__)
 
-   
+
 @prodays.route("/hom3")
 def hom3():
     page = request.args.get('page', 1, type=int)
-    prodays = Proday.query.order_by(Proday.date_posted.desc()).paginate(page=page, per_page=5)        
+    prodays = Proday.query.order_by(
+        Proday.date_posted.desc()).paginate(page=page, per_page=5)
     if prodays == None:
         prodays = []
     else:
-        prodays = Proday.query.order_by(Proday.date_posted.desc()).paginate(page=page, per_page=5)        
-    
+        pass
+
     return render_template('hom3.html', prodays=prodays)
 
 
@@ -25,7 +26,11 @@ def hom3():
 def new_proday():
     form = ProDayForm()
     if form.validate_on_submit():
-        proday = Proday(title=form.title.data, content=form.content.data, planner=current_user)
+        proday = Proday(
+            title=request.form["title"],
+            content=request.form["content"],
+            planner=current_user
+            )
         db.session.add(proday)
         db.session.commit()
         flash('Your proday has been created!', 'success')
@@ -70,4 +75,3 @@ def delete_proday(proday_id):
     db.session.commit()
     flash('Your proday has been deleted!', 'success')
     return redirect(url_for('main.home'))
- 

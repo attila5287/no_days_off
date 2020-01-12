@@ -5,7 +5,11 @@ from nodaysoff import db, login_manager
 from flask_login import UserMixin
 
 
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
+# =============================
 class Proday(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String (100), nullable=False)
@@ -16,10 +20,6 @@ class Proday(db.Model):
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
 
-# =============================
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -148,14 +148,17 @@ class User(db.Model, UserMixin):
             'pro_active': '00' 
         }
         
-        print('img key')
+        print('img key for avatar...')
         print(img_key)
+
         updated_avatar = img_dict[img_key]
-        print('upd avatar key')
+
+        print('upd avatar key...')
         print(updated_avatar)
         
         if updated_avatar:
             self.avatar_img = 'avatar' + img_dict[img_key] + '.png'
+            print('assigned avatar...')
             print(self.avatar_img)
             db.session.commit()
         else:
