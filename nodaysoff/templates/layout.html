@@ -12,19 +12,6 @@
       https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_main_outline.ico">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
       <style>
-        :root {
-    /***Colors***/
-    /* Build-in BS colors*/
-    /*Light*/
-      --primary: #1370d3af;
-      --secondary: #c5dbd7;
-      --success: #28a745;
-      --danger: #c07167d7;
-      --warning: #db9335fa;
-      --info: #97b8bd;
-      --light: #f8f9fa;
-      --dark: #343a40;
-        }
         body {
         margin-top: 5rem;
       }
@@ -33,20 +20,25 @@
         color: #000000;
         font-family: cursive;
       }
-
+      .bg-grass {
+        background-color: rgba(170, 177, 130, 0.877);
+      }
+      .bg-sky {
+        background-color: rgba(152, 170, 199, 0.883);
+      }
       .bg-orange {
         background-color: #EEAA88;
       }
       .bg-bisque {
         background-color: rgb(250, 208, 184);
       }
-      .bg-mainbsq {
-        background-color: #FECD82;
-        
+      .bg-brick {
+        background-color: rgb(212, 125, 119);
+      }
+      .bg-gold {
+          background-color: rgba(238, 156, 79, 0.966);
       }
       .site-header .navbar-nav .nav-link {
-        color: #3700b8;
-        font-family: monospace;
       }
 
       .site-header .navbar-nav .nav-link:hover {
@@ -55,11 +47,6 @@
 
       .site-header .navbar-nav .nav-link.active {
         font-weight: 500;
-      }
-
-      .content-section {
-        padding: 10px 20px;
-        margin-bottom: 20px;
       }
 
       .article-title {
@@ -201,55 +188,101 @@
         {% block content %}
         {% endblock %}
       </div>
-      <div class="col-md-3">
-        <div class="content-section">
-          <div class="container-fluid my-2 p-2">
+      <div class="col-sm-3">
+        <div class="content-section px-4 py-1">
+          <div class="container-fluid text-center my-2 p-2">
             <div class="nav-flex-column text-center" style="width: fit-content; height:max-content;">
               <img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menuedt.ico"
                 class="card-img-top mb-2">
                 {% if current_user.is_authenticated %}
-                <a class="nav-item btn btn-large bg-zone10 nav-link text-dark border-dark mb-2"
+                <a class="nav-item btn btn-large bg-gold nav-link text-dark border-dark mb-2"
                 href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" data-placement="right" title="score points as you complete tasks color grouped depending on their urgency-importance levels with a score-dynamic avatar of user-preferred theme" style="border-width: medium;">
                 <i class="fas fa-trophy"> Task Hero </i>
-              </a> 
-
-                <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-                href="{{ url_for('tasks.taskcreator') }}"  data-toggle="tooltip" data-placement="right" title="create a new task, select urgency-importance so app will assign points then complete to score points" style="border-width: medium;">
-                <i class="fas fa-dolly    "> New Task </i>
                 </a> 
-
-                <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2" 
-                href="{{ url_for('tasks.h0me') }}"  data-toggle="tooltip" data-placement="right" title="lists all tasks in a minimalist front end design, swipe through your TODO list fast!" style="border-width: medium;">
-
-                <i class="fas fa-list-ul"> Mini~Ma~List </i>
-
+                <a class="nav-item">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <a class="nav-link text-dark mb-2"
+                      href="{{ url_for('tasks.taskcreator') }}"  data-toggle="tooltip" data-placement="right" title="create a new task, select urgency-importance so app will assign points then complete to score points" >
+                      <i class="fas fa-dolly"> New Task </i>
+                      </a> 
+                    </div>
+                    <div class="col-xs-6">
+                      <a class="nav-link text-dark mb-2"
+                      href="{{ url_for('tasks.h0me') }}"  data-toggle="tooltip" data-placement="right" title="lists all tasks in a minimalist way with no points or colors, swipe through your TODO list fast!">
+                      <i class="fas fa-list-ul"> Mini~Ma~List </i>
+                      </a> 
+                    </div>
+                  </div>
                 </a>
-                <a class="nav-item btn btn-large bg-zone10 nav-link text-dark border-dark mb-2"
+                <a class="nav-item btn btn-large bg-grass nav-link text-dark border-dark mb-2"
                 href="{{ url_for('prodays.hom3')}}" data-toggle="tooltip" 
-                data-placement="right" title="plan a productive day, print out or use app to keep your ProDay score!" style="border-width: medium;">
-                <i class="fas fa-football-ball    "> ProDay Score</i>
+                data-placement="right" title="Plan a productive day by adding activities and try to keep up by tracking your score.A fun way to organize daily activities. Could be any day, week end, work day etc." style="border-width: medium;">
+                <i class="fas fa-football-ball"> Pro Day</i>
                 </a> 
-                <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-                href="{{ url_for('prodays.new_proday') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
-                <i class="fas fa-chevron-right mr-auto"></i>
-                <i class="fas fa-dolly    "> New Pro Day </i>
-                </a> 
+
+                <a class="nav-item">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <a class="nav-link text-dark mb-2"
+                      href="{{ url_for('prodays.new_proday') }}"  data-toggle="tooltip" data-placement="right" title="Start planning a productive day by adding activities. Check examples on the playbook first!">
+                        <i class="fas fa-chalkboard-teacher">
+                        Game Plan
+                      </i>
+                      </a> 
+                    </div>
+                    <div class="col-xs-6">
+                      <a class="nav-link text-dark mb-2"
+                      href="{{ url_for('prodays.new_proday') }}"  data-toggle="tooltip" data-placement="right" title="sample pro-days to review, intro to activities, categories and scoring points.Game up!">
+                      <i class="fas fa-book">
+                        PlayBook
+                      </i>
+                      </a> 
+                    </div>
+                  </div>
+                </a>
+
                 
-                <a class="nav-item btn btn-large bg-zone01 nav-link text-dark border-dark mb-2"
+                <a class="nav-item btn btn-large bg-brick nav-link text-dark border-dark mb-2"
                 href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
-                data-placement="right" title="inspired by Duhigg's smarter faster better, set goals under five key metrics" style="border-width: medium;">
-                <i class="fas fa-futbol"> S.M.A.R.T. Goals</i>
+                data-placement="right" title="the art of setting goals and crossing them off your list! App will help you set goals under five key metrics then much more to track those!" style="border-width: medium;">
+                  <i class="fas fa-parachute-box">
+                  SMART GoalTracker</i>
                 </a>                 
+                                
+                <a class="nav-item">
+                  <div class="row">
+                    <div class="col-xs-6">
+                      <a class="nav-link text-dark mb-2"
+                      href="{{ url_for('prodays.new_proday') }}"  data-toggle="tooltip" data-placement="right" title="set a goal first by filling out the forms">
+                      <i class="fas fa-crosshairs">
+                        Set A Goal
+                      </i>
+                      
+                        
+                      </i>
+                      </a> 
+                    </div>
+                    <div class="col-xs-6">
+                      <a class="nav-link text-dark mb-2"
+                      href="{{ url_for('prodays.new_proday') }}"  data-toggle="tooltip" data-placement="right" title="about SMART:">
+                      <i class="fas fa-binoculars"> Track'N'Score</i>
+                      </a> 
+                    </div>
+                  </div>
+                </a>
+
+
                 
-                <a class="nav-item btn btn-large bg-zone01 nav-link text-dark border-dark mb-2"
+                <a class="nav-item btn btn-large bg-sky nav-link text-dark border-dark mb-2"
                 href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
-                data-placement="right" title="
-                introduced by Nancy Ratey, app will take you through this self-coaching strategy step by step to structure a sustainable strategy with easy-to-remember mechanics." style="border-width: medium;">
-                <i class="fas fa-puzzle-piece    ">
-                  ANSWER Self-Coaching</i>
+                data-placement="right" title="introduced by Nancy Ratey, app will take you through this self-coaching strategy step by step to structure a sustainable strategy with easy-to-remember mechanics." style="border-width: medium;">
+                <i class="fas fa-puzzle-piece">
+                  ANSWER Self-Coaching
+                </i>
                 </a>                 
 
-                <a class="nav-item btn btn-large bg-zone00 nav-link text-dark border-dark mb-2" href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
+                <a class="nav-item btn btn-small bg-orange nav-link text-dark border-dark mb-2" href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
                 data-placement="right" title="generates random cards with quotes from inspirational figures, (e.g. Jim Rohn) authors, writers, motivational speakers, personal coaches; 1oo% dev's choices!" style="border-width: medium;">
                 <i class="fas fa-quote-left"> got Inspired? </i>
                 <i class="fas fa-quote-right"></i>
