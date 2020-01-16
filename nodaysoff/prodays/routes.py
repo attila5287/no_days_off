@@ -12,7 +12,7 @@ prodays = Blueprint('prodays', __name__)
 def hom3():
     page = request.args.get('page', 1, type=int)
     prodays = Proday.query.order_by(
-        Proday.date_posted.desc()).paginate(page=page, per_page=5)
+        Proday.date_posted.desc()).paginate(page=page, per_page=1)
     if prodays == None:
         prodays = []
     else:
@@ -21,22 +21,23 @@ def hom3():
     return render_template('hom3.html', prodays=prodays)
 
 
+@prodays.route("/proday/create", methods=['POST'])
+@login_required
+def create_proday():
+    proday = Proday(title=request.form["title"], desc=request.form["desc"], cat01=request.form["cat01"], act01=request.form["act01"], cat02=request.form["cat02"],
+                    act02=request.form["act02"], cat03=request.form["cat03"], act03=request.form["act03"], cat04=request.form["cat04"], act04=request.form["act04"], planner=current_user)
+    db.session.add(proday)
+    db.session.commit()
+    flash('Your proday has been created!', 'success')
+    return redirect(url_for('prodays.hom3'))
+
+
 @prodays.route("/proday/new", methods=['GET', 'POST'])
 @login_required
 def new_proday():
     form = ProDayForm()
-    if form.validate_on_submit():
-        proday = Proday(
-            title=request.form["title"],
-            content=request.form["content"],
-            planner=current_user
-            )
-        db.session.add(proday)
-        db.session.commit()
-        flash('Your proday has been created!', 'success')
-        return redirect(url_for('prodays.hom3'))
-    return render_template('create_proday.html', title='New ProDay',
-                           form=form, legend='New ProDay')
+
+    return render_template('create_proday.html', title='New ProDay', form=form)
 
 
 @prodays.route("/proday/<int:proday_id>")
@@ -49,18 +50,36 @@ def proday(proday_id):
 @login_required
 def update_proday(proday_id):
     proday = Proday.query.get_or_404(proday_id)
-    if proday.author != current_user:
+    if proday.planner != current_user:
         abort(403)
     form = ProDayForm()
     if form.validate_on_submit():
-        proday.title = form.title.data
-        proday.content = form.content.data
+        proday.title=request.form["title"]
+        proday.desc=request.form["desc"]
+        proday.cat01=request.form["cat01"]
+        proday.act01=request.form["act01"]
+        proday.cat02=request.form["cat02"]
+        proday.act02=request.form["act02"]
+        proday.cat03=request.form["cat03"]
+        proday.act03=request.form["act03"]
+        proday.cat04=request.form["cat04"]
+        proday.act04=request.form["act04"]
         db.session.commit()
         flash('Your proday has been updated!', 'success')
         return redirect(url_for('prodays.proday', proday_id=proday.id))
     elif request.method == 'GET':
+        pass
         form.title.data = proday.title
-        form.content.data = proday.content
+        form.desc.data = proday.desc
+        form.cat01.data = proday.cat01
+        form.act01.data = proday.act01
+        form.cat02.data = proday.cat02
+        form.act02.data = proday.act02
+        form.cat03.data = proday.cat03
+        form.act03.data = proday.act03
+        form.cat04.data = proday.cat04
+        form.act04.data = proday.act04
+        
     return render_template('create_proday.html', title='Update Proday',
                            form=form, legend='Update ProDay')
 
@@ -68,8 +87,8 @@ def update_proday(proday_id):
 @prodays.route("/proday/<int:proday_id>/delete", methods=['POST'])
 @login_required
 def delete_proday(proday_id):
-    proday = ProDay.query.get_or_404(proday_id)
-    if proday.author != current_user:
+    proday = Proday.query.get_or_404(proday_id)
+    if proday.planner != current_user:
         abort(403)
     db.session.delete(proday)
     db.session.commit()

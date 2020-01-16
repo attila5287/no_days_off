@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
 <style>
+    .btn-secondary{
+        border-color: black;
+        border-width: medium;
+    }
     .bg-brick {
       background-color: rgb(212, 125, 119);
     }
@@ -13,6 +17,9 @@
     .bg-sky {
       background-color: rgb(152, 170, 199, .7);
     }            
+    .bg-silver {
+        background-color: rgba(255, 189, 159, 0.582);
+    }      
     </style>
     <div class="row">
         <div class="col-sm-3">
@@ -25,27 +32,26 @@
                         alt="">
                     <a class="nav-item btn btn-large nav-link bg-brick text-dark border-dark mb-2"
                         href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium">
-                        <i class="fa fa-bell mr-2" aria-hidden="true">Urgent</i><br>
-                        <i class="fa fa-eye mr-2" aria-hidden="true">Important</i>
+                        <i class="fas fa-drafting-compass mr-2">
+                            Mind  
+                        </i>
+     
                     </a>
                     <a class="nav-item btn btn-large btn-secondary nav-link bg-gold text-dark border-dark mb-2"
-                        href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
-                        <i class="fa fa-bell mr-2" aria-hidden="true">
-                        Urgent</i><br>
-                        <i class="fa fa-eye-slash mr-2" aria-hidden="true">Not Important</i>
+                        href="{{ url_for('prodays.hom3') }}" style="border-width: medium;">
+                    <i class="fas fa-walking mr-2"> Body</i>
                     </a>
     
                     <a class="nav-item btn btn-large btn-secondary nav-link bg-grass text-dark border-dark mb-2"
                         href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
-                        <i class="fa fa-bell-slash mr-2" aria-hidden="true">Less Urgent</i>
-                        <br>
-                        <i class="fa fa-eye mr-2" aria-hidden="true">Important</i>
+                        <i class="fas fa-spa"> Spirit </i>
                     </a>
     
                     <a class="nav-item btn btn-large btn-secondary bg-sky nav-link text-dark border-dark mb-2"
                         href="{{ url_for('tasks.tasks_list') }}" style="border-width: medium;">
-                        <i class="fa fa-bell-slash mr-2" aria-hidden="true">Less Urgent</i><br>
-                        <i class="fa fa-eye-slash mr-2" aria-hidden="true">Less Important</i>
+                        <i class="fa fa-battery-quarter" aria-hidden="true">
+                             Recharge
+                        </i>
                     </a>
                 </div>
                 <img class="card-img-top mb-2"
@@ -56,32 +62,32 @@
         <div class="col-sm-9">
             <img class="mb-2" src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_new.ico"
                 alt=""style="height: 3rem;">
-            <form action="/task/create" method="post">
-                <div class="form-group"> 
-                    
-                    <div class="row">
-                        {% for field in form %}
-                        {{ form.hidden_tag() }}
-                        <div class="col-sm-6">
-                            <span class="badge badge-light bg-brick border-secondary text-center" style="border-width:medium">
-                                <a>
-                                    <i class="fas fa-tree"></i>
-                                    {{ field.label}}
-                                </a>
-                            </span>
-                            {{ field(class="form-control form-control-md bg-bisque border-secondary mb-2",style="border-width:medium") }}
-                            <div class="invalid-feedback">
-                                {% for error in field.errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                        </div>
-                        {% endfor %}
+            <form action="/proday/create" method="post">
+                <div class="row">
+                    {% for field in form %}
+                    <div class="col-sm-6">
+                        <i class="fas fa-clipboard-list"> </i>
+                            <i class="fas fa-project-diagram ml-2 icon-rotate-90">
+                            {{ field.label}} </i>
+                        {{ field(class="form-control form-control-md bg-bisque border-secondary mb-2",style="border-width:medium") }}
                     </div>
-
+                    {% endfor %}
                 </div>
-                    
+                <div class="row">
+                    <div class="col-sm-10">
+                        <div class="container-fluid">
+                            <button type="submit" class="btn btn-light btn-lg btn-block bg-gold border-dark" style="border-width: medium;">
+                                <i class="fas fa-clipboard-check"></i>
+                                <i class="fas fa-bezier-curve mr-1"> </i>
+                                Submit Game Plan!
+                                <i class="fas fa-football-ball">
+                                </i>
+                                <i class="fas fa-trophy"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
+                
             </form>
         </div>
     </div>

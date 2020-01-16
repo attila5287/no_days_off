@@ -1,31 +1,143 @@
+<style>
+  .table-hover tbody tr:hover td {
+    background: rgb(185, 192, 170, .75);
+}
+.table-hover tbody tr:hover th {
+  background: rgb(185, 192, 170, .75);
+}
+.table-hover tbody tr td {
+  background: rgb(185, 192, 170);
+}
+.table-hover tbody tr th {
+  background: rgb(185, 192, 170);
+}
+</style>
+
 {% extends "layout.html" %}
 {% block content %}
+<img class="mb-2" src="https://raw.githubusercontent.com/attila5287/task_app_img/master/ndo_proday_icon.png" alt=""style="height: 3rem;">
 {% if prodays == [] %} 
-<a>
-  No productive days planned so far...
-</a>
+  <a>No productive days planned so far...</a>
 {% else %}
-    {% for proday in prodays.items %}
-        <article class="media content-section">
+
+<div class="container-fluid text-center">
+<div class="row">
+  {% for proday in prodays.items %}
+    <div class="col-md-5 text-center">
+      <article>
           <div class="media-body">
             <div class="article-metadata">
-              <small class="text-muted">{{ proday.date_posted.strftime('%Y-%m-%d') }}</small>
+              <small class="text-muted">
+                {{ proday.date_posted.strftime('%Y-%m-%d') }}
+
+              </small>
             </div>
             <h2><a class="article-title" href="{{ url_for('prodays.proday', proday_id=proday.id) }}">{{ proday.title }}</a></h2>
-            <p class="article-content">{{ proday.content }}</p>
+            <p class="article-content">{{ proday.desc }}</p>
           </div>
-        </article>
-    {% endfor %}
-    {% for page_num in prodays.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+          <div class="progress my-2">
+            <div class="progress-bar progress-bar-striped bg-grass" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+      </article>
+    </div>
+    <div class="col-md-1">
+        <h6><i class="fas fa-football-ball float-left"></i>
+        </h6>
+      <h4><i class="fa fa-clipboard-list fa-rotate-0" aria-hidden="true" ></i></h4>
+    </div>
+    <div class="col-md-6 text-center">
+      <div class="row">
+        <div class="col-md-3">
+          <h1><i class="fas fa-drafting-compass"></i></h1>
+          <hr>
+        </div>
+        <div class="col-md-3">
+          <h1>
+          <i class="fas fa-walking"></i>
+          <hr>
+        </h1>
+        </div>
+        <div class="col-md-3">
+          <h1>
+          <i class="fas fa-spa"></i> 
+          <hr>
+        </h1>
+        </div>
+        <div class="col-md-3">
+          <h1>
+          <i class="fas fa-battery-quarter"></i>
+          <hr>
+        </h1>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 text-center">
+      <table class="table table-hover">
+        <thead class="bg-grass">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category</th>
+            <th scope="col">Action</th>
+            <th scope="col">Status</th>
+            <th scope="col">Done!</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" href="/">1</th>
+            <td>{{proday.cat01}}</td>
+            <td>{{proday.act01}}</td>
+            <td>{{proday.done01}}</td>
+            <td><i class="fas fa-check" href="/"></i></a></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>{{proday.cat02}}</td>
+            <td>{{proday.act02}}</td>
+            <td>{{proday.done02}}</td>
+            <td><i class="fas fa-check" href="/"></i></a></td>          
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>{{proday.cat03}}</td>
+            <td>{{proday.act03}}</td>
+            <td>{{proday.done03}}</td>
+            <td><i class="fas fa-check" href="/"></i></a></td>          
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>{{proday.cat04}}</td>
+            <td>{{proday.act04}}</td>
+            <td>{{proday.done04}}</td>
+            <td><i class="fas fa-check" href="/"></i></a></td>          
+          </tr>                        
+        </tbody>
+      </table>
+    </div>
+  {% endfor %}
+</div>
+</div>
+
+
+<div class="container-fluid text-center">
+  <div class="row">
+    <div class="col-sm-8">
+      {% for page_num in prodays.iter_pages(left_edge=5, right_edge=5, left_current=1, right_current=2) %}
       {% if page_num %}
         {% if prodays.page == page_num %}
-          <a class="btn btn-info mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+          <a class="btn btn-info mb-4" href="{{ url_for('prodays.hom3', page=page_num) }}">{{ page_num }}</a>
         {% else %}
-          <a class="btn btn-outline-info mb-4" href="{{ url_for('main.home', page=page_num) }}">{{ page_num }}</a>
+          <a class="btn btn-outline-info mb-4" href="{{ url_for('prodays.hom3', page=page_num) }}">{{ page_num }}</a>
         {% endif %}
       {% else %}
         ...
       {% endif %}
     {% endfor %}
-    {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endif %}
+
+
 {% endblock content %}

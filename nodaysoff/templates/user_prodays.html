@@ -5,8 +5,8 @@
           <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + \ay.author.image_file) }}">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="{{ url_for('users.user_prodays', username=proday.author.username) }}">{{ proday.author.username }}</a>
-              <small class="text-muted">{{ proday.date_prodayed.strftime('%Y-%m-%d') }}</small>
+              <a class="mr-2" href="{{ url_for('users.user_prodays', username=proday.author.username) }}"> {{ proday.planner.username }} </a>
+              <small class="text-muted">{{ proday.date_posted.strftime('%Y-%m-%d') }}</small>
             </div>
             <h2><a class="article-title" href="{{ url_for('prodays.proday', proday_id=proday.id) }}">{{ proday.title }}</a></h2>
             <p class="article-content">{{ proday.content }}</p>

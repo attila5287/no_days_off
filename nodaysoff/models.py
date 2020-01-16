@@ -13,14 +13,25 @@ def load_user(user_id):
 class Proday(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String (100), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    content = db.Column(db.Text, nullable=False)
+    desc = db.Column(db.String (100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    cat01 = db.Column(db.String (24))
+    act01  = db.Column(db.String (48))
+    done01   = db.Column(db.Boolean, default=False)
+    cat02 = db.Column(db.String (24))
+    act02  = db.Column(db.String (48))
+    done02   = db.Column(db.Boolean, default=False)
+    cat03 = db.Column(db.String (24))
+    act03  = db.Column(db.String (48))
+    done03   = db.Column(db.Boolean, default=False)
+    cat04 = db.Column(db.String (24))
+    act04  = db.Column(db.String (48))
+    done04   = db.Column(db.Boolean, default=False)
     
 
     def __repr__(self):
-        return f"Post('{self.title}', '{self.date_posted}')"
+        return f"Proday('{self.title}', '{self.date_posted}')"
 
 
 class User(db.Model, UserMixin):
