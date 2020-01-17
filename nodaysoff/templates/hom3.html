@@ -16,6 +16,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <img class="mb-2" src="https://raw.githubusercontent.com/attila5287/task_app_img/master/ndo_proday_icon.png" alt=""style="height: 3rem;">
+
 {% if prodays == [] %} 
   <a>No productive days planned so far...</a>
 {% else %}
@@ -41,8 +42,9 @@
       </article>
     </div>
     <div class="col-md-1">
-        <h6><i class="fas fa-football-ball float-left"></i>
-        </h6>
+      
+      <h4><i class="fas fa-football-ball float-left"></i></h4>
+      <br>
       <h4><i class="fa fa-clipboard-list fa-rotate-0" aria-hidden="true" ></i></h4>
     </div>
     <div class="col-md-6 text-center">
@@ -85,7 +87,7 @@
         <tbody>
           <tr>
             <th scope="row" href="/">1</th>
-            <td>{{proday.cat01}}</td>
+            <td><img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/category{{proday.cat01}}0.ico" class="img-fluid" alt="" style="max-height: 2rem;"></td>
             <td>{{proday.act01}}</td>
             <td>{{proday.done01}}</td>
             <td><i class="fas fa-check" href="/"></i></a></td>

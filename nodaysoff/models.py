@@ -28,11 +28,26 @@ class Proday(db.Model):
     cat04 = db.Column(db.String (24))
     act04  = db.Column(db.String (48))
     done04   = db.Column(db.Boolean, default=False)
+    icon01 = db.Column(db.String (24))
+    icon02 = db.Column(db.String (24))
+    icon03 = db.Column(db.String (24))
+    icon04 = db.Column(db.String (24))
     
-
     def __repr__(self):
         return f"Proday('{self.title}', '{self.date_posted}')"
-
+    
+    def init_icons(self):
+        pass
+        self.icon01 = self.cat01 + '.ico'
+        self.icon02 = self.cat02 + '.ico'
+        self.icon03 = self.cat03 + '.ico'
+        self.icon04 = self.cat04 + '.ico'
+    
+    @staticmethod
+    def icons_dict(self):
+        pass
+        
+        
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)

@@ -13,6 +13,8 @@ def hom3():
     page = request.args.get('page', 1, type=int)
     prodays = Proday.query.order_by(
         Proday.date_posted.desc()).paginate(page=page, per_page=1)
+    proday_displayed = prodays[0]
+    proday_displayed.init_icons()
     if prodays == None:
         prodays = []
     else:
@@ -20,12 +22,12 @@ def hom3():
 
     return render_template('hom3.html', prodays=prodays)
 
-
 @prodays.route("/proday/create", methods=['POST'])
 @login_required
 def create_proday():
     proday = Proday(title=request.form["title"], desc=request.form["desc"], cat01=request.form["cat01"], act01=request.form["act01"], cat02=request.form["cat02"],
                     act02=request.form["act02"], cat03=request.form["cat03"], act03=request.form["act03"], cat04=request.form["cat04"], act04=request.form["act04"], planner=current_user)
+    proday.init_icons()
     db.session.add(proday)
     db.session.commit()
     flash('Your proday has been created!', 'success')
@@ -64,6 +66,7 @@ def update_proday(proday_id):
         proday.act03=request.form["act03"]
         proday.cat04=request.form["cat04"]
         proday.act04=request.form["act04"]
+        proday.init_icons()
         db.session.commit()
         flash('Your proday has been updated!', 'success')
         return redirect(url_for('prodays.proday', proday_id=proday.id))
