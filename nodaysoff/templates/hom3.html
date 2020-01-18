@@ -74,7 +74,7 @@
       </div>
     </div>
     <div class="col-md-12 text-center">
-      <table class="table table-hover">
+      <table class="table table-light table-hover">
         <thead class="bg-grass">
           <tr>
             <th scope="col">#</th>
@@ -87,31 +87,78 @@
         <tbody>
           <tr>
             <th scope="row" href="/">1</th>
-            <td><img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/category{{proday.cat01}}0.ico" class="img-fluid" alt="" style="max-height: 2rem;"></td>
-            <td>{{proday.act01}}</td>
+            <td><img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/category{{proday.icon01}}" class="img-fluid" alt="" style="max-height: 2rem;"></td>
+            <td>
+              <strong>
+              {% if proday.done01 %}<strike>{% endif %}
+              {{proday.act01}}
+              </strong>
+            </td>
             <td>{{proday.done01}}</td>
-            <td><i class="fas fa-check" href="/"></i></a></td>
+            <td>
+              <a href="{{ url_for('prodays.first_act_done', proday_id=proday.id) }}" class ="btn btn-secondary btn-sm">
+                <i class="fas fa-check" href="/"></i></a>
+              </a>
+            </td>          
           </tr>
           <tr>
             <th scope="row">2</th>
-            <td>{{proday.cat02}}</td>
-            <td>{{proday.act02}}</td>
+            <td><img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/category{{proday.icon02}}" class="img-fluid" alt="" style="max-height: 2rem;"></td>
+            <td>
+              <strong>
+                {% if proday.done02 %}<strike>{% endif %}
+                {{proday.act02}}
+                {% if proday.done02 %}</strike>{% endif %}
+                </strong>
+            </td>
+
             <td>{{proday.done02}}</td>
-            <td><i class="fas fa-check" href="/"></i></a></td>          
+            <td>
+              <a href="{{ url_for('prodays.second_act_done', proday_id=proday.id) }}" class ="btn btn-secondary btn-sm">
+                <i class="fas fa-check" href="/"></i></a>
+              </a>
+            </td>          
           </tr>
           <tr>
             <th scope="row">3</th>
-            <td>{{proday.cat03}}</td>
-            <td>{{proday.act03}}</td>
+            <td><img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/category{{proday.icon03}}" class="img-fluid" alt="" style="max-height: 2rem;"></td>
+            <td>
+              <strong>
+                {% if proday.done03 %}<strike>{% endif %}
+                {{proday.act03}}
+                {% if proday.done03 %}</strike>{% endif %}
+                </strong>
+            </td>
+
             <td>{{proday.done03}}</td>
-            <td><i class="fas fa-check" href="/"></i></a></td>          
+
+            <td>
+              <a href="{{ url_for('prodays.third_act_done', proday_id=proday.id) }}" class ="btn btn-secondary btn-sm">
+                <i class="fas fa-check" href="/"></i></a>
+              </a>
+            </td>          
+            
           </tr>
           <tr>
             <th scope="row">4</th>
-            <td>{{proday.cat04}}</td>
-            <td>{{proday.act04}}</td>
+            <td><img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/category{{proday.icon04}}" class="img-fluid" alt="" style="max-height: 2rem;"></td>
+
+            <td>
+              <strong>
+                {% if proday.done04 %}<strike>{% endif %}
+                {{proday.act04}}
+                {% if proday.done04 %}<strike>{% endif %}
+              </strong>
+            </td>
+            
             <td>{{proday.done04}}</td>
-            <td><i class="fas fa-check" href="/"></i></a></td>          
+
+            <td>
+              <a href="{{ url_for('prodays.fourth_act_done', proday_id=proday.id) }}" class ="btn btn-secondary btn-sm">
+                <i class="fas fa-check" href="/"></i></a>
+              </a>
+            </td>          
+            
           </tr>                        
         </tbody>
       </table>

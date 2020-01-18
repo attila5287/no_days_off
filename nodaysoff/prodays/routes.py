@@ -13,8 +13,6 @@ def hom3():
     page = request.args.get('page', 1, type=int)
     prodays = Proday.query.order_by(
         Proday.date_posted.desc()).paginate(page=page, per_page=1)
-    proday_displayed = prodays[0]
-    proday_displayed.init_icons()
     if prodays == None:
         prodays = []
     else:
@@ -33,7 +31,7 @@ def create_proday():
     flash('Your proday has been created!', 'success')
     return redirect(url_for('prodays.hom3'))
 
-
+# form page
 @prodays.route("/proday/new", methods=['GET', 'POST'])
 @login_required
 def new_proday():
@@ -41,12 +39,11 @@ def new_proday():
 
     return render_template('create_proday.html', title='New ProDay', form=form)
 
-
+# displays single proday to edit
 @prodays.route("/proday/<int:proday_id>")
 def proday(proday_id):
     proday = Proday.query.get_or_404(proday_id)
     return render_template('proday.html', title=proday.title, proday=proday)
-
 
 @prodays.route("/proday/<int:proday_id>/update", methods=['GET', 'POST'])
 @login_required
@@ -86,7 +83,6 @@ def update_proday(proday_id):
     return render_template('create_proday.html', title='Update Proday',
                            form=form, legend='Update ProDay')
 
-
 @prodays.route("/proday/<int:proday_id>/delete", methods=['POST'])
 @login_required
 def delete_proday(proday_id):
@@ -97,3 +93,64 @@ def delete_proday(proday_id):
     db.session.commit()
     flash('Your proday has been deleted!', 'success')
     return redirect(url_for('main.home'))
+
+# =======================
+@prodays.route('/proday/<int:proday_id>/act/01/done')
+def first_act_done(proday_id):
+    db.session.commit()
+    proday = Proday.query.get(proday_id)
+    if proday == None:
+        flash('There is no planned productive days in database...')
+        return redirect(url_for('prodays.hom3'))
+    if proday.done01 == True:
+        proday.done01 = False
+        db.session.commit()
+    else:
+        proday.done01 = True
+        db.session.commit()
+    return redirect(url_for('prodays.hom3'))
+
+@prodays.route('/proday/<int:proday_id>/act/02/done')
+def second_act_done(proday_id):
+    db.session.commit()
+    proday = Proday.query.get(proday_id)
+    if proday == None:
+        flash('There is no planned productive days in database...')
+        return redirect(url_for('prodays.hom3'))
+    if proday.done02 == True:
+        proday.done02 = False
+        db.session.commit()
+    else:
+        proday.done02 = True
+        db.session.commit()
+    return redirect(url_for('prodays.hom3'))
+
+@prodays.route('/proday/<int:proday_id>/act/03/done')
+def third_act_done(proday_id):
+    db.session.commit()
+    proday = Proday.query.get(proday_id)
+    if proday == None:
+        flash('There is no planned productive days in database...')
+        return redirect(url_for('prodays.hom3'))
+    if proday.done03 == True:
+        proday.done03 = False
+        db.session.commit()
+    else:
+        proday.done03 = True
+        db.session.commit()
+    return redirect(url_for('prodays.hom3'))
+
+@prodays.route('/proday/<int:proday_id>/act/04/done')
+def fourth_act_done(proday_id):
+    db.session.commit()
+    proday = Proday.query.get(proday_id)
+    if proday == None:
+        flash('There is no planned productive days in database...')
+        return redirect(url_for('prodays.hom3'))
+    if proday.done04 == True:
+        proday.done04 = False
+        db.session.commit()
+    else:
+        proday.done04 = True
+        db.session.commit()
+    return redirect(url_for('prodays.hom3'))

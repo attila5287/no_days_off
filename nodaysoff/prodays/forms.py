@@ -8,15 +8,18 @@ class ProDayForm(FlaskForm):
     
     desc = StringField('Description', validators=[DataRequired()])
     
-    cat01 = SelectField('Category', choices = [('0', 'Mind'), ('1', 'Body'), 
-                                   ('2', 'Spirit'), ('3', 'Recharge')])    
+    cat01 = SelectField('Category', choices = [('1', 'Mind'), ('2', 'Body'), 
+                                   ('3', 'Spirit'), ('4', 'Recharge')])    
     act01 = StringField('An Action', validators=[DataRequired()])
-    cat02 = SelectField('Category', choices = [('0', 'Mind'), ('1', 'Body'), 
-                                   ('2', 'Spirit'), ('3', 'Recharge')])    
+
+    cat02 = SelectField('Category', choices = [('1', 'Mind'), ('2', 'Body'), 
+                                ('3', 'Spirit'), ('4', 'Recharge')])    
     act02 = StringField('An Action', validators=[DataRequired()])
-    cat03 = SelectField('Category', choices = [('0', 'Mind'), ('1', 'Body'), 
-                                   ('2', 'Spirit'), ('3', 'Recharge')])    
+
+    cat03 = SelectField('Category', choices = [('1', 'Mind'), ('2', 'Body'), 
+                            ('3', 'Spirit'), ('4', 'Recharge')])    
     act03 = StringField('An Action', validators=[DataRequired()])
-    cat04 = SelectField('Category', choices = [('0', 'Mind'), ('1', 'Body'), 
-                                   ('2', 'Spirit'), ('3', 'Recharge')])    
+
+    cat04 = SelectField('Category', choices = [('1', 'Mind'), ('2', 'Body'), 
+                            ('3', 'Spirit'), ('4', 'Recharge')])        
     act04 = StringField('An Action', validators=[DataRequired()])        
