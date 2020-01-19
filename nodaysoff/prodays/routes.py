@@ -83,20 +83,24 @@ def update_proday(proday_id):
     return render_template('create_proday.html', title='Update Proday',
                            form=form, legend='Update ProDay')
 
-@prodays.route("/proday/<int:proday_id>/delete", methods=['POST'])
+@prodays.route("/proday/<int:proday_id>/delete", methods=['GET', 'POST'])
 @login_required
 def delete_proday(proday_id):
     proday = Proday.query.get_or_404(proday_id)
-    if proday.planner != current_user:
-        abort(403)
     db.session.delete(proday)
     db.session.commit()
     flash('Your proday has been deleted!', 'success')
-    return redirect(url_for('main.home'))
+    return redirect(url_for('prodays.hom3'))
 
 # =======================
 @prodays.route('/proday/<int:proday_id>/act/01/done')
 def first_act_done(proday_id):
+    pass
+    def redir3ct_url(default=url_for('prodays.hom3')):
+        pass
+        return request.args.get('next') or \
+            request.referrer or \
+            url_for(default)    
     db.session.commit()
     proday = Proday.query.get(proday_id)
     if proday == None:
@@ -108,10 +112,16 @@ def first_act_done(proday_id):
     else:
         proday.done01 = True
         db.session.commit()
-    return redirect(url_for('prodays.hom3'))
+    return redirect(redir3ct_url())
 
 @prodays.route('/proday/<int:proday_id>/act/02/done')
 def second_act_done(proday_id):
+    pass
+    def redir3ct_url(default=url_for('prodays.hom3')):
+        pass
+        return request.args.get('next') or \
+            request.referrer or \
+            url_for(default)    
     db.session.commit()
     proday = Proday.query.get(proday_id)
     if proday == None:
@@ -123,10 +133,16 @@ def second_act_done(proday_id):
     else:
         proday.done02 = True
         db.session.commit()
-    return redirect(url_for('prodays.hom3'))
+    return redirect(redir3ct_url())
 
 @prodays.route('/proday/<int:proday_id>/act/03/done')
 def third_act_done(proday_id):
+    pass
+    def redir3ct_url(default=url_for('prodays.hom3')):
+        pass
+        return request.args.get('next') or \
+            request.referrer or \
+            url_for(default)    
     db.session.commit()
     proday = Proday.query.get(proday_id)
     if proday == None:
@@ -138,10 +154,16 @@ def third_act_done(proday_id):
     else:
         proday.done03 = True
         db.session.commit()
-    return redirect(url_for('prodays.hom3'))
+    return redirect(redir3ct_url())
 
 @prodays.route('/proday/<int:proday_id>/act/04/done')
 def fourth_act_done(proday_id):
+    pass
+    def redir3ct_url(default=url_for('prodays.hom3')):
+        pass
+        return request.args.get('next') or \
+            request.referrer or \
+            url_for(default)
     db.session.commit()
     proday = Proday.query.get(proday_id)
     if proday == None:
@@ -153,4 +175,4 @@ def fourth_act_done(proday_id):
     else:
         proday.done04 = True
         db.session.commit()
-    return redirect(url_for('prodays.hom3'))
+    return redirect(redir3ct_url())

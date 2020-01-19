@@ -43,9 +43,6 @@ class Proday(db.Model):
         self.icon03 = self.cat03 + '.ico'
         self.icon04 = self.cat04 + '.ico'
     
-    @staticmethod
-    def icons_dict(self):
-        pass
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)

@@ -27,6 +27,10 @@
     <div class="col-md-5 text-center">
       <article>
           <div class="media-body">
+            <a href="{{ url_for('prodays.delete_proday', proday_id=proday.id) }}" class ="btn btn-danger btn-sm">
+              <i class="fas fa-times" href="/"></i></a>
+            <a href="{{ url_for('prodays.update_proday', proday_id=proday.id) }}" class ="btn btn-secondary btn-sm">
+              <i class="fas fa-edit" href="/"></i></a>
             <div class="article-metadata">
               <small class="text-muted">
                 {{ proday.date_posted.strftime('%Y-%m-%d') }}
