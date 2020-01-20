@@ -9,42 +9,156 @@ from flask_login import UserMixin
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# =============================
+# ===== ====== ===== ====== =====
 class Proday(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String (100), nullable=False)
     desc = db.Column(db.String (100), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    
     cat01 = db.Column(db.String (24))
     act01  = db.Column(db.String (48))
     done01   = db.Column(db.Boolean, default=False)
+    
     cat02 = db.Column(db.String (24))
     act02  = db.Column(db.String (48))
     done02   = db.Column(db.Boolean, default=False)
+    
     cat03 = db.Column(db.String (24))
     act03  = db.Column(db.String (48))
     done03   = db.Column(db.Boolean, default=False)
+    
     cat04 = db.Column(db.String (24))
     act04  = db.Column(db.String (48))
     done04   = db.Column(db.Boolean, default=False)
+    
     icon01 = db.Column(db.String (24))
     icon02 = db.Column(db.String (24))
     icon03 = db.Column(db.String (24))
     icon04 = db.Column(db.String (24))
+
+    count_c01 = db.Column(db.Integer, default=int(1)) 
+    count_c02 = db.Column(db.Integer, default=int(1)) 
+    count_c03 = db.Column(db.Integer, default=int(1)) 
+    count_c04 = db.Column(db.Integer, default=int(1))     
+
+    countD_c01 = db.Column(db.Integer, default=int(0)) 
+    countD_c02 = db.Column(db.Integer, default=int(0)) 
+    countD_c03 = db.Column(db.Integer, default=int(0)) 
+    countD_c04 = db.Column(db.Integer, default=int(0)) 
     
     def __repr__(self):
-        return f"Proday('{self.title}', '{self.date_posted}')"
+        return f"Proday ('{self.title}', '{self.desc}')"
     
     def init_icons(self):
+        ''' init icons per user selection of categories '''
         pass
         self.icon01 = self.cat01 + '.ico'
         self.icon02 = self.cat02 + '.ico'
         self.icon03 = self.cat03 + '.ico'
         self.icon04 = self.cat04 + '.ico'
-    
+        
+    def init_histogram(self):
+        ''' counts user-selected actions by categories'''
+        all_cats = [
+            str(category) for category in range(1,5)
+        ]
+        zeros = [   
+            int(0) for category in all_cats
+        ]
+        d = dict(zip(all_cats, zeros))
+        user_cats = [
+            self.cat01, self.cat02, self.cat03, self.cat04, 
+        ]
+        
+        for cat in user_cats:
+            if cat not in d:
+                d[cat] = 1
+            else:
+                d[cat] += 1
 
+        self.count_c01 = d.get('1')
+        self.count_c02 =d.get('2')
+        self.count_c03 = d.get('3')
+        self.count_c04 = d.get('4')
+    
+    def init_progress(self):
+        ''' vars req'd for progress bar visualization ''' 
+        pass
+        count_done_list = [
+            self.countD_c01,
+            self.countD_c02,
+            self.countD_c03,
+            self.countD_c04,
+        ]
+        for count in count_done_list:
+            if count == None:
+                count = 0
+                db.session.commit()
+            else:
+                pass  
+
+    def count_act_done(self, action_done, count):
+        'marks action done hence the counts under category'
+        if action_done == True:
+            action_done = False
+            count -= 1
+        else:
+            action_done = True
+            count += 1
+        
+
+# ===================================
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Text)
+    content = db.Column(db.Text)
+    done = db.Column(db.Boolean, default=False)
+    is_urgent = db.Column(db.Text, default='n')
+    is_important = db.Column(db.Text, default='n')
+    matrix_zone = db.Column(db.Text, default='00')
+    border_style = db.Column(db.Text, default='info')
+    urg_points= db.Column(db.Integer, default=int(36)) 
+    imp_points = db.Column(db.Integer, default=int(36))
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+ 
+    def add_matrix_zone(self):
+        pass
+        self.matrix_zone = str(self.is_urgent) + str(self.is_important)
+    
+    def add_task_border(self):
+        pass
+        style_dict = {'11' : 'danger', '10' : 'warning', '01' : 'primary', '00' : 'info'}
+        self.border_style = style_dict[self.matrix_zone]
+    
+    def add_urgency_points(self):
+        pass 
+        urgency_point_dict = {
+            '11' : '96',
+            '10' : '72',
+            '01' : '48',
+            '00' : '36',
+        }
+        self.urg_points = int(urgency_point_dict[self.matrix_zone])
+
+    def add_importance_points(self):
+        pass
+        importance_point_dict = {
+            '11' : '96',
+            '10' : '48',
+            '01' : '72',
+            '00' : '36',
+        }
+        self.imp_points = int(importance_point_dict[self.matrix_zone])        
+
+    def __repr__(self):
+        return '<Task %s>' % self.title
+# ===================================
+    
 class User(db.Model, UserMixin):
+    'user with tasks, prodays, posts, collecting points per completion along with profile pic, hashed password etc. '
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -77,19 +191,19 @@ class User(db.Model, UserMixin):
 
     def init_points(self):
         pass
-    # init points: importance
+        # init points: importance
         if self.imp_pts == None:
             self.imp_pts = 0
             db.session.commit()
         else:
             pass            
-    # init points: urgency        
+        # init points: urgency        
         if self.urg_pts == None:
             self.urg_pts = 0
             db.session.commit()
         else:
             pass
-    # init points: total points        
+        # init points: total points        
         if self.total_pts == None:
             self.total_pts = 0
             db.session.commit()
@@ -124,7 +238,20 @@ class User(db.Model, UserMixin):
             )
         self.urg_perc =  int(100 - self.imp_perc)
         db.session.commit()
-    
+
+    def gain_points(self, task_urg_pts=29, task_imp_pts=29):
+        pass
+        self.imp_pts+=task_imp_pts
+        self.total_pts+=task_imp_pts
+        self.urg_pts+=task_urg_pts
+        self.total_pts+=task_urg_pts
+        
+    def lose_points(self, task_urg_pts=29, task_imp_pts=29):
+        pass
+        self.imp_pts-=task_imp_pts
+        self.total_pts-=task_imp_pts
+        self.urg_pts-=task_urg_pts  
+        self.total_pts-=task_urg_pts          
         
     def init_avatar(self):
         pass
@@ -188,22 +315,7 @@ class User(db.Model, UserMixin):
             self.avatar_img = 'avatar10.png'
             print(self.avatar_img)
             db.session.commit()
-            
-    
-    def gain_points(self, task_urg_pts=29, task_imp_pts=29):
-        pass
-        self.imp_pts+=task_imp_pts
-        self.total_pts+=task_imp_pts
-        self.urg_pts+=task_urg_pts
-        self.total_pts+=task_urg_pts
-        
-        
-    def lose_points(self, task_urg_pts=29, task_imp_pts=29):
-        pass
-        self.imp_pts-=task_imp_pts
-        self.total_pts-=task_imp_pts
-        self.urg_pts-=task_urg_pts  
-        self.total_pts-=task_urg_pts      
+
         
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
@@ -218,49 +330,3 @@ class Post(db.Model):
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
 
-class Task(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.Text)
-    content = db.Column(db.Text)
-    done = db.Column(db.Boolean, default=False)
-    is_urgent = db.Column(db.Text, default='n')
-    is_important = db.Column(db.Text, default='n')
-    matrix_zone = db.Column(db.Text, default='00')
-    border_style = db.Column(db.Text, default='info')
-    urg_points= db.Column(db.Integer, default=int(36)) 
-    imp_points = db.Column(db.Integer, default=int(36))
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
- 
-    def add_matrix_zone(self):
-        pass
-        self.matrix_zone = str(self.is_urgent) + str(self.is_important)
-    
-    def add_task_border(self):
-        pass
-        style_dict = {'11' : 'danger', '10' : 'warning', '01' : 'primary', '00' : 'info'}
-        self.border_style = style_dict[self.matrix_zone]
-    
-    def add_urgency_points(self):
-        pass
-        urgency_point_dict = {
-            '11' : '96',
-            '10' : '72',
-            '01' : '48',
-            '00' : '36',
-        }
-        self.urg_points = int(urgency_point_dict[self.matrix_zone])
-
-    def add_importance_points(self):
-        pass
-        importance_point_dict = {
-            '11' : '96',
-            '10' : '48',
-            '01' : '72',
-            '00' : '36',
-        }
-        self.imp_points = int(importance_point_dict[self.matrix_zone])        
-
-    def __repr__(self):
-        return '<Task %s>' % self.title
-# ===================================

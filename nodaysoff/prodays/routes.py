@@ -26,9 +26,11 @@ def create_proday():
     proday = Proday(title=request.form["title"], desc=request.form["desc"], cat01=request.form["cat01"], act01=request.form["act01"], cat02=request.form["cat02"],
                     act02=request.form["act02"], cat03=request.form["cat03"], act03=request.form["act03"], cat04=request.form["cat04"], act04=request.form["act04"], planner=current_user)
     proday.init_icons()
+    proday.init_histogram()
+    proday.init_progress()
     db.session.add(proday)
     db.session.commit()
-    flash('Your proday has been created!', 'success')
+    flash('Its a new day!', 'warning')
     return redirect(url_for('prodays.hom3'))
 
 # form page
@@ -92,7 +94,7 @@ def delete_proday(proday_id):
     flash('Your proday has been deleted!', 'success')
     return redirect(url_for('prodays.hom3'))
 
-# =======================
+# ======  ===== 
 @prodays.route('/proday/<int:proday_id>/act/01/done')
 def first_act_done(proday_id):
     pass
@@ -106,11 +108,17 @@ def first_act_done(proday_id):
     if proday == None:
         flash('There is no planned productive days in database...')
         return redirect(url_for('prodays.hom3'))
+    else:
+        pass
+    
     if proday.done01 == True:
         proday.done01 = False
+        proday.countD_c01 -= 1
+        
         db.session.commit()
     else:
         proday.done01 = True
+        proday.countD_c01 += 1
         db.session.commit()
     return redirect(redir3ct_url())
 
@@ -129,10 +137,15 @@ def second_act_done(proday_id):
         return redirect(url_for('prodays.hom3'))
     if proday.done02 == True:
         proday.done02 = False
+        proday.countD_c02 -= 1
+        
         db.session.commit()
     else:
         proday.done02 = True
+        proday.countD_c02 += 1
+        
         db.session.commit()
+        
     return redirect(redir3ct_url())
 
 @prodays.route('/proday/<int:proday_id>/act/03/done')
@@ -150,9 +163,11 @@ def third_act_done(proday_id):
         return redirect(url_for('prodays.hom3'))
     if proday.done03 == True:
         proday.done03 = False
+        proday.countD_c01 -= 1
         db.session.commit()
     else:
         proday.done03 = True
+        proday.countD_c03 += 1
         db.session.commit()
     return redirect(redir3ct_url())
 
@@ -171,8 +186,10 @@ def fourth_act_done(proday_id):
         return redirect(url_for('prodays.hom3'))
     if proday.done04 == True:
         proday.done04 = False
+        proday.countD_c04 -= 1
         db.session.commit()
     else:
         proday.done04 = True
+        proday.countD_c04 += 1
         db.session.commit()
     return redirect(redir3ct_url())
