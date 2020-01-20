@@ -27,7 +27,7 @@ def create_proday():
                     act02=request.form["act02"], cat03=request.form["cat03"], act03=request.form["act03"], cat04=request.form["cat04"], act04=request.form["act04"], planner=current_user)
     proday.init_icons()
     proday.init_histogram()
-    proday.init_progress()
+    proday.init_countDone()
     db.session.add(proday)
     db.session.commit()
     flash('Its a new day!', 'warning')
@@ -106,7 +106,7 @@ def first_act_done(proday_id):
     db.session.commit()
     proday = Proday.query.get(proday_id)
     if proday == None:
-        flash('There is no planned productive days in database...')
+        flash('There is no planned productive days in database...', 'danger')
         return redirect(url_for('prodays.hom3'))
     else:
         pass

@@ -48,6 +48,9 @@ class Proday(db.Model):
     countD_c03 = db.Column(db.Integer, default=int(0)) 
     countD_c04 = db.Column(db.Integer, default=int(0)) 
     
+    count_done = db.Column(db.Integer, default=int(0))     
+    count_total = db.Column(db.Integer, default=int(4))     
+    
     def __repr__(self):
         return f"Proday ('{self.title}', '{self.desc}')"
     
@@ -83,31 +86,27 @@ class Proday(db.Model):
         self.count_c03 = d.get('3')
         self.count_c04 = d.get('4')
     
-    def init_progress(self):
+    def init_countDone(self):
         ''' vars req'd for progress bar visualization ''' 
         pass
-        count_done_list = [
+        CountDonePerCat = [
             self.countD_c01,
             self.countD_c02,
             self.countD_c03,
             self.countD_c04,
         ]
-        for count in count_done_list:
+        ones = []
+        for count in CountDonePerCat:
             if count == None:
                 count = 0
                 db.session.commit()
+            elif count == 0:
+                ones.append(0)
             else:
-                pass  
-
-    def count_act_done(self, action_done, count):
-        'marks action done hence the counts under category'
-        if action_done == True:
-            action_done = False
-            count -= 1
-        else:
-            action_done = True
-            count += 1
-        
+                ones.append(int(count))
+                
+        self.count_done = sum(ones)
+        self.count_total = len(CountDonePerCat)
 
 # ===================================
 class Task(db.Model):
