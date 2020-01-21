@@ -41,7 +41,7 @@
             <p class="article-content">{{ proday.desc }}</p>
           </div>
           <div class="progress my-2">
-            <div class="progress-bar progress-bar-striped bg-grass" role="progressbar" style="width: {{proday.count_done*25}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="{{proday.count_done}}*25"></div>
+            <div class="progress-bar progress-bar-striped bg-grass" role="progressbar" style="width:{{proday.perc_done|string}}%" aria-valuenow="{{proday.perc_done|string}}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
       </article>
     </div>

@@ -51,6 +51,8 @@ class Proday(db.Model):
     count_done = db.Column(db.Integer, default=int(0))     
     count_total = db.Column(db.Integer, default=int(4))     
     
+    perc_done = db.Column(db.Integer, default=int(0))     
+        
     def __repr__(self):
         return f"Proday ('{self.title}', '{self.desc}')"
     
@@ -107,6 +109,11 @@ class Proday(db.Model):
                 
         self.count_done = sum(ones)
         self.count_total = len(CountDonePerCat)
+        self.perc_done = int(round(self.count_done/self.count_total*100))
+        
+    def update_progress(self):
+        'update action completion percentage'
+        self.perc_done = int(round(self.count_done/self.count_total*100))
 
 # ===================================
 class Task(db.Model):
