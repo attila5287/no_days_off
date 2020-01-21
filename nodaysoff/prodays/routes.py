@@ -114,11 +114,15 @@ def first_act_done(proday_id):
     if proday.done01 == True:
         proday.done01 = False
         proday.countD_c01 -= 1
+        proday.init_countDone()
+        proday.update_progress()
         
         db.session.commit()
     else:
         proday.done01 = True
         proday.countD_c01 += 1
+        proday.init_countDone()
+        proday.update_progress()        
         db.session.commit()
     return redirect(redir3ct_url())
 
@@ -138,11 +142,15 @@ def second_act_done(proday_id):
     if proday.done02 == True:
         proday.done02 = False
         proday.countD_c02 -= 1
+        proday.init_countDone()
+        proday.update_progress()        
         
         db.session.commit()
     else:
         proday.done02 = True
         proday.countD_c02 += 1
+        proday.init_countDone()
+        proday.update_progress()        
         
         db.session.commit()
         
@@ -163,11 +171,15 @@ def third_act_done(proday_id):
         return redirect(url_for('prodays.hom3'))
     if proday.done03 == True:
         proday.done03 = False
-        proday.countD_c01 -= 1
+        proday.countD_c03 -= 1
+        proday.init_countDone()
+        proday.update_progress()        
         db.session.commit()
     else:
         proday.done03 = True
         proday.countD_c03 += 1
+        proday.init_countDone()
+        proday.update_progress()        
         db.session.commit()
     return redirect(redir3ct_url())
 
@@ -187,9 +199,13 @@ def fourth_act_done(proday_id):
     if proday.done04 == True:
         proday.done04 = False
         proday.countD_c04 -= 1
+        proday.init_countDone()
+        proday.update_progress()        
         db.session.commit()
     else:
         proday.done04 = True
         proday.countD_c04 += 1
+        proday.init_countDone()
+        proday.update_progress()        
         db.session.commit()
     return redirect(redir3ct_url())

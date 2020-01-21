@@ -50,7 +50,7 @@
 <div class="row">
   {% for proday in prodays.items %}
     <div class="col-md-5 text-center">
-      <div class="card border-dark" style="border-width: medium;">
+      <div class="card border-info" style="border-width: medium;">
         <div class="card-header bg-gold text-right border-dark" style="border-width: medium;">
           <a href="{{ url_for('prodays.delete_proday', proday_id=proday.id) }}" class ="btn btn-danger btn-sm">
           <i class="fas fa-times ml-auto" href="/"></i></a>
@@ -72,60 +72,22 @@
           <p class="card-text">{{ proday.desc }}</p>
         </div>
       </div>
+      
 
-      <div class="card-group my-2">
-        <div class="card">
-          <div class="card-header bg-gold p-0">
-              mind
-          </div>
-            <i class="fas fa-drafting-compass fa-3x m-2"> </i>
-            <h1>{{ proday.count_c01 }}</h1>
-            <div class="card-body">
-            <p class="card-text"></p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header bg-gold p-0">
-            mind
-        </div>
-          <i class="fas fa-walking fa-3x m-2"></i>
-          <h1>{{ proday.count_c02 }}</h1>
-          <div class="card-body">
-            <h4 class="card-title">{{ proday.count_c02 }}</h4>
-            <p class="card-text">Text</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header bg-gold p-0">
-            mind
-        </div>
-          <img class="card-img-top" data-src="holder.js/100x180/" alt="Card image cap">
-          <div class="card-body">
-            <h4 class="card-title">Title</h4>
-            <p class="card-text">Text</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header bg-gold p-0">
-            mind
-        </div>
-          <img class="card-img-top" data-src="holder.js/100x180/" alt="Card image cap">
-          <div class="card-body">
-            <h4 class="card-title">Title</h4>
-            <p class="card-text">Text</p>
-          </div>
-        </div>
-      </div>
+    
+    </div>
+
+    <div class="col-md-6 text-center">
       <div class="row">
         <div class="col-md-3">
-      <h1>
-      <i class="fas fa-drafting-compass"></i>
-      <hr>
-      {{ proday.countD_c01 }}  
-    </h1>
-    <i class="fas fa-clipboard-list">
-      {{ proday.count_c01 }}  
-    </i>
+          <h1>
+          <i class="fas fa-drafting-compass"></i>
+          <hr>
+          {{ proday.countD_c01 }}  
+        </h1>
+        <i class="fas fa-clipboard-list">
+          {{ proday.count_c01 }}  
+        </i>
         </i>
         </div>
         <div class="col-md-3">
@@ -159,45 +121,7 @@
         </i>
         </div>
       </div>
-
-    
     </div>
-
-    <div class="col-md-4 text-center">
-
-    </div>
-    <div class="col-md-8">
-      <div class="container-fluid">
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Heading</h5>
-              <small>small</small>
-            </div>
-            <p class="mb-1">Paragraph</p>
-            <small>paragraph footer</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Heading</h5>
-              <small>small</small>
-            </div>
-            <p class="mb-1">Paragraph</p>
-            <small>paragraph footer</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start disabled">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">Heading</h5>
-              <small>small</small>
-            </div>
-            <p class="mb-1">Paragraph</p>
-            <small>paragraph footer</small>
-          </a>
-        </div> 
-      </div>
-      
-    </div>
-
     <div class="col-md-12 text-center">
       <table class="table table-light table-hover my-2">
         <thead style="background-color: #FECD82;">
@@ -298,9 +222,11 @@
   {% endfor %}
 </div>
 </div>
+
+
 <div class="container-fluid text-center">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-8">
       {% for page_num in prodays.iter_pages(left_edge=5, right_edge=5, left_current=1, right_current=2) %}
       {% if page_num %}
         {% if prodays.page == page_num %}
