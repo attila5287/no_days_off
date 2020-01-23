@@ -4,8 +4,8 @@ from flask_login import current_user, login_required
 from nodaysoff import db
 from nodaysoff.models import Proday
 from nodaysoff.prodays.forms import ProDayForm
-
 prodays = Blueprint('prodays', __name__)
+
 
 
 @prodays.route("/hom3")
@@ -28,6 +28,7 @@ def create_proday():
     proday.init_icons()
     proday.init_histogram()
     proday.init_countDone()
+    proday.random_quote()
     db.session.add(proday)
     db.session.commit()
     flash('Its a new day!', 'warning')
@@ -106,6 +107,7 @@ def first_act_done(proday_id):
     db.session.commit()
     proday = Proday.query.get(proday_id)
     if proday == None:
+        pass
         flash('There is no planned productive days in database...', 'danger')
         return redirect(url_for('prodays.hom3'))
     else:
@@ -116,13 +118,14 @@ def first_act_done(proday_id):
         proday.countD_c01 -= 1
         proday.init_countDone()
         proday.update_progress()
-        
+        proday.random_quote()
         db.session.commit()
     else:
         proday.done01 = True
         proday.countD_c01 += 1
         proday.init_countDone()
         proday.update_progress()        
+        proday.random_quote()
         db.session.commit()
     return redirect(redir3ct_url())
 
@@ -144,6 +147,7 @@ def second_act_done(proday_id):
         proday.countD_c02 -= 1
         proday.init_countDone()
         proday.update_progress()        
+        proday.random_quote()
         
         db.session.commit()
     else:
@@ -151,6 +155,7 @@ def second_act_done(proday_id):
         proday.countD_c02 += 1
         proday.init_countDone()
         proday.update_progress()        
+        proday.random_quote()
         
         db.session.commit()
         
@@ -174,12 +179,14 @@ def third_act_done(proday_id):
         proday.countD_c03 -= 1
         proday.init_countDone()
         proday.update_progress()        
+        proday.random_quote()
         db.session.commit()
     else:
         proday.done03 = True
         proday.countD_c03 += 1
         proday.init_countDone()
         proday.update_progress()        
+        proday.random_quote()
         db.session.commit()
     return redirect(redir3ct_url())
 
@@ -201,11 +208,13 @@ def fourth_act_done(proday_id):
         proday.countD_c04 -= 1
         proday.init_countDone()
         proday.update_progress()        
+        proday.random_quote()
         db.session.commit()
     else:
         proday.done04 = True
         proday.countD_c04 += 1
         proday.init_countDone()
         proday.update_progress()        
+        proday.random_quote()
         db.session.commit()
     return redirect(redir3ct_url())
