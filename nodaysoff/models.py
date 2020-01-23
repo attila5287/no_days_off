@@ -59,11 +59,17 @@ class Proday(db.Model):
     def init_icons(self):
         ''' init icons per user selection of categories '''
         pass
-        self.icon01 = self.cat01 + '.ico'
-        self.icon02 = self.cat02 + '.ico'
-        self.icon03 = self.cat03 + '.ico'
-        self.icon04 = self.cat04 + '.ico'
-        
+        _dict = {
+            '1':'drafting-compass',
+            '2':'walking',
+            '3':'spa',
+            '4':'battery-quarter',
+        }
+        self.icon01 = _dict[self.cat01]
+        self.icon02 = _dict[self.cat02]
+        self.icon03 = _dict[self.cat03]
+        self.icon04 = _dict[self.cat04]
+
     def init_histogram(self):
         ''' counts user-selected actions by categories'''
         all_cats = [
