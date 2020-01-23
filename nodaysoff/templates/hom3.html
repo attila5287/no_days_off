@@ -1,4 +1,7 @@
 <style>  
+  .fa-ul li{
+    color:grey;
+  }
   .list-group-hover li:hover a {
     background-color: rgba(243, 200, 100, 0.772);  
   }
@@ -150,10 +153,15 @@
       <div class="col-sm-8">
         <!-- PRODAY ACTIONS LIST -->
         <div class="row">
+            <img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/karateopponenttotal0{{proday.count_done|string}}.png" class="img-fluid text-center" alt="" style="max-height: 3rem;">           
+            <img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/karateplayertotal0{{proday.count_done|string}}.png" class="img-fluid text-center" alt="" style="max-height: 3rem;">           
+        </div>
+        <div class="row">
           <div class="container-fluid">
             <ul class="list-group list-group-hover bg-grass px-4 py-3">
 
               <li class="list-group-item active border-light py-4 mx-3 my-0">
+  
                 <img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_score.ico" class="img-fluid text-center" alt="" style="max-height: 3rem;">
               </li>
 
@@ -235,6 +243,7 @@
               </li>
             </ul>
           </div>
+
         </div>
         <!-- PAGINATION BUTTONS -->
         <div class="row">
