@@ -9,6 +9,24 @@ from nodaysoff.users.utils import save_picture, send_reset_email
 users = Blueprint('users', __name__)
 
 
+@users.route("/regist3r", methods=['POST'])
+def regist3r():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
+    else:
+        form = RegistrationForm()
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        user.init_avatar()
+        user.init_avatarmode()
+        user.init_points()
+        user.init_percs()
+        db.session.add(user)
+        db.session.commit()
+        flash('Your account has been created! You are now able to log in', 'success')
+        return redirect(url_for('users.login'))
+
+
 @users.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:

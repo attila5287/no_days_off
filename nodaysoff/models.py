@@ -271,19 +271,19 @@ class User(db.Model, UserMixin):
         pass
         # init points: importance
         if self.imp_pts == None:
-            self.imp_pts = 0
+            self.imp_pts = 1
             db.session.commit()
         else:
             pass            
         # init points: urgency        
         if self.urg_pts == None:
-            self.urg_pts = 0
+            self.urg_pts = 1
             db.session.commit()
         else:
             pass
         # init points: total points        
         if self.total_pts == None:
-            self.total_pts = 0
+            self.total_pts = 2
             db.session.commit()
         else:
             pass
