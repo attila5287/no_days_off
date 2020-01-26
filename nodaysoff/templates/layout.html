@@ -16,7 +16,7 @@
       }
 
       h1, h2, h3, h4, h5, h6 {
-        font-family: cursive;
+        font-family: Neucha;
       }
       .bg-grass {
         background-color: rgba(170, 177, 130, 0.877);
@@ -131,8 +131,7 @@
                 Community
               </a>
               <a class="nav-item nav-link text-dark" href="{{ url_for('posts.new_post') }}">
-                <i class="fas fa-comment"></i>
-                 ost</a>
+                <i class="fas fa-comment"></i>Post</a>
 
             {% else %}
             <a class="nav-item nav-link text-dark" href="{{ url_for('main.about') }}">
@@ -178,9 +177,13 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
           {% if messages %}
             {% for category, message in messages %}
-              <div class="alert alert-{{ category }}">
-                {{ message }}
+            <div class="card border-primary">
+              <img class="card-img-top" src="holder.js/100px180/" alt="">
+              <div class="card-body">
+                <h4 class="card-title">Title</h4>
+                <p class="card-text">Text</p>
               </div>
+            </div>
             {% endfor %}
           {% endif %}
         {% endwith %}

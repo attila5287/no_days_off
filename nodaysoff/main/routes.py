@@ -3,8 +3,6 @@ from nodaysoff.models import Post
 
 main = Blueprint('main', __name__)
 
-from flask import g 
-
 @main.route("/")
 @main.route("/about")
 def about():
