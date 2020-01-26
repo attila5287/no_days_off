@@ -9,14 +9,52 @@ from nodaysoff.users.utils import save_picture, send_reset_email
 users = Blueprint('users', __name__)
 
 
+
+@users.route("/regist3r", methods=['POST'])
+def regist3r():
+    hashed_password = bcrypt.generate_password_hash(request.form['password'])
+    print(hashed_password)
+    user = User(
+        username=request.form['username'], 
+        email=request.form['email'], 
+        password=hashed_password,
+        urg_pts= 19, 
+        imp_pts = 19, 
+        total_pts = 38, 
+        imp_perc = 50, 
+        urg_perc = 50, 
+        avatar_mode = 'wildanimals_', 
+        avatar_img =  'default00.png', 
+    )
+    db.session.add(user)
+    db.session.commit()
+    flash('Your account has been created! You are now able to log in', 'success')
+    return redirect(url_for('users.login'))
+
+
+# LET THIS BE THE FORM PAGE ONLY WITH AN EXTRA ROUTE FOR PROCESSING USER-DETAILS
 @users.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        print(form.password.data)
+        print(form.username.data)
+        print(form.email.data)
+        hashed_password = bcrypt.generate_password_hash(request.form['password'])
+        user = User(
+            username=request.form['username'], 
+            email=request.form['email'], 
+            password=hashed_password,
+            urg_pts= 19, 
+            imp_pts = 19, 
+            total_pts = 38, 
+            imp_perc = 50, 
+            urg_perc = 50, 
+            avatar_mode = 'wildanimals_', 
+            avatar_img =  'default00.png', 
+        )
         db.session.add(user)
         db.session.commit()
         flash('Your account has been created! You are now able to log in', 'success')

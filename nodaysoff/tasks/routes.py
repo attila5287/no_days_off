@@ -97,6 +97,8 @@ def taskcreator():
 @tasks.route('/task/create', methods=['POST'])
 def add_task():
     pass
+    print('test')
+    print(request.form["title"])
     task = Task(
         title=request.form["title"],
         content=request.form["content"],
