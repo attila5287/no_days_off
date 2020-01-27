@@ -222,7 +222,7 @@ class User(db.Model, UserMixin):
             self.avatar_img = str('avatar' + img_dict[img_key] + '.png')
             print('assigned avatar...')
             print(self.avatar_img)
-            db.session.commit()
+                db.session.commit()
         else:
             self.avatar_img = 'avatar10.png'
             print(self.avatar_img)
