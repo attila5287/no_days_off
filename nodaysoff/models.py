@@ -84,7 +84,8 @@ class User(db.Model, UserMixin):
     total_pts = db.Column(db.Integer, default=int(38))
     imp_perc = db.Column(db.Integer, default=int(50))
     urg_perc = db.Column(db.Integer, default=int(50))
-    avatar_mode = db.Column(db.String(32), nullable=False, default='wildanimals')
+    avatar_mode = db.Column(
+        db.String(32), nullable=False, default='wildanimals')
     avatar_img = db.Column(db.String(32), nullable=False,
                            default='default00.png')
 
