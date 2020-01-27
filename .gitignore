@@ -21,3 +21,12 @@ nodaysoff/main/__pycache__/routes.cpython-37.pyc
 nodaysoff/errors/__pycache__/__init__.cpython-37.pyc
 nodaysoff/errors/__pycache__/handlers.cpython-37.pyc
 .vscode/settings.json
+nodaysoff/__pycache__/__init__.cpython-37.pyc
+nodaysoff/__pycache__/config.cpython-37.pyc
+nodaysoff/__pycache__/models.cpython-37.pyc
+nodaysoff/main/__pycache__/routes.cpython-37.pyc
+nodaysoff/posts/__pycache__/routes.cpython-37.pyc
+nodaysoff/tasks/__pycache__/forms.cpython-37.pyc
+nodaysoff/tasks/__pycache__/routes.cpython-37.pyc
+nodaysoff/users/__pycache__/forms.cpython-37.pyc
+nodaysoff/users/__pycache__/routes.cpython-37.pyc

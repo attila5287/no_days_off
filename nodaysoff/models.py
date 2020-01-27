@@ -68,7 +68,6 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-
 class User(db.Model, UserMixin):
     'user with tasks, prodays, posts, collecting points per completion along with profile pic, hashed password etc. '
     id = db.Column(db.Integer, primary_key=True)
@@ -85,8 +84,8 @@ class User(db.Model, UserMixin):
     total_pts = db.Column(db.Integer, default=int(38))
     imp_perc = db.Column(db.Integer, default=int(50))
     urg_perc = db.Column(db.Integer, default=int(50))
-    avatar_mode = db.Column(db.String(20), nullable=False, default='')
-    avatar_img = db.Column(db.String(20), nullable=False,
+    avatar_mode = db.Column(db.String(32), nullable=False, default='wildanimals')
+    avatar_img = db.Column(db.String(32), nullable=False,
                            default='default00.png')
 
     def get_reset_token(self, expires_sec=1800):
@@ -180,7 +179,7 @@ class User(db.Model, UserMixin):
             pass
             self.avatar_mode = 'wildanimals_'
         else:
-            pass  
+            pass
 
     def update_avatar(self):
         pass
@@ -219,9 +218,14 @@ class User(db.Model, UserMixin):
         print(updated_avatar)
 
         if updated_avatar:
-            self.avatar_img = str('avatar' + img_dict[img_key] + '.png')
+            self.avatar_img = ''.join(
+                [
+                    'avatar', img_dict[img_key], '.png'
+                ]
+            )
             print('assigned avatar...')
             print(self.avatar_img)
+            print(type(self.avatar_img))
             db.session.commit()
         else:
             self.avatar_img = 'avatar10.png'
@@ -230,7 +234,6 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
-
 
 
 # ===== ====== ===== ====== =====
@@ -405,6 +408,7 @@ class Task(db.Model):
     def __repr__(self):
         return '<Task %s>' % self.title
 # ===================================
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
