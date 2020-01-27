@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <!-- Required meta tags -->
+        <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <!-- Bootstrap CSS -->
@@ -15,9 +15,6 @@
         margin-top: 4rem;
       }
 
-      h1, h2, h3, h4, h5, h6 {
-        font-family: Neucha;
-      }
       .bg-grass {
         background-color: rgba(170, 177, 130, 0.877);
       }
@@ -177,13 +174,9 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
           {% if messages %}
             {% for category, message in messages %}
-            <div class="card border-primary">
-              <img class="card-img-top" src="holder.js/100px180/" alt="">
-              <div class="card-body">
-                <h4 class="card-title">Title</h4>
-                <p class="card-text">Text</p>
+              <div class="alert alert-{{ category }}">
+                {{ message }}
               </div>
-            </div>
             {% endfor %}
           {% endif %}
         {% endwith %}
@@ -244,25 +237,20 @@
                   </div>
                 </a>
 
-                
                 <a class="nav-item btn btn-large bg-brick nav-link text-dark border-dark mb-2"
                 href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
                 data-placement="right" title="the art of setting goals and crossing them off your list! App will help you set goals under five key metrics then much more to track those!" style="border-width: medium;">
                   <i class="fas fa-parachute-box">
                   SMART GoalTracker</i>
                 </a>                 
-                                
                 <a class="nav-item">
                   <div class="row">
                     <div class="col-xs-6">
                       <a class="nav-link text-dark mb-2"
                       href="{{ url_for('prodays.new_proday') }}"  data-toggle="tooltip" data-placement="right" title="set a goal first by filling out the forms">
-                      <i class="fas fa-crosshairs">
-                        Set A Goal
-                      </i>
-                      
-                        
-                      </i>
+                        <i class="fas fa-crosshairs">
+                          Set A Goal
+                        </i>
                       </a> 
                     </div>
                     <div class="col-xs-6">
@@ -273,6 +261,7 @@
                     </div>
                   </div>
                 </a>
+                                
 
 
                 

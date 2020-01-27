@@ -352,9 +352,9 @@ class User(db.Model, UserMixin):
         pass
         if self.avatar_mode == None:
             pass
-            self.avatar_mode = ''
+            self.avatar_mode = 'wildanimals_'
         else:
-            pass
+            pass  
 
     def update_avatar(self):
         pass
