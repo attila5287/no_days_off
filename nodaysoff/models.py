@@ -177,12 +177,13 @@ class User(db.Model, UserMixin):
         pass
         if self.avatar_mode == None:
             pass
-            self.avatar_mode = 'wildanimals_'
+            self.avatar_mode = 'wildanimals'
         else:
             pass
 
     def update_avatar(self):
         pass
+        ''' method runs every task done-undone updates avatar per dynamic task completion (imp or urg percentage should be updated prev'ly) '''
         img_key = int(self.urg_perc)
 
         responsive = 53
