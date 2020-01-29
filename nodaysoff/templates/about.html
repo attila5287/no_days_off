@@ -1,4 +1,31 @@
 {% extends "layout.html" %} {% block content %}
+<style>
+	.bg-body {
+		background-color: #fecd82;
+	}
+	.border-body {
+		border-color: #fecd82;
+		border-width: medium;
+	}
+	.list-group-hover li:hover a {
+		background-color: rgba(243, 200, 100, 0.772);
+	}
+	.list-group-hover li:hover strong {
+		background-color: rgba(243, 200, 100, 0.772);
+	}
+
+	.list-group-hover li:hover i {
+		background-color: rgba(243, 200, 100, 0.772);
+	}
+
+	.text-orange {
+		text-color: orange;
+	}
+
+	.text-body {
+		text-color: orange;
+	}
+</style>
 
 <div class="row">
 	<div class="col-sm-3">
@@ -28,14 +55,6 @@
 					Flask Web FrameWork &middot; PostgreSQL Database &middot; Heroku
 					Server Deployment (SalesForce)
 				</div>
-
-				<hr />
-				<small class="text-info text-info">
-					Developer:
-					<i class="fa fa-code-fork text-dark" aria-hidden="true">
-						attila5287
-					</i>
-				</small>
 			</div>
 		</div>
 
@@ -60,24 +79,27 @@
 						alt="First slide"
 					/>
 					<div class="container">
-						<div class="carousel-caption text-left py-2 my-2">
-							<h4>
+						<div class="carousel-caption text-left py-1 my-0">
+							<h1>
 								ProDay Module
-							</h4>
+							</h1>
 							<p>
-								&boxv; User adds four actions/activities under app-suggested
-								four categories via forms python extension Flask-WTF <br />
-
-								&boxvr; Python code creates a ProDay class with four act's and
-								init variables to be used while tracking score
+								User adds four actions/activities under app-suggested four
+								categories via forms python extension Flask-WTF <br />
+								<i class="fas fa-arrow-down"></i><br />
+								Python code creates a ProDay class with four act's and init
+								variables to be used while tracking score
 								<br />
 
-								&boxvr; User updates progress by done-checkboxes<br />
-
-								&boxvr; ProDay object updates Score Board, Progress Bar,
-								Background Images in a football-themed user interface
+								<i class="fas fa-arrow-down"></i><br />
+								User updates progress by done-checkboxes
+								<i class="fas fa-arrow-right    "></i> ProDay object updates
+								Score Board, Progress Bar, Background Images in a
+								football-themed user interface
 								<br />
-								&boxur; PostgreSQL database has been used to read and store
+								<i class="fas fa-asterisk    "></i>
+								PostgreSQL database <i class="fas fa-database fa-1x"></i> has
+								been used to read and store
 							</p>
 							<p>
 								<a
@@ -98,16 +120,21 @@
 					/>
 					<div class="container">
 						<div class="carousel-caption py-1 my-0">
-							<h4>Task Hero</h4>
+							<h1>Task Hero</h1>
 							<p>
-								&DownTee; Forms page (create_t4sk.html) collect data from user
-								(via extension Flask-WTF) <br />&DownTee; <br />
+								Forms page (create_t4sk.html) collect data from user (via
+								extension Flask-WTF) <br /><i class="fas fa-arrow-down"></i>
+								<br />
 								Task (db.Model) init all attributes: points, colors and date
 								created upon submit (DOM by ext SQL-Alchemy)
 								<i class="fa fa-arrow-right" aria-hidden="true"></i> PostgreSQL
 								receives record and stores in a different table (not like
-								ProDay) with Foreign Key to User <br />&DownTee; <br />
-								User (db.Model)
+								ProDay) with Foreign Key to User <br /><i
+									class="fas fa-arrow-down"
+								></i
+								><br />
+								User (db.Model) object updates points -hence the Hero(avatar)-
+								scored when any task done
 							</p>
 							<p>
 								<a
@@ -127,19 +154,34 @@
 						alt="Third slide"
 					/>
 					<div class="container">
-						<div class="carousel-caption text-right py-1 my-0">
-							<h4>Graphics, Utilities and Code Repo</h4>
+						<div class="carousel-caption text-right py-2 my-1">
+							<h1>
+								Utils, Icons, Code Repo
+							</h1>
 							<p>
-								Users will enjoy different avatar pictures and themes for Task
-								Hero! &boxul;<br />
-								Store user data in hashed form via bcrypt-module of python
-								&boxul;<br />
-								Users upload user photo and saves their preferences &boxul;<br />
-								Secure database via PostgreSQL &boxul;<br />
-								Developers: check code or dont hesitate to request fork if any
-								ideas &boxul;<br />
+								<i class="fas fa-arrow-right    "></i> Registered users saves
+								preferences along with their scores<br />
+								<i class="fas fa-lock    mr-2"></i> Encrypted data storage
+								<br />
+
+								<i
+									class="fa fa-level-up-alt fa-flip-horizontal"
+									aria-hidden="true"
+								></i>
+
+								<i class="fas fa-database    "></i>
+								Secure database via PostgreSQL
+								<i class="fas fa-level-down-alt fa-rotate-90 mr-3"></i>
+								<br /><br />
+								<i class="fas fa-arrow-right    "></i> Developers: check code or
+								dont hesitate to request fork if any ideas
+								<i class="fas fa-code-branch    "></i>
+								<br /><br />
+								<i class="fas fa-arrow-right    "></i>
 								Take a peek at tailor-made icons, images, graphics etc. on
-								github repo task_app_img &boxul;<br />
+								github repo task_app_img
+								<i class="fas fa-paint-roller    "></i>
+								<i class="fas fa-paint-brush    "></i>
 							</p>
 							<p>
 								<a class="btn btn-lg btn-primary bg-sky" href="#" role="button"
@@ -276,24 +318,5 @@
 	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
 	crossorigin="anonymous"
 ></script>
-<style>
-	.bg-body {
-		background-color: #fecd82;
-	}
-	.border-body {
-		border-color: #fecd82;
-		border-width: medium;
-	}
-	.list-group-hover li:hover a {
-		background-color: rgba(243, 200, 100, 0.772);
-	}
-	.list-group-hover li:hover strong {
-		background-color: rgba(243, 200, 100, 0.772);
-	}
-
-	.list-group-hover li:hover i {
-		background-color: rgba(243, 200, 100, 0.772);
-	}
-</style>
 
 {% endblock content %}
