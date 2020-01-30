@@ -46,7 +46,7 @@
 		<nav class="navbar navbar-expand-md navbar-secondary bg-brick fixed-top">
 
 
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand" href="/">
 				<img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_icon.ico" alt="" style="max-height: 2rem;">
 			</a>
 
@@ -57,31 +57,47 @@
 
 			<div class="collapse navbar-collapse" id="collapsibleNavId">
 			  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active">
-				  <a class="nav-link" href="#">TaskHero <span class="sr-only">(current)</span></a>
-				</li>
 				<li class="nav-item">
-				  <a class="nav-link" href="#">ProDay</a>
+				<a class="nav-link" href="{{url_for('tasks.tasks_list')}}">TaskHero</a>
+				</li>				
+				<li class="nav-item">
+				  <a class="nav-link" href="{{url_for('prodays.hom3')}}">ProDay</a>
 				</li>
+
+				{% if current_user.is_authenticated %}
+				<!-- auth usr -->
 				<li class="nav-item dropdown">
-				  <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					  <i class="fas fa-angle-down    "></i>
-					  New</a>
-				  <div class="dropdown-menu" aria-labelledby="dropdownId">
-					<a class="dropdown-item" href="#">Action 1</a>
-					<a class="dropdown-item" href="#">Action 2</a>
-				  </div>
+					<a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fas fa-user"></i>
+						New</a>
+					<div class="dropdown-menu bg-body" aria-labelledby="dropdownId">
+						<a class="dropdown-item" href="{{url_for('tasks.taskcreator')}}">
+							<i class="fas fa-clipboard-check"></i>
+							Task</a>
+						<a class="dropdown-item" href="{{url_for('prodays.new_proday')}}">
+							<i class="fas fa-football-ball    "></i>
+							ProDay</a>
+					</div>
 				</li>
+				{% else %}
 				<!-- not auth -->
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-angle-down    "></i>
+						<i class="fas fa-user-slash"></i>
 						New</a>
-					<div class="dropdown-menu" aria-labelledby="dropdownId">
-					  <a class="dropdown-item" href="#">Action 1</a>
-					  <a class="dropdown-item" href="#">Action 2</a>
+					<div class="dropdown-menu bg-body" aria-labelledby="dropdownId">
+					  <a class="dropdown-item" href="{{url_for('tasks.taskcreator')}}">
+						  <i class="fas fa-clipboard-check    "></i>
+						  Task</a>
+					  <a class="dropdown-item" href="
+					  {{url_for('prodays.new_proday') }}
+					  ">
+						  <i class="fas fa-football-ball    "></i>
+						  ProDay</a>
 					</div>
 				  </li>
+				  {% endif %}
+
 			  </ul>
 			</div>
 		  </nav>
