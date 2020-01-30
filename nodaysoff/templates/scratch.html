@@ -1,3 +1,67 @@
+<header class="site-header m-0 p-0">
+  <nav class="navbar navbar-expand-md navbar-light text-dark bg-orange fixed-top">
+      <div class="container">
+        <a class="navbar-brand mx-2" href="/">
+          <img
+            src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_icon.ico"
+            width="128" height="22"></a>      
+        </a>
+        <div class="collapse navbar-collapse" id="navbarToggle">
+          <div class="navbar-nav mr-auto">
+            {% if current_user.is_authenticated %}
+            <a class="nav-item nav-link text-dark" href="{{ url_for('tasks.h0me') }}">
+              <i class="fas fa-flask icon-1x"></i>
+              h0me
+            </a>
+            <a class="nav-item nav-link text-dark" href="{{ url_for('tasks.new_task') }}">
+              <i class="fas fa-vials"></i>
+              Task
+            </a>                            
+            <a class="nav-item nav-link text-dark" href="{{ url_for('main.home') }}">
+              <i class="fas fa-users"></i>
+              Community
+            </a>
+            <a class="nav-item nav-link text-dark" href="{{ url_for('posts.new_post') }}">
+              <i class="fas fa-comment"></i>Post</a>
+
+          {% else %}
+          <a class="nav-item nav-link text-dark" href="{{ url_for('main.about') }}">
+            <i class="fas fa-question mx-2"></i>
+            | info
+          </a>
+
+          {% endif %}
+
+          </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+            {% if current_user.is_authenticated %}
+              <a class="nav-item nav-link text-dark" href="{{ url_for('users.account') }}">
+                <i class="fa fa-cogs" aria-hidden="true"></i>
+                Account</a>
+              <a class="nav-item nav-link text-dark" href="{{ url_for('users.logout') }}">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout</a>
+                <a class="mr-auto text-center mt-1"> <img
+                src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_colorado_co_flag.ico"
+                width="28" height="16"></a>            
+            {% else %}
+              <a class="nav-item nav-link text-dark" href="{{ url_for('users.login') }}">
+                <i class="fas fa-sign-in-alt"></i>
+                Login</a>
+              <a class="nav-item nav-link text-dark" href="{{ url_for('users.register') }}">
+                <i class="fa fa-address-book" aria-hidden="true"></i>
+                Register
+              </a><a><img
+                src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_colorado_co_flag.ico"
+                width="28" height="16"></a>            
+            {% endif %}
+          </div>
+        </div>
+      </div>
+  </nav>
+</header>
+
 <style>
 
 </style>

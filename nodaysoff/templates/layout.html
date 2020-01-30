@@ -1,343 +1,385 @@
 <!DOCTYPE html>
 <html>
-  <head>
-        <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.4.1/sketchy/bootstrap.min.css">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="icon" type="image/x-icon" class="favicon" href="
-      https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_main_outline.ico">
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-      <style>
-        body {
-        margin-top: 4rem;
-      }
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+		<script src="{{ url_for('static', filename='holder.js') }}"></script>
+		<script src="{{ url_for('static', filename='jquery-3.js') }}"></script>
+		<script src="{{ url_for('static', filename='popper.js') }}"></script>
 
-      .bg-grass {
-        background-color: rgba(170, 177, 130, 0.877);
-      }
-      .bg-sky {
-        background-color: rgba(152, 170, 199, 0.883);
-      }
-      .bg-orange {
-        background-color: #EEAA88;
-      }
-      .bg-bisque {
-        background-color: rgb(250, 208, 184);
-      }
-      .bg-brick {
-        background-color: rgb(212, 125, 119);
-      }
-      .bg-gold {
-          background-color: rgba(238, 156, 79, 0.966);
-      }
-      .bg-silver {
-        background-color: rgba(221, 226, 225, 0.932);
-    }      
-
-      .site-header .navbar-nav .nav-link:hover {
-        color: #1823c4;
-      }
-
-      .site-header .navbar-nav .nav-link.active {
-        font-weight: 500;
-      }
-
-      .article-title {
-        color: #091c44;
-      }
-
-      a {
-        font-family: cursive;
-      }
-      a.article-title:hover {
-        color: #428bca;
-        text-decoration: none;
-      }
-
-      .article-content {
-        white-space: pre-line;
-      }
-
-      .article-img {
-        height: 65px;
-        width: 65px;
-        margin-right: 16px;
-      }
-
-      .article-metadata {
-        padding-bottom: 1px;
-        margin-bottom: 4px;
-        border-bottom: 1px solid #e3e3e3
-      }
-
-      .article-metadata a:hover {
-        color: #333;
-        text-decoration: none;
-      }
-
-      .article-svg {
-        width: 25px;
-        height: 25px;
-        vertical-align: middle;
-      }
-
-      .account-img {
-        height: 125px;
-        width: 125px;
-        margin-right: 20px;
-        margin-bottom: 16px;
-      }
-
-      .account-heading {
-        font-size: 2.5rem;
-      }
-
-    </style>
-      {% if title %}
-          <title>No Days Off | {{ title }}</title>
-      {% else %}
-          <title>No Days Off</title>
-      {% endif %}
-  </head>
-<body style="background-color: #FECD82;">
-
-  <header class="site-header m-0 p-0">
-    <nav class="navbar navbar-expand-md navbar-light text-dark bg-orange fixed-top">
-        <div class="container">
-          <a class="navbar-brand mx-2" href="/">
-            <img
-              src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_icon.ico"
-              width="128" height="22"></a>      
-          </a>
-          <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
-              {% if current_user.is_authenticated %}
-              <a class="nav-item nav-link text-dark" href="{{ url_for('tasks.h0me') }}">
-                <i class="fas fa-flask icon-1x"></i>
-                h0me
-              </a>
-              <a class="nav-item nav-link text-dark" href="{{ url_for('tasks.new_task') }}">
-                <i class="fas fa-vials"></i>
-                Task
-              </a>                            
-              <a class="nav-item nav-link text-dark" href="{{ url_for('main.home') }}">
-                <i class="fas fa-users"></i>
-                Community
-              </a>
-              <a class="nav-item nav-link text-dark" href="{{ url_for('posts.new_post') }}">
-                <i class="fas fa-comment"></i>Post</a>
-
-            {% else %}
-            <a class="nav-item nav-link text-dark" href="{{ url_for('main.about') }}">
-              <i class="fas fa-question mx-2"></i>
-              | info
-            </a>
-
-            {% endif %}
-
-            </div>
-              <!-- Navbar Right Side -->
-              <div class="navbar-nav">
-              {% if current_user.is_authenticated %}
-                <a class="nav-item nav-link text-dark" href="{{ url_for('users.account') }}">
-                  <i class="fa fa-cogs" aria-hidden="true"></i>
-                  Account</a>
-                <a class="nav-item nav-link text-dark" href="{{ url_for('users.logout') }}">
-                  <i class="fas fa-sign-out-alt"></i>
-                  Logout</a>
-                  <a class="mr-auto text-center mt-1"> <img
-                  src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_colorado_co_flag.ico"
-                  width="28" height="16"></a>            
-              {% else %}
-                <a class="nav-item nav-link text-dark" href="{{ url_for('users.login') }}">
-                  <i class="fas fa-sign-in-alt"></i>
-                  Login</a>
-                <a class="nav-item nav-link text-dark" href="{{ url_for('users.register') }}">
-                  <i class="fa fa-address-book" aria-hidden="true"></i>
-                  Register
-                </a><a><img
-                  src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_colorado_co_flag.ico"
-                  width="28" height="16"></a>            
-              {% endif %}
-            </div>
-          </div>
-        </div>
-    </nav>
-  </header>
-
-  <main role="main" class="container my-2 p-2">
-    <div class="row">
-      <div class="col-md-9">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            {% for category, message in messages %}
-              <div class="alert alert-{{ category }}">
-                {{ message }}
-              </div>
-            {% endfor %}
-          {% endif %}
-        {% endwith %}
-        {% block content %}
-        {% endblock %}
-      </div>
-      <div class="col-sm-3">
-        <div class="content-section px-3 py-0">
-          <div class="container-fluid text-center my-2 py-0 px-2">
-            <div class="nav-flex-column text-center" style="width: fit-content; height:max-content;">
-              <img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menuedt.ico"
-                class="card-img-top mb-2">
-                {% if current_user.is_authenticated %}
-                <a class="nav-item btn btn-large bg-gold nav-link text-dark border-dark pb-2"
-                href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" data-placement="right" title="score points as you complete tasks color grouped depending on their urgency-importance levels with a score-dynamic avatar of user-preferred theme" style="border-width: medium;">
-                <i class="fas fa-trophy"> Task Hero </i>
-                </a> 
-                <a class="nav-item">
-                  <div class="row">
-                    <div class="col-xs-6">
-                      <a class="nav-link text-dark p b-2"
-                      href="{{ url_for('tasks.taskcreator') }}"  data-toggle="tooltip" data-placement="right" title="create a new task, select urgency-importance so app will assign points then complete to score points" >
-                      <i class="fas fa-dolly"> New Task </i>
-                      </a> 
-                    </div>
-                    <div class="col-xs-6">
-                      <a class="nav-link text-dark mb-2"
-                      href="{{ url_for('tasks.h0me') }}"  data-toggle="tooltip" data-placement="right" title="lists all tasks in a minimalist way with no points or colors, swipe through your TODO list fast!">
-                      <i class="fas fa-list-ul"> Mini~Ma~List </i>
-                      </a> 
-                    </div>
-                  </div>
-                </a>
-                <a class="nav-item btn btn-large bg-grass nav-link text-dark border-dark mb-2"
-                href="{{ url_for('prodays.hom3')}}" data-toggle="tooltip" 
-                data-placement="right" title="Plan a productive day by adding activities and try to keep up by tracking your score.A fun way to organize daily activities. Could be any day, week end, work day etc." style="border-width: medium;">
-                <i class="fas fa-football-ball"> Pro Day</i>
-                </a> 
-
-                <a class="nav-item">
-                  <div class="row">
-                    <div class="col-xs-6">
-                      <a class="nav-link text-dark mb-2"
-                      href="{{ url_for('prodays.new_proday') }}"  data-toggle="tooltip" data-placement="right" title="Start planning a productive day by adding activities. Check examples on the playbook first!">
-                        <i class="fas fa-chalkboard-teacher">
-                        Game Plan
-                      </i>
-                      </a> 
-                    </div>
-                    <div class="col-xs-6">
-                      <a class="nav-link text-dark mb-2"
-                      href="{{ url_for('prodays.new_proday') }}"  data-toggle="tooltip" data-placement="right" title="sample pro-days to review, intro to activities, categories and scoring points.Game up!">
-                      <i class="fas fa-book">
-                        PlayBook
-                      </i>
-                      </a> 
-                    </div>
-                  </div>
-                </a>
-
-                <a class="nav-item btn btn-large bg-brick nav-link text-dark border-dark mb-2"
-                href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
-                data-placement="right" title="the art of setting goals and crossing them off your list! App will help you set goals under five key metrics then much more to track those!" style="border-width: medium;">
-                  <i class="fas fa-parachute-box">
-                  SMART GoalTracker</i>
-                </a>                 
-                <a class="nav-item">
-                  <div class="row">
-                    <div class="col-xs-6">
-                      <a class="nav-link text-dark mb-2"
-                      href="{{ url_for('prodays.new_proday') }}"  data-toggle="tooltip" data-placement="right" title="set a goal first by filling out the forms">
-                        <i class="fas fa-crosshairs">
-                          Set A Goal
-                        </i>
-                      </a> 
-                    </div>
-                    <div class="col-xs-6">
-                      <a class="nav-link text-dark mb-2"
-                      href="{{ url_for('prodays.new_proday') }}"  data-toggle="tooltip" data-placement="right" title="about SMART:">
-                      <i class="fas fa-binoculars"> Track'N'Score</i>
-                      </a> 
-                    </div>
-                  </div>
-                </a>
-                                
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
 
 
-                
-                <a class="nav-item btn btn-large bg-sky nav-link text-dark border-dark mb-2"
-                href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
-                data-placement="right" title="introduced by Nancy Ratey, app will take you through this self-coaching strategy step by step to structure a sustainable strategy with easy-to-remember mechanics." style="border-width: medium;">
-                <i class="fas fa-puzzle-piece">
-                  ANSWER Self-Coaching
-                </i>
-                </a>                 
-                <a class="nav-item btn btn-small bg-orange nav-link text-dark border-dark mb-2" href="{{ url_for('tasks.tasks_list')}}" data-toggle="tooltip" 
-                data-placement="right" title="generates random cards with quotes from inspirational figures, authors, writers, motivational speakers, personal coaches; 1oo% dev's choices!" style="border-width: medium;">
-                <i class="fas fa-quote-left"> got Inspired? </i>
-                <i class="fas fa-quote-right"></i>
-                  
-                </a> 
-                <div class="row">
-                  <div class="col-xs-6">
-                    <a class="nav-item nav-link text-dark m-2" href="{{ url_for('users.account') }}">
-                      <i class="fas fa-cogs mr-2"> Account</i>
-                    </a>
-                  </div>
-                  <div class="col-xs-6">
-                    <a class="nav-item nav-link text-dark m-2" href="{{ url_for('users.logout') }}">
-                      <i class="fas fa-sign-out-alt mr-2"> Logout</i></a>
-                  </div>
-                </div>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.4.1/sketchy/bootstrap.min.css"
+		/>
 
-              {% else %}
-              <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-              href="{{ url_for('main.about') }}"  data-toggle="tooltip" data-placement="right" title="info abt app: complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
-                <img
-                  src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_info.ico"
-                  style="height: 2rem;">
-            </a> 
-              <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-              href="{{ url_for('users.register') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
-                <img
-                  src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_register.ico"
-                  style="height: 2rem;">
-            </a>                                     
-            <a class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
-            href="{{ url_for('users.login') }}"  data-toggle="tooltip" data-placement="right" title="complete tasks grouped under urgency-importance and score points accordingly,  TODO" style="border-width: medium;">
-              <img
-                src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_login.ico"
-                style="height: 2rem;">
-            </a>
 
-            {% endif %}
+		<link
+			rel="icon"
+			type="image/x-icon"
+			class="favicon"
+			href="
+      https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_main_outline.ico"
+		/>
+		
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+			integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+			crossorigin="anonymous"
+		/>
+		{% if title %}
+		<title>No Days Off | {{ title }}</title>
+		{% else %}
+		<title>No Days Off</title>
+		{% endif %}
+	</head>
+	<body style="background-color: #FECD82;">
+		<nav class="navbar navbar-expand-md navbar-secondary bg-brick fixed-top">
 
-              <img class="card-img-top mb-2"
-                src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menu_bottomedt.ico">
 
-                <div class="card">
-                  <div class="card-body bg-body border-body p-0 m-">
-                    <small class="card-subtitle text-muted">
-                      app developed; graphics designed; code written; database administrated; idea created by:
-                      <i class="fa fa-code-fork text-dark" aria-hidden="true" href="https://github.com/attila5287/no_days_off"> attila5287
-                      </i>
-                      </small>
-                  </div>
-                </div>
+			<a class="navbar-brand" href="#">
+				<img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/navbar_icon.ico" alt="" style="max-height: 2rem;">
+			</a>
 
-                
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-  </main>
+			<button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<i class="fas fa-arrow-circle-down text-secondary fa-2x"></i>
+			</button>
 
-  <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UsENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body >
+			<div class="collapse navbar-collapse" id="collapsibleNavId">
+			  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item active">
+				  <a class="nav-link" href="#">TaskHero <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item">
+				  <a class="nav-link" href="#">ProDay</a>
+				</li>
+				<li class="nav-item dropdown">
+				  <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					  <i class="fas fa-angle-down    "></i>
+					  New</a>
+				  <div class="dropdown-menu" aria-labelledby="dropdownId">
+					<a class="dropdown-item" href="#">Action 1</a>
+					<a class="dropdown-item" href="#">Action 2</a>
+				  </div>
+				</li>
+				<!-- not auth -->
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fas fa-angle-down    "></i>
+						New</a>
+					<div class="dropdown-menu" aria-labelledby="dropdownId">
+					  <a class="dropdown-item" href="#">Action 1</a>
+					  <a class="dropdown-item" href="#">Action 2</a>
+					</div>
+				  </li>
+			  </ul>
+			</div>
+		  </nav>
+
+		<main role="main" class="container my-2 px-0">
+			<div class="row">
+				<div class="col-sm-9">
+					{% with messages = get_flashed_messages(with_categories=true) %} {% if
+					messages %} {% for category, message in messages %}
+					<div class="alert alert-{{ category }}">
+						{{ message }}
+					</div>
+					{% endfor %} {% endif %} {% endwith %} {% block content %} {% endblock
+					%}
+				</div>
+				<div class="col-sm-3">
+					<div class="content-section px-3 py-0">
+						<div class="container-fluid text-center my-2 py-0 px-2">
+							<div
+								class="nav-flex-column text-center"
+								style="width: fit-content; height:max-content;"
+							>
+								<img
+									src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menuedt.ico"
+									class="card-img-top mb-2"
+								/>
+								{% if current_user.is_authenticated %}
+
+								<a
+									class="nav-item btn btn-large bg-gold nav-link text-dark border-dark pb-2"
+									href="{{ url_for('tasks.tasks_list')}}"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="score points as you complete tasks color grouped depending on their urgency-importance levels with a score-dynamic avatar of user-preferred theme"
+									style="border-width: medium;"
+								>
+									<i class="fas fa-trophy"> Task Hero </i>
+								</a>
+								<a class="nav-item">
+									<div class="row">
+										<div class="col-xs-6">
+											<a
+												class="nav-link text-dark p b-2"
+												href="{{ url_for('tasks.taskcreator') }}"
+												data-toggle="tooltip"
+												data-placement="right"
+												title="create a new task, select urgency-importance so app will assign points then complete to score points"
+											>
+												<i class="fas fa-dolly"> New Task </i>
+											</a>
+										</div>
+										<div class="col-xs-6">
+											<a
+												class="nav-link text-dark mb-2"
+												href="{{ url_for('tasks.h0me') }}"
+												data-toggle="tooltip"
+												data-placement="right"
+												title="lists all tasks in a minimalist way with no points or colors, swipe through your TODO list fast!"
+											>
+												<i class="fas fa-list-ul"> Mini~Ma~List </i>
+											</a>
+										</div>
+									</div>
+								</a>
+								<a
+									class="nav-item btn btn-large bg-grass nav-link text-dark border-dark mb-2"
+									href="{{ url_for('prodays.hom3')}}"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="Plan a productive day by adding activities and try to keep up by tracking your score.A fun way to organize daily activities. Could be any day, week end, work day etc."
+									style="border-width: medium;"
+								>
+									<i class="fas fa-football-ball"> Pro Day</i>
+								</a>
+
+								<a class="nav-item">
+									<div class="row">
+										<div class="col-xs-6">
+											<a
+												class="nav-link text-dark mb-2"
+												href="{{ url_for('prodays.new_proday') }}"
+												data-toggle="tooltip"
+												data-placement="right"
+												title="Start planning a productive day by adding activities. Check examples on the playbook first!"
+											>
+												<i class="fas fa-chalkboard-teacher">
+													Game Plan
+												</i>
+											</a>
+										</div>
+										<div class="col-xs-6">
+											<a
+												class="nav-link text-dark mb-2"
+												href="{{ url_for('prodays.new_proday') }}"
+												data-toggle="tooltip"
+												data-placement="right"
+												title="sample pro-days to review, intro to activities, categories and scoring points.Game up!"
+											>
+												<i class="fas fa-book">
+													PlayBook
+												</i>
+											</a>
+										</div>
+									</div>
+								</a>
+
+								<a
+									class="nav-item btn btn-large bg-brick nav-link text-dark border-dark mb-2"
+									href="{{ url_for('tasks.tasks_list')}}"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="the art of setting goals and crossing them off your list! App will help you set goals under five key metrics then much more to track those!"
+									style="border-width: medium;"
+								>
+									<i class="fas fa-parachute-box"> SMART GoalTracker</i>
+								</a>
+								<a class="nav-item">
+									<div class="row">
+										<div class="col-xs-6">
+											<a
+												class="nav-link text-dark mb-2"
+												href="{{ url_for('prodays.new_proday') }}"
+												data-toggle="tooltip"
+												data-placement="right"
+												title="set a goal first by filling out the forms"
+											>
+												<i class="fas fa-crosshairs">
+													Set A Goal
+												</i>
+											</a>
+										</div>
+										<div class="col-xs-6">
+											<a
+												class="nav-link text-dark mb-2"
+												href="{{ url_for('prodays.new_proday') }}"
+												data-toggle="tooltip"
+												data-placement="right"
+												title="about SMART:"
+											>
+												<i class="fas fa-binoculars"> Track'N</i>
+											</a>
+										</div>
+									</div>
+								</a>
+
+								<a
+									class="nav-item btn btn-large bg-sky nav-link text-dark border-dark mb-2"
+									href="{{ url_for('tasks.tasks_list')}}"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="introduced by Nancy Ratey, app will take you through this self-coaching strategy step by step to structure a sustainable strategy with easy-to-remember mechanics."
+									style="border-width: medium;"
+								>
+									<i class="fas fa-puzzle-piece">
+										ANSWER Self-Coaching
+									</i>
+								</a>
+								<a
+									class="nav-item btn btn-small bg-orange nav-link text-dark border-dark mb-2"
+									href="{{ url_for('tasks.tasks_list')}}"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="generates random cards with quotes from inspirational figures, authors, writers, motivational speakers, personal coaches; 1oo% dev's choices!"
+									style="border-width: medium;"
+								>
+									<i class="fas fa-quote-left"> got Inspired? </i>
+									<i class="fas fa-quote-right"></i>
+								</a>
+								<div class="row">
+									<div class="col-xs-6">
+										<a
+											class="nav-item nav-link text-dark col-md-10"
+											href="{{ url_for('users.account') }}"
+										>
+											<i class="fas fa-cogs mr-2"> Account</i>
+										</a>
+									</div>
+									<div class="col-xs-6">
+										<a
+											class="nav-item nav-link text-dark2"
+											href="{{ url_for('users.logout') }}"
+										>
+											<i class="fas fa-sign-out-alt mr-2"> Logout</i></a
+										>
+									</div>
+								</div>
+
+								{% else %}
+								<a
+									class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
+									href="{{ url_for('main.about') }}"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="info abt app: complete tasks grouped under urgency-importance and score points accordingly,  TODO"
+									style="border-width: medium;"
+								>
+									<img
+										src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_info.ico"
+										style="height: 2rem;"
+									/>
+								</a>
+								<a
+									class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
+									href="{{ url_for('users.register') }}"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="complete tasks grouped under urgency-importance and score points accordingly,  TODO"
+									style="border-width: medium;"
+								>
+									<img
+										src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_register.ico"
+										style="height: 2rem;"
+									/>
+								</a>
+								<a
+									class="nav-item btn btn-large bg-orange nav-link text-dark border-dark mb-2"
+									href="{{ url_for('users.login') }}"
+									data-toggle="tooltip"
+									data-placement="right"
+									title="complete tasks grouped under urgency-importance and score points accordingly,  TODO"
+									style="border-width: medium;"
+								>
+									<img
+										src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_login.ico"
+										style="height: 2rem;"
+									/>
+								</a>
+
+								{% endif %}
+
+								<img
+									class="card-img-top mb-2"
+									src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menu_bottomedt.ico"
+								/>
+
+								<div class="card border-body">
+									<div class="card-body bg-body border-body p-01">
+										<small
+											class="card-subtitle text-muted"
+											style="font-style: italic;"
+										>
+											app developed; graphics designed; code written; database
+											setup; records admin'd; id3a cr3ated by:
+											<i
+												class="fa fa-code-fork text-dark"
+												aria-hidden="true"
+												href="https://github.com/attila5287/no_days_off"
+											>
+												attila5287
+											</i>
+										</small>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+		<style>
+			.bg-body {
+				background-color: #fecd82;
+			  }
+			  .border-body {
+				border-color: #fecd82;
+				border-width: medium;
+			  }
+			  .border-brick {
+				border-color: rgb(212, 125, 119);
+			  }			  
+			  .bg-grass {
+				background-color: rgba(170, 177, 130, 0.877);
+			  }
+			  .bg-sky {
+				background-color: rgba(152, 170, 199, 0.883);
+			  }
+			  .bg-orange {
+				background-color: #eeaa88;
+			  }
+			  .bg-bisque {
+				background-color: rgb(250, 208, 184);
+			  }
+			  .bg-brick {
+				background-color: rgb(212, 125, 119);
+			  }
+			  .bg-gold {
+				background-color: rgba(238, 156, 79, 0.966);
+			  }
+			  .bg-silver {
+				background-color: rgba(221, 226, 225, 0.932);
+			  }
+		</style>
+
+	</body>
 </html>
