@@ -13,7 +13,8 @@ posts = Blueprint('posts', __name__)
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
-        post = Post(title=form.title.data, content=form.content.data, author=current_user)
+        post = Post(title=form.title.data,
+                    content=form.content.data, author=current_user)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
@@ -57,4 +58,13 @@ def delete_post(post_id):
     db.session.delete(post)
     db.session.commit()
     flash('Your post has been deleted!', 'success')
+    return redirect(url_for('main.home'))
+
+
+@posts.route("/p0st/users/<int:user_1d>/delete", methods=['GET', 'POST'])
+def delete_dummy_posts_from(user_1d):
+    pass
+    dummy_posts = Post.query.filter_by(user_id=user_1d).delete()
+    db.session.commit()
+    flash('Dummy posts have been deleted!', 'success')
     return redirect(url_for('main.home'))

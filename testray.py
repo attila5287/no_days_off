@@ -1,31 +1,29 @@
 # Transforming Code into Beautiful, Idiomatic Python
 
--   Speaker: Raymond Hettinger(@raymondh), who is Python core developer
--   Lecture on Youtube: [Transforming Code into Beautiful, Idiomatic Python](https://www.youtube.com/watch?v=OSGv2VnC0go&t=503s)
+# ###  Speaker: Raymond Hettinger(@raymondh), who is Python core developer
+# ###  Lecture on Youtube: [Transforming Code into Beautiful, Idiomatic Python](https://www.youtube.com/watch?v=OSGv2VnC0go&t=503s)
 
 
 
-## When you see this, do that instead!
+# ## When you see this, do that instead!
 
--   Replace traditional index manipulation with Python's core looping idioms
--   Learn advanced techniques with for-else clauses and the two argument form of iter()
--   Improve your craftmanship and aim for clean, fast, idiomatic Python code
+# ###  Replace traditional index manipulation with Python's core looping idioms
+# ###  Learn advanced techniques with for-else clauses and the two argument form of iter()
+# ###  Improve your craftmanship and aim for clean, fast, idiomatic Python code
 
 ### Looping over a range of numbers
 
-```python
 for i in [0, 1, 2, 3, 4, 5]:
     print(i**2)
   
 # Pythonic-way
 for i in range(6):
     print(i**2)
-```
 
 
 ### Looping over a collection
 
-```python
+
 colors = ['red', 'green', 'blue', 'yellow']
 
 for i in range(len(colors)):
@@ -34,11 +32,11 @@ for i in range(len(colors)):
 # Pythonic-way
 for color in colors:
     print(color)
-```
+
 
 ### Looping backwards
 
-```python
+
 colors = ['red', 'green', 'blue', 'yellow']
 
 for i in range(len(colors)-1, -1, -1):
@@ -47,11 +45,11 @@ for i in range(len(colors)-1, -1, -1):
 # Pythonic-way
 for color in reversed(colors):
     print(color)
-```
+
 
 ### Looping over a collection and indicies
 
-```python
+
 colors = ['red', 'green', 'blue', 'yellow']
 
 for i in range(len(colors)):
@@ -60,11 +58,11 @@ for i in range(len(colors)):
 # Pythonic-way
 for i, color in enumerate(colors):
     print(i, '-->', colors)
-```
+
 
 ### Looping over two collections
 
-```python
+
 names = ['raymond', 'rachel', 'matthew']
 colors = ['red', 'green', 'blue', 'yellow']
 
@@ -75,11 +73,11 @@ for i in range(n):
 # Pythonic-way
 for name, color in zip(names, colors):
     print(name, '-->', color)
-```
+
 
 ### Looping in sorted order
 
-```python
+
 colors = ['red', 'green', 'blue', 'yellow']
 
 for color in sorted(colors):
@@ -87,11 +85,11 @@ for color in sorted(colors):
   
 for color in sorted(colors, reverse=True):
     print(color)
-```
+
 
 ### Custom sort order
 
-```python
+
 colors = ['red', 'green', 'blue', 'yellow']
 
 def compare_length(c1, c2):
@@ -100,15 +98,14 @@ def compare_length(c1, c2):
     return 0
 
 # in python2
-print sorted(colors, cmp=compare_length)
+# print sorted(colors, cmp=compare_length)
 
 # Pythonic-way
 print(sorted(colors, key=len))
-```
+
 
 ### Call a function until a sentinel value
 
-```python
 blocks = []
 while True:
     block = f.read(32)
@@ -120,11 +117,11 @@ while True:
 blocks = []
 for block in iter(partial(f.read, 32), ''):
     blocks.append(block)
-```
+
 
 ### Distinguishing multiple exit points in loops
 
-```python
+
 def find(seq, target):
     found = False
     for i, value in enumerate(seq):
@@ -143,16 +140,16 @@ def find(seq, target):
     else:
         return -1
     return i
-```
+
 
 ## Dictionary Skills
 
-- Mastering dictionaries is a fundamental Python skill
-- They are fundament tool for expressing relationships, linking, counting and grouping
+# - Mastering dictionaries is a fundamental Python skill
+# - They are fundament tool for expressing relationships, linking, counting and grouping
 
 ### Looping over dictionary keys
 
-```python
+
 d = {'matthew': 'blue', 'rachel': 'green', 'raymond': 'red'}
 
 for k in d:
@@ -161,31 +158,31 @@ for k in d:
 for k in d.keys():
     if k.startswith('r'):
         del d[k]
-```
+
 
 ### Looping over a dictionary keys and values
 
-```python
+
 for k in d:
     print(k, '-->', d[k])
   
 for k, v in d.items():
     print(k, '-->', v)
-```
+
 
 ### Construct a dictionary in pairs
 
-```python
+
 names = ['raymond', 'rachel', 'matthew']
 colors = ['red', 'green', 'blue']
 
 d = dict(zip(names, colors))  # {'raymond': 'red', 'rachel': 'green', 'matthew': 'blue'}
 d = dict(enumerate(names))  # {0: 'raymond', 1: 'rachel', 2: 'matthew'}
-```
+
 
 ### Counting with dictionaries
 
-```python
+
 colors = ['red', 'green', 'red', 'blue', 'green', 'red']
 
 d = {}
@@ -206,11 +203,11 @@ from collections import defaultdict
 d = defaultdict(int)
 for color in colors:
     d[color] += 1
-```
+
 
 ### Grouping with dictionaries
 
-```python
+
 names = ['raymond', 'rachel', 'matthew', 'roger', 'betty', 'melissa', 'judith', 'charlie']
 
 d = {}
@@ -234,21 +231,21 @@ d = defaultdict(list)
 for name in names:
     key = len(name)
     d[key].append(name)
-```
+
 
 ### Is a dictionary popitem() atomic?
 
-```python
+
 d = {'matthew': 'blue', 'rachel': 'green', 'raymond': 'red'}
 
 while d:
     key, value = d.popitem()
     print(key, '-->', value)
-```
+
 
 ### Linking dictionaries
 
-```python
+
 import argparse
 import os
 
@@ -267,35 +264,35 @@ d.update(command_line_args)
 from collections import ChainMap
 
 d = ChainMap(command_line_args, os.environ, defaults)
-```
+
 
 ## Improving Clarity
 
--   Positional arguments and indicies are nice
--   Keywords and names are better
--   The first way is convenient for the computer
--   The second corresponds to how human's think
+###  Positional arguments and indicies are nice
+###  Keywords and names are better
+###  The first way is convenient for the computer
+###  The second corresponds to how human's think
 
 ### Clarify function calls with keyword arguments
 
->   *Microseconds of computer time is hours of programmer time.*
+# >   *Microseconds of computer time is hours of programmer time.*
 
-```python
+
 twitter_search('@obama', False, 20, True)
 twitter_search('@obama', retweets=False, numtweets=20, popular=True)
-```
+
 
 ### Clarify multiple return values with named tuples
 
-```python
+
 doctest.testmod()  # (0, 4)
 doctest.testmod()  # TestResults(failed=0, attempted=4)
 TestResults = namedtuple('TestResults', ['failed', ['attempted']])
-```
+
 
 ### Unpacking sequences
 
-```python
+
 p = 'Raymond', 'Hettinger', 0x30, 'python@example.com'
 
 fname = p[0]
@@ -305,11 +302,11 @@ email = p[3]
 
 # Pythonic-way
 fname, lname, age, email = p
-```
+
 
 ### Updating multiple state variables
 
-```python
+
 def fibonacci(n):
     x = 0
     y = 1
@@ -325,17 +322,17 @@ def fibonacci(n):
     for i in range(n):
         print(x)
         x, y = y, x+y
-```
+
 
 ## Tuple packing and unpacking
 
--   Don't under-estimate the advantages of updating state variables at the same time
--   It eliminates an entire class of errors due to out-of-order updates
--   It allows high level thinking: "chunking"
+###  Don't under-estimate the advantages of updating state variables at the same time
+###  It eliminates an entire class of errors due to out-of-order updates
+###  It allows high level thinking: "chunking"
 
 ### Simultaneous state updates
 
-```python
+
 tmp_x = x + dx*t
 tmp_y = y + dy+t
 tmp_dx = influence(m, x, y, dx, dy, partial='x')
@@ -350,17 +347,17 @@ x, y, dx, dy = (x + dx*t,
                 y + dy*t, 
                 influence(m, x, y, dx, dy, partial='x'), 
                 influence(m, x, y, dx, dy, partial='y'))           
-```
+
 
 ## Efficiency
 
--   An optimization fundamental rule
--   Don't cause data to move around unnecessarily
--   It takes only a little care to avoid O(n**2) behavior instead of linear behavior
+###  An optimization fundamental rule
+###  Don't cause data to move around unnecessarily
+###  It takes only a little care to avoid O(n**2) behavior instead of linear behavior
 
 ### Concatenating strings
 
-```python
+
 names = ['raymond', 'rachel', 'matthew', 'roger', 
          'betty', 'melissa', 'judith', 'charlie']
 
@@ -371,11 +368,11 @@ print(s)  # raymond, rachel, matthew, roger, betty, melissa, judith, charlie
 
 # Pythonic-way
 print(', '.join(names))  # raymond, rachel, matthew, roger, betty, melissa, judith, charlie
-```
+
 
 ### Updating sequences
 
-```python
+
 names = ['raymond', 'rachel', 'matthew', 'roger', 
          'betty', 'melissa', 'judith', 'charlie']
 
@@ -391,18 +388,18 @@ names = deque(['raymond', 'rachel', 'matthew', 'roger',
 del names[0]
 names.popleft()
 names.appendleft('mark')
-```
+
 
 ## Decorators and Context Managers
 
--   Helps separate business logic from administrative logic
--   Clean, beautiful tools for factoring code and improving code reuse
--   Good naming is essential
--   Remember the Spiderman rule: With great power, comes great responsibility!
+###  Helps separate business logic from administrative logic
+###  Clean, beautiful tools for factoring code and improving code reuse
+###  Good naming is essential
+###  Remember the Spiderman rule: With great power, comes great responsibility!
 
 ### Using decorators to factor-out administrative logic
 
-```python
+
 def web_lookup(url, saved={}):
     if url in saved:
         return saved[url]
@@ -426,11 +423,11 @@ def cache(func):
 @cache
 def web_lookup(url):
     return urllib.urlopen(url).read()
-```
+
 
 ### Factor-out temporary contexts
 
-```python
+
 old_context = getcontext().copy()
 getcontext().prec = 50
 print(Decimal(355)/Decimal(113))
@@ -439,25 +436,26 @@ setcontext(old_context)
 # Pythonic-way
 with localcontext(Context(prec=50)):
     print(Decimal(355)/Decimal(113))
-```
+
 
 ### How to open and close files
 
-```python
+
 f = open('data.txt')
 try:
     data = f.read()
 finally:
-    f.close()
+    pass
+    # f.close()
     
 # Pythonic-way
 with open('data.txt') as f:
     data = f.read()
-```
+
 
 ### How to use locks
 
-```python
+
 # Make a lock
 lock = threading.Lock()
 
@@ -473,11 +471,11 @@ finally:
 with lock:
     print('Critical section 1')
     print('Critical section 2') 
-```
+
 
 ### Factor-out temporary contexts
 
-```python
+
 try:
     os.remove('somefile.tmp')
 except OSError:
@@ -493,9 +491,9 @@ def ignored(*exceptions):
 
 with ignored(OSError):
     os.remove('somefile.tmp')
-```
 
-```python
+
+
 with open('help.txt', 'w') as f:
     oldstdout = sys.stdout
     sys.stdout = f
@@ -518,19 +516,19 @@ with open('help.txt', 'w') as f:
     with redirect_stdout(f):
         help(pow)
     
-```
+
 
 ## Concise Expressive One-Liners
 
--   Two conficting rules:
-    -   Don't put too much on one line
-    -   Don't break atoms of thought into subatomic particles
--   Raymond's rule:
-    -   One logical line of code equals one sentence in English
+###  Two conficting rules:
+    ###  Don't put too much on one line
+    ###  Don't break atoms of thought into subatomic particles
+###  Raymond's rule:
+    ###  One logical line of code equals one sentence in English
 
 ### List Comprehensions and Generator Exprssions
 
-```python
+
 result = []
 for i in range(10):
     s = i ** 2
@@ -539,5 +537,5 @@ print(sum(result))
 
 # Pythonic-way
 result = sum(i**2 for i in range(10))
-```
+
 

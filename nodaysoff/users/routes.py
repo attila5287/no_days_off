@@ -9,6 +9,7 @@ from nodaysoff.users.utils import save_picture, send_reset_email
 users = Blueprint('users', __name__)
 
 
+<<<<<<< HEAD
 
 @users.route("/regist3r", methods=['POST'])
 def regist3r():
@@ -33,6 +34,26 @@ def regist3r():
 
 
 # LET THIS BE THE FORM PAGE ONLY WITH AN EXTRA ROUTE FOR PROCESSING USER-DETAILS
+=======
+@users.route("/regist3r", methods=['POST'])
+def regist3r():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.home'))
+    
+    else:
+        form = RegistrationForm()
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        user.init_avatarmode()
+        user.init_points()
+        user.init_percs()
+        db.session.add(user)
+        db.session.commit()
+        flash('Your account has been created! You are now able to log in', 'success')
+        return redirect(url_for('users.login'))
+
+
+>>>>>>> a219d3d36bcd36581d92291c446054b53ab0f331
 @users.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -155,3 +176,13 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('users.login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
+
+# =======DELETE TEST USERS
+@users.route("/user/<int:user_id>/delete", methods=['GET','POST'])
+@login_required
+def delete_test_users(user_id):
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
+    flash('Test user account has been deleted!', 'success')
+    return redirect(url_for('main.home'))
