@@ -57,6 +57,8 @@
 
 			<div class="collapse navbar-collapse" id="collapsibleNavId">
 			  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+
+				{% if current_user.is_authenticated %}
 				<li class="nav-item">
 				<a class="nav-link" href="{{url_for('tasks.tasks_list')}}">
 					<i class="fas fa-clipboard-list"></i>
@@ -67,6 +69,22 @@
 					  <i class="fas fa-football-ball"></i>
 					  ProDay</a>
 				</li>
+				{% else %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{url_for('tasks.task_demo_home')}}">
+						<i class="fas fa-clipboard-list"></i>
+						TaskHeroDemo</a>
+					</li>				
+					<li class="nav-item">
+					  <a class="nav-link" href="{{url_for('prodays.hom3')}}">
+						  <i class="fas fa-football-ball"></i>
+						  ProDayDemo</a>
+					</li>
+				{% endif %}
+
+
+
+
 				{% if current_user.is_authenticated %}
 				<!-- auth usr -->
 				<li class="nav-item dropdown">
@@ -89,11 +107,11 @@
 						<i class="fas fa-user-slash"></i>
 						New</a>
 					<div class="dropdown-menu bg-body" aria-labelledby="dropdownId">
-					  <a class="dropdown-item" href="{{url_for('tasks.taskcreator')}}">
+					  <a class="dropdown-item" href="{{url_for('tasks.task_demo_home')}}">
 						  <i class="fas fa-clipboard-check    "></i>
-						  Task</a>
+						  Task Demo</a>
 					  <a class="dropdown-item" href="
-					  {{url_for('prodays.new_proday') }}
+					  {{ url_for('prodays.new_proday') }}
 					  ">
 						  <i class="fas fa-football-ball    "></i>
 						  ProDay</a>
@@ -431,24 +449,21 @@
 								<img
 									class="card-img-top mb-2"
 									src="https://raw.githubusercontent.com/attila5287/task_app_img/master/nodaysoff_menu_bottomedt.ico"
-								/>
+								/> 
 
 								<div class="card border-body">
-									<div class="card-body bg-body border-body p-01">
+									<div class="card-body bg-body border-body p-1">
 										<small
 											class="card-subtitle text-muted"
 											style="font-style: italic;"
-										>
-											app developed; graphics designed; code written; database
-											setup; records admin'd; id3a cr3ated by:
-											<i
-												class="fa fa-code-fork text-dark"
-												aria-hidden="true"
-												href="https://github.com/attila5287/no_days_off"
-											>
-												attila5287
-											</i>
+										> app developed; graphics designed; code written; database setup; records admin'd; idea cr34t3d by: 
 										</small>
+
+										<a href="https://github.com/attila5287/no_days_off">
+
+											<i class="fa fa-code-branch text-dark ml-2" aria-hidden="true"
+											> attila#52 </i>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -460,10 +475,10 @@
 		
 
 		<footer class="footer bg-body">
-			<div class="container bg-body">
-			  <span class="text-muted">No Days Off &middot; Attila Turkoz  &middot; Github: @attila5287</span>
-			</div>
-		  </footer>
+		<div class="container-fluid bg-body text-center">
+			<span class="text-muted">No Days Off &middot; Attila Turkoz  &middot; Github: @attila5287</span>
+		</div>
+		</footer>
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->

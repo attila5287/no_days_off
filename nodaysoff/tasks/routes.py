@@ -1,8 +1,8 @@
 from flask import (render_template, url_for, flash, redirect, request, abort, Blueprint, g)
 from flask_login import current_user, login_required
 from nodaysoff import db
-from nodaysoff.models import Task
-from nodaysoff.tasks.forms import TaskForm
+from nodaysoff.models import Task, UserDemo, TaskDemo
+from nodaysoff.tasks.forms import TaskForm, TaskDemoForm
 
 tasks = Blueprint('tasks', __name__)
 
@@ -93,7 +93,7 @@ def taskcreator():
     return render_template('create_t4sk.html', form=TaskCreateForm)
 
 
-# creates a task as well as attiributes for visual details, border colors, points etc
+# creates a task as well as attributes for visual details, border olors, points etc
 @tasks.route('/task/create', methods=['POST'])
 def add_task():
     pass
@@ -105,22 +105,15 @@ def add_task():
         manag5r=current_user,
         )
     
-    # this will be used to determine all object properties later
     task.add_matrix_zone()
-    
-    # determine border per matrix zone
     task.add_task_border()
-    
-    # add urgency points for task completion per matrix zone
     task.add_urgency_points()
-    
-    # add importancy points for task completion per matrix zone
     task.add_importance_points()
     
-    flash('Task created!', task.border_style)
+    flash('Task created! anon user', task.border_style)
     db.session.add(task)
     db.session.commit()
-    return redirect('/task')
+    return redirect('/t4sk')
 
 # strikes task header on interface, updates DB for task status
 @tasks.route('/done/<int:task_id>')
@@ -152,22 +145,7 @@ def resolve_task(task_id):
         current_user.update_percs()
         db.session.commit()
     return redirect(url_for('tasks.tasks_list'))
-    # return render_template('create_task.html')
 
-
-# @tasks.route("/task/<int:task_id>/delete", methods=['POST'])
-# @login_required
-# def delete_task(task_id):
-#     task = Task.query.get_or_404(task_id)
-#     if task.author != current_user:
-#         abort(403)
-#     db.session.delete(task)
-#     db.session.commit()
-#     flash('Your task has been deleted!', 'success')
-#     return redirect(url_for('main.home'))
-
-
-# delete task --> TODO: archive only
 
 @tasks.route('/delete/<int:task_id>')
 def delete_task(task_id):
@@ -180,61 +158,114 @@ def delete_task(task_id):
     return redirect(url_for('tasks.tasks_list'))
 
 
-
-#     @app.route('/signup', methods=['GET', 'POST'])
-# def signup_page():
-#     """User sign-up page."""
-#     signup_form = SignupForm(request.form)
-#     # POST: Sign user in
-#     if request.method == 'POST':
-#         if signup_form.validate():
-#             # Get Form Fields
-#             name = request.form.get('name')
-#             email = request.form.get('email')
-#             password = request.form.get('password')
-#             website = request.form.get('website')
-#             existing_user = User.query.filter_by(email=email).first()
-#             if existing_user is None:
-#                 user = User(name=name,
-#                             email=email,
-#                             password=generate_password_hash(password, method='sha256'),
-#                             website=website)
-#                 db.session.add(user)
-#                 db.session.commit()
-#                 login_user(user)
-#                 return redirect(url_for('main_bp.dashboard'))
-#             flash('A user already exists with that email address.')
-#             return redirect(url_for('auth_bp.signup_page'))
-#     # GET: Serve Sign-up page
-#     return render_template('/signup.html',
-#                            title='Create an Account | Flask-Login Tutorial.',
-#                            form=SignupForm(),
-#                            template='signup-page',
-#                            body="Sign up for a user account.")                                                      
-
-
-@tasks.route("/demo", methods=['POST', 'GET'])
-def task_demo():
-    TaskCreateForm = TaskForm()
-    return render_template('create_t4sk.html', form=TaskCreateForm)
-
-# creates a task as well as attiributes for visual details, border colors, points etc
-@tasks.route('/t4sk/create', methods=['POST'])
-def add_t4sk():
+@tasks.context_processor
+def utility_processor():
+    ''' need it to handle demo tasks w/o database inv. due to sql-inj concerns '''
     pass
-    login_manager.anonymous_user = MyAnonymousUser
-    task = Task(
-        title=request.form["title"],
-        content=request.form["content"],
-        is_urgent=request.form.get('is_urgent'),
-        is_important=request.form["is_important"],
-        manag5r=current_user,
+    tasks = [
+        TaskDemo(title=Title, content=Content, is_urgent=IsUrgent, is_important=IsImportant) for (Title, Content, IsUrgent, IsImportant) in zip(
+            [
+                'urgent and important task',
+                'urgent but not-so-important',
+                'not-so-urgent but important',
+                'neither-so-impt nor-so-urgent',
+            ],
+            [
+                'these tasks have the highest points',
+                'the more you complete the tasks',
+                'the more points you collect',
+                'hence change the avatar -> Task-Hero'
+            ],
+            [1,1,0,0],
+            [1,0,1,0]
         )
-    task.add_matrix_zone()
-    task.add_task_border()
-    task.add_urgency_points()
-    task.add_importance_points()
-    flash('Task created!', task.border_style)
-    db.session.add(task)
-    db.session.commit()
-    return redirect('/task/demo')
+    ]
+    return dict(TaskDemoList=tasks)
+
+@tasks.context_processor
+def inject_style_dict():
+    pass
+    style_dict = {
+        '11': 'danger', '10': 'warning', '01': 'primary', '00': 'info'
+    }
+    return dict(style_dict=style_dict)
+
+@tasks.context_processor
+def inject_urgpts_dict():
+    pass
+    urgency_point_dict = {
+        '11': '96',
+        '10': '72',
+        '01': '48',
+        '00': '36',
+    }
+    return dict(urgency_point_dict=urgency_point_dict)
+
+@tasks.context_processor
+def inject_imppts_dict():
+    pass
+    importance_point_dict = {
+        '11': '96',
+        '10': '48',
+        '01': '72',
+        '00': '36',
+    }
+    return dict(importance_point_dict=importance_point_dict)
+
+# ========= HOME PAGE FOR DEMO ===========
+@tasks.route("/taskdemo/home", methods=['POST', 'GET'])
+def task_demo_home():
+    pass
+    TaskDemoF0rm = TaskDemoForm()
+    DemoUser = UserDemo()
+
+    flash('Welcome to Task Hero-demo!', 'warning')
+    
+    if request.method == 'POST':
+        pass
+        taskDemo = TaskDemo(
+        title=request.form.get('title'),
+        content=request.form.get('content'),
+        is_urgent=request.form.get('is_urgent'),
+        is_important=request.form.get('is_important'),
+        )
+        tasks.append(taskDemo)
+        flash('TaskDemo created!', taskDemo.border_style)
+        print(taskDemo)
+        return redirect(url_for('tasks.task_demo_home'))
+
+    return render_template(
+        'taskdemohome.html',
+        form=TaskDemoF0rm,
+        DemoUser=DemoUser,
+    )
+
+
+# ====== CREATES A TASK OBJECT REDIRECTS BACK TO ABOVE>>DEMO-HOME ======
+@tasks.route('/taskdemo/taskcreator', methods=['POST'])
+def task_demo_gen():
+    pass
+    
+
+@tasks.route('/d0ne/<int:task_id>')
+def taskdemodone(task_id):
+    task = Task.query.get(task_id)
+    urg_points = task.urg_points
+    imp_points = task.imp_points
+    if task.done:
+        task.done = False
+        DemoUser.lose_points(
+            task_urg_pts=urg_points,
+            task_imp_pts = imp_points,
+        )
+        DemoUser.update_avatar()
+        DemoUser.update_percs()
+    else:
+        task.done = True
+        DemoUser.gain_points(
+            task_urg_pts = urg_points,
+            task_imp_pts = imp_points,
+        )
+        DemoUser.update_avatar()
+        DemoUser.update_percs()
+    return redirect(url_for('tasks.task_demo_home'))

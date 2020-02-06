@@ -15,10 +15,10 @@ class RegistrationForm(FlaskForm):
                                      validators=[DataRequired(), EqualTo('password')])
     avatar_mode = SelectField(
         choices=[
-            ('wildanimals_', 'Mtn Wild Animals'),            
+            ('wildanimals', 'Mtn Wild Animals'),            
             ('mrrobot', 'Mr. Robot'), 
             ('starwars', 'Star Wars'),
-            ('starcraft_', 'Star Craft'),
+            ('starcraft', 'Star Craft'),
         ]
     )
     submit = SubmitField('Sign Up')

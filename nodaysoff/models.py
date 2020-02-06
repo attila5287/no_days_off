@@ -237,7 +237,6 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
-
 # ===== ====== ===== ====== =====
 class Proday(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -361,7 +360,6 @@ class Proday(db.Model):
         return self.message_total
 # ===================================
 
-
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
@@ -370,9 +368,9 @@ class Task(db.Model):
     is_urgent = db.Column(db.Text, default='n')
     is_important = db.Column(db.Text, default='n')
     matrix_zone = db.Column(db.Text, default='00')
-    border_style = db.Column(db.Text, default='info')
     urg_points = db.Column(db.Integer, default=int(36))
     imp_points = db.Column(db.Integer, default=int(36))
+    border_style = db.Column(db.Text, default='info')
     date_posted = db.Column(db.DateTime, nullable=False,
                             default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -411,7 +409,6 @@ class Task(db.Model):
         return '<Task %s>' % self.title
 # ===================================
 
-
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
@@ -422,3 +419,146 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
+
+class TaskDemo():
+    ''' DEMO VERSION OF TASK OBJ WITH NO USER ID CONSTRAINT NOR DB BACKUP JUST4SHOW '''
+    pass
+    user_id = 99
+    style_dict = {
+        '11': 'danger', '10': 'warning',
+                '01': 'primary', '00': 'info'
+    }
+    urgency_point_dict = {
+        '11': '96',
+        '10': '72',
+        '01': '48',
+        '00': '36',
+    }
+    importance_point_dict = {
+        '11': '96',
+        '10': '48',
+        '01': '72',
+        '00': '36',
+    }
+    def __init__(self, title = 'Test Title', content = 'demo content', is_urgent='n' , is_important='n'):
+        pass
+        id = random.randint(100,999)
+        self.title = title
+        self.content = content
+        self.date_posted = datetime.utcnow().date()
+        self.done = False
+        self.is_urgent = is_urgent
+        self.is_important = is_important
+        self.matrix_zone = str(self.is_urgent) + str(self.is_important)
+        self.border_style = self.style_dict[self.matrix_zone]
+        self.urg_points = int(self.urgency_point_dict[self.matrix_zone])
+        self.imp_points = int(self.importance_point_dict[self.matrix_zone])
+        print(self)
+    def __repr__(self):
+        pass
+        return '... taskDemo init \n\t-t {title}  \n\t-c {content}  \n\t-urg -imp \t {is_urgent} \\ {is_important}\n'.format(
+            title = self.title, 
+            content = self.content, 
+            is_urgent = self.is_urgent, 
+            is_important=self.is_important            
+        )
+        # keyword arguments
+        
+# ===================================
+
+# ==========
+class UserDemo():
+    ''' DUMMY OBJECT TO DEMONSTRATE TASK HERO GAME TO GUESTS '''
+    id = 99  # same for all cls mmbrs
+    def __init__(self, imp_pts=29, urg_pts=29):
+        pass
+        self.username = 'anon_user'
+        self.imp_pts=imp_pts
+        self.urg_pts=urg_pts
+        self.total_pts = self.imp_pts + self.urg_pts
+        self.imp_perc = int(
+            round(float(self.imp_pts/(self.imp_pts + self.urg_pts)), 2)*100
+        )
+        self.urg_perc = int(100 - self.imp_perc)
+        self.avatar_img= 'avatar10.png'
+        self.avatar_mode = 'wildanimals'
+
+    def update_percs(self):
+        pass
+        self.imp_perc = int(
+            round(float(self.imp_pts/(self.imp_pts + self.urg_pts)), 2)*100
+        )
+        self.urg_perc = int(100 - self.imp_perc)
+
+
+    def gain_points(self, task_urg_pts=29, task_imp_pts=29):
+        pass
+        self.imp_pts += task_imp_pts
+        self.total_pts += task_imp_pts
+        self.urg_pts += task_urg_pts
+        self.total_pts += task_urg_pts
+
+    def lose_points(self, task_urg_pts=29, task_imp_pts=29):
+        pass
+        self.imp_pts -= task_imp_pts
+        self.total_pts -= task_imp_pts
+        self.urg_pts -= task_urg_pts
+        self.total_pts -= task_urg_pts
+
+    def update_avatar(self):
+        pass
+        ''' method runs every task done-undone updates avatar per dynamic task completion (imp or urg percentage should be updated prev'ly) '''
+        img_key = int(self.urg_perc)
+
+        responsive = 53
+        resp_n_act = 51
+        act_n_resp = 49
+        pro_active = 48
+
+        if responsive < img_key:
+            pass
+            img_key = 'responsive'
+        elif resp_n_act < img_key:
+            pass
+            img_key = 'resp_n_act'
+        elif act_n_resp < img_key:
+            pass
+            img_key = 'resp_n_act'
+        else:
+            img_key = 'pro_active'
+
+        img_dict = {
+            'responsive': '11',
+            'resp_n_act': '10',
+            'act_n_resp': '01',
+            'pro_active': '00'
+        }
+
+        print('img key for avatar...')
+        print(img_key)
+
+        updated_avatar = img_dict[img_key]
+
+        print('upd avatar key...')
+        print(updated_avatar)
+
+        if updated_avatar:
+            self.avatar_img = ''.join(
+                [
+                    'avatar', img_dict[img_key], '.png'
+                ]
+            )
+            print('assigned avatar...')
+            print(self.avatar_img)
+            print(type(self.avatar_img))
+            db.session.commit()
+        else:
+            self.avatar_img = 'avatar10.png'
+            print(self.avatar_img)
+            db.session.commit()
+
+        
+    def __repr__(self):
+        print('demo mode: {}'.format(self.username))
+ 
+ 
