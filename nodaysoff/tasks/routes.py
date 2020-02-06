@@ -1,4 +1,4 @@
-from flask import (render_template, url_for, flash, redirect, request, abort, Blueprint, g)
+from flask import (render_template, url_for, flash, redirect, request, abort, Blueprint)
 from flask_login import current_user, login_required
 from nodaysoff import db
 from nodaysoff.models import Task, UserDemo, TaskDemo
@@ -62,7 +62,7 @@ def update_task(task_id):
     task = Task.query.get_or_404(task_id)
     if task.author != current_user:
         abort(403)
-    form = TaskForm()
+    form = ProdayForm()
     if form.validate_on_submit():
         task.title = form.title.data
         task.content = form.content.data
@@ -97,6 +97,8 @@ def taskcreator():
 @tasks.route('/task/create', methods=['POST'])
 def add_task():
     pass
+    print('test')
+    print(request.form["title"])
     task = Task(
         title=request.form["title"],
         content=request.form["content"],

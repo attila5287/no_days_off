@@ -60,14 +60,10 @@
 
 				{% if current_user.is_authenticated %}
 				<li class="nav-item">
-				<a class="nav-link" href="{{url_for('tasks.tasks_list')}}">
-					<i class="fas fa-clipboard-list"></i>
-					TaskHero</a>
+				<a class="nav-link" href="{{url_for('tasks.tasks_list')}}">TaskHero</a>
 				</li>				
 				<li class="nav-item">
-				  <a class="nav-link" href="{{url_for('prodays.hom3')}}">
-					  <i class="fas fa-football-ball"></i>
-					  ProDay</a>
+				  <a class="nav-link" href="{{url_for('prodays.hom3')}}">ProDay</a>
 				</li>
 				{% else %}
 				<li class="nav-item">
@@ -117,21 +113,8 @@
 						  ProDay</a>
 					</div>
 				  </li>
-				{% endif %}
+				  {% endif %}
 
-
-
-
-				<li class="nav-item ml-4">
-				<a class="nav-link" href="https://github.com/attila5287/no_days_off">
-					<i class="fas fa-code-branch"></i>
-					Code</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="https://github.com/attila5287/task_app_img">
-					<i class="fas fa-images    "></i>
-					Graphics</a>
-				</li>				  				
 			  </ul>
 			</div>
 		  </nav>
@@ -188,7 +171,7 @@
 					<i class="fas fa-image    "></i> avatar changes depending on imp-urg points ratio
 				</div>
 				<p class="text-light text-center mt-0 mb-0 p-0">
-					<i class="fas  fa-fw fa-arrow-left m t-0"></i>
+					<i class="fas  fa-fw fa-arrow-left mt-0"></i>
 				</p>
 				<p class="text-light text-center mt-0 mb-0 p-0">
 					<i class="fas  fa-flag-checkered mt-0"></i>
