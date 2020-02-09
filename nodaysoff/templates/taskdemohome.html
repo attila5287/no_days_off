@@ -42,12 +42,12 @@
 
         {{ form.hidden_tag() }}
 
-        <div class="form-group float-right px-2 py-0">
+        <div class="form-group px-2 py-0">
 
+            <strong>{{field.label(class="text-muted float-left")}}</strong>
             
+            {{ field(class="float-right bg-bisque mx-2 mb-2",style="border-width:thin") }}
             
-            {{ field(class="form-control form-control-md bg-bisque mx-2 mb-2",style="border-width:medium") }}
-            <small>{{field.label}}</small>
             <div class="invalid-feedback">
                 {% for error in form.content.errors %}
                     <span>{{ error }}</span>
@@ -86,6 +86,7 @@
         </div>
     </div>        
     <div class="col-sm-5">
+
         <img class="mb-2"
         src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_list.ico"
         alt="" style="max-height:3.25rem;">
@@ -116,10 +117,10 @@
                 <p class="card-text">
                     {{ task.content }}
                 </p>
-                <small>
-                    @{{ task.date_posted}}
-                </small>
             </div>
+            <a class="text-center bg-bisque">
+            <small class="text-muted">@{{ task.date_posted}}</small>
+            </a>
         </div>
         {% endfor %}
         <!-- ==========TASK DEMO LIST=========== -->

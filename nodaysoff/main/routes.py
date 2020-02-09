@@ -6,11 +6,19 @@ main = Blueprint('main', __name__)
 @main.route("/")
 @main.route("/about")
 def about():
+    pass
     return render_template(
         'about.html',
-        #  tasks = DemoTasks,
          title='About'
     )
+
+@main.route("/aboutdev")
+def aboutdev():
+    return render_template(
+        template_name_or_list='aboutdev.html',
+        title='about developer'
+    )
+
 
 
 @main.route("/home")

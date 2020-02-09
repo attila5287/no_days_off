@@ -76,11 +76,7 @@
 						  <i class="fas fa-football-ball"></i>
 						  ProDayDemo</a>
 					</li>
-				{% endif %}
-
-
-
-
+					{% endif %}
 				{% if current_user.is_authenticated %}
 				<!-- auth usr -->
 				<li class="nav-item dropdown">
@@ -114,7 +110,12 @@
 					</div>
 				  </li>
 				  {% endif %}
-
+				  <li class="nav-item">
+					<a class="nav-link" href="{{url_for('main.aboutdev')}}">
+						<i class="fas fa-pen    "></i>
+						<i class="fas fa-signature    "></i>
+						abt dev</a>
+					</li>
 			  </ul>
 			</div>
 		  </nav>
@@ -204,7 +205,6 @@
 
 		<main role="main" class="container my-2 px-0">
 			<div class="row">
-
 				<div class="col-sm-9">
 					{% with messages = get_flashed_messages(with_categories=true) %} {% if
 					messages %} {% for category, message in messages %}
