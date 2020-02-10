@@ -358,7 +358,6 @@ class Proday(db.Model):
         self.message_total = list_of_quotes[random_integer]
         print(self.message_total)
         return self.message_total
-# ===================================
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -407,7 +406,6 @@ class Task(db.Model):
 
     def __repr__(self):
         return '<Task %s>' % self.title
-# ===================================
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -462,10 +460,7 @@ class TaskDemo():
             is_urgent = self.is_urgent, 
             is_important=self.is_important            
         )
-        # keyword arguments
         
-# ===================================
-
 # ==========
 class UserDemo():
     ''' DUMMY OBJECT TO DEMONSTRATE TASK HERO GAME TO GUESTS '''
@@ -489,7 +484,6 @@ class UserDemo():
             round(float(self.imp_pts/(self.imp_pts + self.urg_pts)), 2)*100
         )
         self.urg_perc = int(100 - self.imp_perc)
-
 
     def gain_points(self, task_urg_pts=29, task_imp_pts=29):
         pass
@@ -557,7 +551,6 @@ class UserDemo():
             print(self.avatar_img)
             db.session.commit()
 
-        
     def __repr__(self):
         print('demo mode: {}'.format(self.username))
  

@@ -91,38 +91,6 @@
         src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_list.ico"
         alt="" style="max-height:3.25rem;">
 
-        {% for task in TaskDemoList%}
-        <div class="card border-dark mb-2" style="border-width: medium;">
-            <div class="card-header bg-zone{{ task.matrix_zone }} border-dark text-dark text-center mb-0"
-                style="border-bottom-width: medium;">
-                <i class="fas fa-umbrella ml-0"></i>
-                {{ task.urg_points }}</i>
-                <i class="fas fa-anchor"></i>
-                {{ task.imp_points }}</i>
-                <a>
-                    <strong>
-                        {% if task.done %}<strike>{% endif %}
-                            {{ task.title }}
-                            {% if task.done %}</strike>{% endif %}
-                    </strong>
-                </a>
-                <a class="text-primary float-right" href="/d0ne/{{ task.id }}">
-                    <i class="fas fa-check"></i>
-                </a>
-                <a class="text-danger float-right mr-2" href="/delete/{{ task.id }}">
-                    <i class="fas fa-times"></i>
-                </a>
-            </div>
-            <div class="card-body bg-bisque" class="text-center">
-                <p class="card-text">
-                    {{ task.content }}
-                </p>
-            </div>
-            <a class="text-center bg-bisque">
-            <small class="text-muted">@{{ task.date_posted}}</small>
-            </a>
-        </div>
-        {% endfor %}
         <!-- ==========TASK DEMO LIST=========== -->
         {% for task in TaskDemoList %}
         <div class="card border-dark mb-2" style="border-width: medium;">
