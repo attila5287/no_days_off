@@ -38,7 +38,8 @@
 		border-width: medium;
 	}
 </style>
-{% extends "layout.html" %} {% block content %}
+{% extends "layout.html" %} 
+{% block content %}
 <!-- MODULE ICON AND GENERAL INFO -->
 <div class="row">
 	<div class="col-sm-3">
@@ -96,105 +97,6 @@
 {% if prodays==[] %}
 	<h4 class="mt-4 pt-4">No productive days planned so far...</h4>
 {% else %}
-<!-- PRODAY IN A CONTAINER -->
-<<<<<<< HEAD
-<div class="container-fluid text-center">
-  <div class="row">
-    {% for proday in prodays.items %}
-      <div class="col-sm-4 text-center">
-        <!-- PRODAY TITLE, DESC AND PROGRESS BAR -->
-        <div class="card mb-3" style="border-width: medium;">
-          <div class="card-header bg-gold text-right border-dark" style="border-width: medium;">
-            <i class="fas fa-football-ball float-left mt-2">
-              {{proday.count_done}}  / 
-            </i> 
-            <i class="fas fa-clipboard-list float-left mt-2 ml-2">
-             {{proday.count_total}} completed
-            </i> 
-            <a href="{{ url_for('prodays.delete_proday', proday_id=proday.id) }}" class ="btn btn-danger btn-sm">
-            <i class="fas fa-times float-right" href="/"></i></a>
-            
-            <a href="{{ url_for('prodays.update_proday', proday_id=proday.id) }}" class ="btn btn-secondary btn-sm ml-auto"><i class="fas fa-edit" href="/"></i></a>
-          </div>
-          <div class="card-body bg-body p-1">
-              <a class="card-title my-1" href="{{ url_for('prodays.proday', proday_id=proday.id) }}">{{ proday.title }}</a>
-            <div class="container-fluid">
-              <div class="progress my-3">
-                <div class="progress-bar progress-bar-striped bg-gold  border-dark" role="progressbar" style="width:{{proday.perc_done|string}}%" aria-valuenow="{{proday.perc_done|string}}" aria-valuemin="0" aria-valuemax="100">
-                </div>
-              </div>
-            </div>
-            <p class="card-text mb-1">{{ proday.desc }}</p>
-            <i class="text-muted text-center mb-1" style="font-size: smaller;">@{{ proday.date_posted.strftime('%Y-%m-%d') }}</i>
-          </div>
-        </div>
-        <!-- PRODAY Acts Per CATEGORIES, COUNT_DONE, COUNT_CAT -->
-        <div class="card-group my-2">
-          <div class="row"> 
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-header bg-gold p-0"> 
-                  <h6 class="m-1"> mind </h6>
-                </div>
-                <div class="card-body bg-body p-1">
-                  <i class="fas fa-drafting-compass fa-3x m-1"> {{ proday.countD_c01 }}</i>
-                    <i class="fas fa-clipboard-list fa-lg m-1 float-right text-dark"> {{ proday.count_c01 }} </i>
-                    
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-header bg-gold p-0"> 
-                  <h6 class="m-1"> body </h6>
-                </div>
-                <div class="card-body bg-body p-1">
-                  <i class="fas fa-walking fa-3x m-1"> {{ proday.countD_c02 }}</i>
-                    <i class="fas fa-clipboard-list fa-lg m-1 float-right text-dark"> {{ proday.count_c02 }} </i>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card mt-2">
-                <div class="card-header bg-gold p-0"> 
-                  <h6 class="m-1"> spirit </h6>
-                </div>
-                <div class="card-body bg-body p-1">
-                  <i class="fas fa-spa fa-3x m-1"> {{ proday.countD_c03 }}</i>
-                    <i class="fas fa-clipboard-list fa-lg m-1 float-right text-dark"> {{ proday.count_c03 }} </i>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card mt-2">
-                <div class="card-header bg-gold p-0"> 
-                  <h6 class="m-1">recharge</h6>
-                </div>
-                <div class="card-body bg-body p-1">
-                  <i class="fas fa-battery-quarter fa-3x m-1"> {{ proday.countD_c04 }}</i>
-                    <i class="fas fa-clipboard-list fa-lg m-1 float-right text-dark"> {{ proday.count_c04 }} </i>
-                </div>
-              </div>
-            </div>
-            <div class="card p-0 my-2">
-              <div class="card-body bg-bisque">
-                <p class="card-text">{{proday.message_total}}. <i> JR</i> </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-8">
-        
-        <!-- PRODAY ACTIONS LIST -->
-        <div class="row mb-2">
-          <img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/footballoffense0{{proday.count_done|string}}.png" class="img-fluid float-left" alt="" style="max-height: 5rem;">           
-        <img src="https://raw.githubusercontent.com/attila5287/task_app_img/master/footballdefense0{{proday.count_done|string}}.png" class="img-fluid" alt="" style="max-height: 5rem;">      
-      </div>
-        <div class="row">
-          <div class="container-fluid">
-            <ul class="list-group list-group-hover bg-grass px-4 py-3">
-=======
 	<div class="container-fluid text-center">
 		<div class="row">
 			{% for proday in prodays.items %}
@@ -215,10 +117,8 @@
 							href="{{ url_for('prodays.delete_proday', proday_id=proday.id) }}"
 							class="btn btn-danger btn-sm"
 						>
-							<i class="fas fa-times float-right" href="/"></i
-						></a>
->>>>>>> a219d3d36bcd36581d92291c446054b53ab0f331
-
+							<i class="fas fa-times float-right" href="/">
+							</i>
 						<a
 							href="{{ url_for('prodays.update_proday', proday_id=proday.id) }}"
 							class="btn btn-secondary btn-sm ml-auto"

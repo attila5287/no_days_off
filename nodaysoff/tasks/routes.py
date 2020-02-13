@@ -1,29 +1,10 @@
 from flask import render_template, url_for, flash, redirect, request, abort, Blueprint, session, Markup
-from flask_session import Session
 from flask_login import current_user, login_required
 from nodaysoff import db
 from nodaysoff.models import Task, UserDemo, TaskDemo
 from nodaysoff.tasks.forms import TaskForm, TaskDemoForm
 
 tasks = Blueprint('tasks', __name__)
-
-# You may also set up your application
-#  later using init_app() method
-
-# session = Session()
-# session.init_app(tasks)
-
-
-@tasks.route('/set/')
-def set():
-    session['key'] = 'value'
-    return 'ok'
-
-@tasks.route('/get/')
-def get():
-    return session.get('key', 'not set')
-
-
 
 # ---------- MINIMALIST TASK LIST -----------
 @tasks.route("/h0me")
@@ -238,7 +219,7 @@ def inject_imppts_dict():
 @tasks.route("/taskdemo/home", methods=['POST', 'GET'])
 def task_demo_home():
     pass
-    TaskDemoF0rm = TaskDemoForm()
+    # TaskDemoF0rm = TaskDemoForm()
     DemoUser = UserDemo()
 
     flash('Welcome to Task Hero-demo!', 'warning')
@@ -251,23 +232,15 @@ def task_demo_home():
         is_urgent=request.form.get('is_urgent'),
         is_important=request.form.get('is_important'),
         )
-        tasks.append(taskDemo)
         flash('TaskDemo created!', taskDemo.border_style)
         print(taskDemo)
         return redirect(url_for('tasks.task_demo_home'))
 
     return render_template(
         'taskdemohome.html',
-        form=TaskDemoF0rm,
         DemoUser=DemoUser,
     )
 
-
-# ====== CREATES A TASK OBJECT REDIRECTS BACK TO ABOVE>>DEMO-HOME ======
-@tasks.route('/taskdemo/taskcreator', methods=['POST'])
-def task_demo_gen():
-    pass
-    
 
 @tasks.route('/d0ne/<int:task_id>')
 def taskdemodone(task_id):
