@@ -1,4 +1,5 @@
-from flask import (render_template, url_for, flash, redirect, request, abort, Blueprint)
+from flask import render_template, url_for, flash, redirect, request, abort, Blueprint, session, Markup
+from flask_session import Session
 from flask_login import current_user, login_required
 from nodaysoff import db
 from nodaysoff.models import Task, UserDemo, TaskDemo
@@ -6,6 +7,25 @@ from nodaysoff.tasks.forms import TaskForm, TaskDemoForm
 
 tasks = Blueprint('tasks', __name__)
 
+# You may also set up your application
+#  later using init_app() method
+
+# session = Session()
+# session.init_app(tasks)
+
+
+@tasks.route('/set/')
+def set():
+    session['key'] = 'value'
+    return 'ok'
+
+@tasks.route('/get/')
+def get():
+    return session.get('key', 'not set')
+
+
+
+# ---------- MINIMALIST TASK LIST -----------
 @tasks.route("/h0me")
 def h0me():
     pass
@@ -271,3 +291,5 @@ def taskdemodone(task_id):
         DemoUser.update_avatar()
         DemoUser.update_percs()
     return redirect(url_for('tasks.task_demo_home'))
+
+
