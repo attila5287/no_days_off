@@ -3,9 +3,10 @@ from flask_login import current_user, login_required
 from nodaysoff import db
 from nodaysoff.models import Task, UserDemo, TaskDemo
 from nodaysoff.tasks.forms import TaskForm, TaskDemoForm
-
+import os 
 tasks = Blueprint('tasks', __name__)
 
+SECRET_KEY = os.environ.get('SECRET_KEY')
 # ---------- MINIMALIST TASK LIST -----------
 @tasks.route("/h0me")
 def h0me():
@@ -219,11 +220,9 @@ def inject_imppts_dict():
 @tasks.route("/taskdemo/home", methods=['POST', 'GET'])
 def task_demo_home():
     pass
-    # TaskDemoF0rm = TaskDemoForm()
+    TaskDemoF0rm = TaskDemoForm()
     DemoUser = UserDemo()
 
-    flash('Welcome to Task Hero-demo!', 'warning')
-    
     if request.method == 'POST':
         pass
         taskDemo = TaskDemo(
@@ -238,6 +237,7 @@ def task_demo_home():
 
     return render_template(
         'taskdemohome.html',
+        form=TaskDemoF0rm,
         DemoUser=DemoUser,
     )
 
