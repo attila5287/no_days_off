@@ -1,4 +1,6 @@
-from flask import render_template, url_for, flash, redirect, request, abort, Blueprint, session, Markup
+from flask import (
+    render_template, url_for, flash, redirect, request, abort, Blueprint, session, Markup
+)
 from flask_login import current_user, login_required
 from nodaysoff import db
 from nodaysoff.models import Task, UserDemo, TaskDemo
@@ -6,12 +8,10 @@ from nodaysoff.tasks.forms import TaskForm, TaskDemoForm
 import os 
 tasks = Blueprint('tasks', __name__)
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
 # ---------- MINIMALIST TASK LIST -----------
 @tasks.route("/h0me")
 def h0me():
     pass
-
     if Task.query.first() == None:
         pass
         tasks = []
@@ -20,8 +20,6 @@ def h0me():
         pass
         page = request.args.get('page', 1, type=int)
         tasks = Task.query.order_by(Task.date_posted.desc()).paginate(page=page, per_page=5)
-    
-    
     return render_template('h0me.html', tasks=tasks)
 
 

@@ -12,7 +12,7 @@ login_manager = LoginManager()
 login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 mail = Mail()
-sess = Session()
+# sess = Session()
 
 def create_app(config_class=Config):
     pass
@@ -23,7 +23,7 @@ def create_app(config_class=Config):
     bcrypt.init_app(app)
     login_manager.init_app(app)
     mail.init_app(app)
-    sess.init_app(app)
+    # sess.init_app(app)
 
     print('\n\ttest app_session sk:')
     print(str(app.secret_key))
