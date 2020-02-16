@@ -48,10 +48,10 @@ class UpdateAccountForm(FlaskForm):
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
     avatar_mode = SelectField(
         choices=[
-            ('wildanimals_', 'Mtn Wild Animals'),            
+            ('wildanimals', 'Mtn Wild Animals'),            
             ('mrrobot', 'Mr. Robot'), 
             ('starwars', 'Star Wars'),
-            ('starcraft_', 'Star Craft'),
+            ('starcraft', 'Star Craft'),
         ]
     )
     submit = SubmitField('Update')
