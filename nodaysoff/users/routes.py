@@ -52,12 +52,12 @@ def register():
             total_pts = 38, 
             imp_perc = 50, 
             urg_perc = 50, 
-            avatar_mode = 'wildanimals_', 
+            avatar_mode = 'mrrobot', 
             avatar_img =  'default00.png', 
         )
         db.session.add(user)
         db.session.commit()
-        flash('Your account has been created! You are now able to log in', 'success')
+        flash('Your future self will thank you when you ')
         return redirect(url_for('users.login'))
     return render_template('register.html', title='Register', form=form)
 
