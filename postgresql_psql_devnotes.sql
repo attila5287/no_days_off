@@ -1,3 +1,8 @@
+
+
+[parameters: {'username': 'test13', 'email': 'test13@ndo.com', 'image_file': 'default.png', 'password': b'$2b$12$0xPT0irQFmzupW7gvxXU2uYoSV9e89P2I3R1IaKywTDYOTuiI5y/6', 'urg_pts': 19, 'imp_pts': 19, 'total_pts': 38, 'imp_perc': 50, 'urg_perc': 50, 'avatar_mode': 'wildanimals_', 'avatar_img': 'default00.png'}]
+
+
 -- psql
 CREATE TABLE post (
 	id BIGSERIAL NOT NULL PRIMARY KEY, 
@@ -124,27 +129,30 @@ CREATE TABLE "task" (
 )
 
 -- postgresql edt, need to run first in psql shell
-CREATE TABLE "user" (
-	"id"	BIGSERIAL NOT NULL PRIMARY KEY,
-	"username"	VARCHAR(20) NOT NULL UNIQUE,
-	"email"	VARCHAR(120) NOT NULL UNIQUE,
-	"image_file"	VARCHAR(32) NOT NULL,
-	"password"	VARCHAR(60) NOT NULL,
-	"imp_pts"	INTEGER,
-	"urg_pts"	INTEGER,
-	"total_pts"	INTEGER,
-	"imp_perc"	INTEGER,
-	"urg_perc"	INTEGER,
-	"avatar_img"	TEXT,
-	"avatar_mode"	TEXT
-)
+
+	CREATE TABLE "user" (
+		"id"	BIGSERIAL NOT NULL PRIMARY KEY,
+		"username"	VARCHAR(20) NOT NULL UNIQUE,
+		"email"	VARCHAR(120) NOT NULL UNIQUE,
+		"image_file"	VARCHAR(255) NOT NULL,
+		"password"	VARCHAR(255) NOT NULL,
+		"imp_pts"	INTEGER,
+		"urg_pts"	INTEGER,
+		"total_pts"	INTEGER,
+		"imp_perc"	INTEGER,
+		"urg_perc"	INTEGER,
+		"avatar_img"	TEXT,
+		"avatar_mode"	TEXT
+	);
+
+
 -- SQLITE
 CREATE TABLE "user" (
 	"id"	INTEGER NOT NULL,
 	"username"	VARCHAR(20) NOT NULL UNIQUE,
 	"email"	VARCHAR(120) NOT NULL UNIQUE,
 	"image_file"	VARCHAR(20) NOT NULL,
-	"password"	VARCHAR(60) NOT NULL,
+	"password"	VARCHAR(120) NOT NULL,
 	"imp_pts"	INTEGER,
 	"urg_pts"	INTEGER,
 	"total_pts"	INTEGER,
@@ -154,6 +162,9 @@ CREATE TABLE "user" (
 	"avatar_mode"	TEXT,
 	PRIMARY KEY("id")
 )
+
+ALTER TABLE public.user ALTER COLUMN user.password TYPE VARCHAR(255);
+
 
 -- psql command that actually works
 CREATE TABLE post (

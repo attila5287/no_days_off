@@ -4,7 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 from nodaysoff.config import Config
-from flask_session import Session
+# from flask_session import Session
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()

@@ -187,7 +187,7 @@ class User(db.Model, UserMixin):
         ''' method runs every task done-undone updates avatar per dynamic task completion (imp or urg percentage should be updated prev'ly) '''
         img_key = int(self.urg_perc)
 
-        responsive = 53
+        responsive = 52
         resp_n_act = 51
         act_n_resp = 49
         pro_active = 48

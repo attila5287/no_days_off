@@ -21,9 +21,9 @@ def regist3r():
         urg_pts= 19, 
         imp_pts = 19, 
         total_pts = 38, 
-        imp_perc = 50, 
+        imp_pert6c = 50, 
         urg_perc = 50, 
-        avatar_mode = 'wildanimals_', 
+        avatar_mode = 'wildanimals', 
         avatar_img =  'default00.png', 
     )
     db.session.add(user)
@@ -35,30 +35,10 @@ def regist3r():
 # LET THIS BE THE FORM PAGE ONLY WITH AN EXTRA ROUTE FOR PROCESSING USER-DETAILS
 @users.route("/register", methods=['GET', 'POST'])
 def register():
+    pass
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
     form = RegistrationForm()
-    if form.validate_on_submit():
-        print(form.password.data)
-        print(form.username.data)
-        print(form.email.data)
-        hashed_password = bcrypt.generate_password_hash(request.form['password'])
-        user = User(
-            username=request.form['username'], 
-            email=request.form['email'], 
-            password=hashed_password,
-            urg_pts= 19, 
-            imp_pts = 19, 
-            total_pts = 38, 
-            imp_perc = 50, 
-            urg_perc = 50, 
-            avatar_mode = 'mrrobot', 
-            avatar_img =  'default00.png', 
-        )
-        db.session.add(user)
-        db.session.commit()
-        flash('Your future self will thank you when you ')
-        return redirect(url_for('users.login'))
     return render_template('register.html', title='Register', form=form)
 
 
@@ -124,7 +104,6 @@ def user_prodays(username):
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
     return render_template('user_prodays.html', prodays=prodays, user=user)
-
 
 @users.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
