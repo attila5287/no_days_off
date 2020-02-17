@@ -21,7 +21,7 @@ def regist3r():
         urg_pts= 19, 
         imp_pts = 19, 
         total_pts = 38, 
-        imp_pert6c = 50, 
+        imp_perc = 50, 
         urg_perc = 50, 
         avatar_mode = 'wildanimals', 
         avatar_img =  'default00.png', 
