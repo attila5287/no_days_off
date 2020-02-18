@@ -8,11 +8,10 @@ from nodaysoff.users.utils import save_picture, send_reset_email
 
 users = Blueprint('users', __name__)
 
-
-
 @users.route("/regist3r", methods=['POST'])
 def regist3r():
-    hashed_password = bcrypt.generate_password_hash(request.form['password'])
+    hashed_password = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
+    print('test pw')
     print(hashed_password)
     user = User(
         username=request.form['username'], 
@@ -41,21 +40,25 @@ def register():
     form = RegistrationForm()
     return render_template('register.html', title='Register', form=form)
 
-
-
-
 @users.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
+        pass
         return redirect(url_for('main.home'))
+
     form = LoginForm()
-    if user!=True and form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+    if form.validate_on_submit():
+        pass
+        user = User.query.filter_by(email=request.form.get('email', 'test01@ndo.com')).first()
+        print('user:\n')
+        print(user)
         print('test user obj attributes')
         print(user.password)
-        print('test req form pw')
+        print('\ntest req form pw')
         print(request.form["password"])
+        
         if user and bcrypt.check_password_hash(user.password, form.password.data):
+            pass
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('main.home'))
