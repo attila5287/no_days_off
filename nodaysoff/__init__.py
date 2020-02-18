@@ -10,7 +10,7 @@ db = SQLAlchemy()
 bcrypt = Bcrypt()
 login_manager = LoginManager()
 login_manager.login_view = 'users.login'
-login_manager.login_message_category = 'info'
+login_manager.login_message_category = 'success'
 mail = Mail()
 # sess = Session()
 
@@ -18,11 +18,11 @@ def create_app(config_class=Config):
     pass
     app = Flask(__name__,  instance_relative_config=False)
     app.config.from_object(Config)
-    print('secret'+str(app.secret_key))
+    # print('secret'+str(app.secret_key))
     db.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
-    mail.init_app(app)
+    mail.init_app(app) 
     # sess.init_app(app)
 
     print('\n\ttest app_session sk:')

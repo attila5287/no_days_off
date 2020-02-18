@@ -1,4 +1,4 @@
-from nodaysoff import create_app
+from nodaysoff import create_app 
 
 app = create_app()
 

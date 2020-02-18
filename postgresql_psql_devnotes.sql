@@ -1,6 +1,7 @@
+delete * from public.
 
 
-[parameters: {'username': 'test13', 'email': 'test13@ndo.com', 'image_file': 'default.png', 'password': b'$2b$12$0xPT0irQFmzupW7gvxXU2uYoSV9e89P2I3R1IaKywTDYOTuiI5y/6', 'urg_pts': 19, 'imp_pts': 19, 'total_pts': 38, 'imp_perc': 50, 'urg_perc': 50, 'avatar_mode': 'wildanimals_', 'avatar_img': 'default00.png'}]
+
 
 
 -- psql
