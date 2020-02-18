@@ -461,7 +461,7 @@ class TaskDemo():
             is_important=self.is_important            
         )
         
-# ==========
+# ========== 
 class UserDemo():
     ''' DUMMY OBJECT TO DEMONSTRATE TASK HERO GAME TO GUESTS '''
     id = 99  # same for all cls mmbrs

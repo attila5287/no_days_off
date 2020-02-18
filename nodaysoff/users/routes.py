@@ -49,8 +49,16 @@ def login():
         return redirect(url_for('main.home'))
     form = LoginForm()
     if form.validate_on_submit():
+        pass
+    
         user = User.query.filter_by(email=form.email.data).first()
+         
+        print('test user obj attributes')
+        print(user.password)
+        print('test req form pw')
+        print(request.form["password"])
         if user and bcrypt.check_password_hash(user.password, request.form["password"]):
+            
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('main.home'))

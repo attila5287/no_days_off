@@ -1,8 +1,17 @@
-delete * from public.
+-- Query all rows and columns from a table
+SELECT * FROM
+t
+
+-- Delete the table from the database
+DROP TABLE
+t CASCADE
+
+-- -- Remove all data in a table
+TRUNCATE TABLE
+t CASCADE
 
 
-
-
+-- delete * from public.
 
 -- psql
 CREATE TABLE post (
