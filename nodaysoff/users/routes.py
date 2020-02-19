@@ -8,22 +8,24 @@ from nodaysoff.users.utils import save_picture, send_reset_email
 
 users = Blueprint('users', __name__)
 
+
 @users.route("/regist3r", methods=['POST'])
 def regist3r():
-    hashed_password = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
+    hashed_password = bcrypt.generate_password_hash(
+        request.form['password']).decode('utf-8')
     print('test pw')
     print(hashed_password)
     user = User(
-        username=request.form['username'], 
-        email=request.form['email'], 
+        username=request.form['username'],
+        email=request.form['email'],
         password=hashed_password,
-        urg_pts= 19, 
-        imp_pts = 19, 
-        total_pts = 38, 
-        imp_perc = 50, 
-        urg_perc = 50, 
-        avatar_mode = 'wildanimals', 
-        avatar_img =  'default00.png', 
+        urg_pts=19,
+        imp_pts=19,
+        total_pts=38,
+        imp_perc=50,
+        urg_perc=50,
+        avatar_mode='wildanimals',
+        avatar_img='default00.png',
     )
     db.session.add(user)
     db.session.commit()
@@ -40,6 +42,7 @@ def register():
     form = RegistrationForm()
     return render_template('register.html', title='Register', form=form)
 
+
 @users.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -49,14 +52,15 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         pass
-        user = User.query.filter_by(email=request.form.get('email', 'test01@ndo.com')).first()
+        user = User.query.filter_by(email=request.form.get(
+            'email', 'test01@ndo.com')).first()
         print('user:\n')
         print(user)
         print('test user obj attributes')
         print(user.password)
         print('\ntest req form pw')
         print(request.form["password"])
-        
+
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             pass
             login_user(user, remember=form.remember.data)
@@ -67,7 +71,6 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
-
 @users.route("/log1n", methods=['GET', 'POST'])
 def log1n():
     pass
@@ -76,15 +79,15 @@ def log1n():
     form = LoginForm()
     if form.validate_on_submit():
         pass
-    
+
         user = User.query.filter_by(email=form.email.data).first()
-         
+
         print('test user obj attributes')
         print(user.password)
         print('test req form pw')
         print(request.form["password"])
         if user and bcrypt.check_password_hash(user.password, form.password.data):
-            
+
             login_user(user, remember=form.remember.data)
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('main.home'))
@@ -116,8 +119,9 @@ def account():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
-        form.avatar_mode.data = current_user.avatar_mode 
-    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+        form.avatar_mode.data = current_user.avatar_mode
+    image_file = url_for(
+        'static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account',
                            image_file=image_file, form=form)
 
@@ -131,6 +135,7 @@ def user_posts(username):
         .paginate(page=page, per_page=5)
     return render_template('user_posts.html', posts=posts, user=user)
 
+
 @users.route("/user/<string:username>")
 def user_prodays(username):
     page = request.args.get('page', 1, type=int)
@@ -139,6 +144,7 @@ def user_prodays(username):
         .order_by(Post.date_posted.desc())\
         .paginate(page=page, per_page=5)
     return render_template('user_prodays.html', prodays=prodays, user=user)
+
 
 @users.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
@@ -163,7 +169,8 @@ def reset_token(token):
         return redirect(url_for('users.reset_request'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(
+            form.password.data).decode('utf-8')
         user.password = hashed_password
         db.session.commit()
         flash('Your password has been updated! You are now able to log in', 'success')
@@ -171,7 +178,7 @@ def reset_token(token):
     return render_template('reset_token.html', title='Reset Password', form=form)
 
 # =======DELETE TEST USERS
-@users.route("/user/<int:user_id>/delete", methods=['GET','POST'])
+@users.route("/user/<int:user_id>/delete", methods=['GET', 'POST'])
 @login_required
 def delete_test_users(user_id):
     user = User.query.get_or_404(user_id)
