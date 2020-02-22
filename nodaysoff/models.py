@@ -237,7 +237,6 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
-# ===== ====== ===== ====== =====
 class Proday(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
@@ -360,6 +359,8 @@ class Proday(db.Model):
         return self.message_total
 
 class Task(db.Model):
+    ''' task obj that stores points, title, content etc. '''
+    pass
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.Text)
     content = db.Column(db.Text)

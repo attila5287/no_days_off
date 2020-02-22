@@ -82,7 +82,7 @@ def tasks_list():
     current_user.init_avatarmode()
     current_user.init_avatar()
     current_user.update_avatar()
-    tasks = Task.query.all()
+    tasks = Task.query.filter_by(manag5r=current_user).all()
     return render_template('create_task.html', tasks=tasks)
 
 # form to create task and info
@@ -159,7 +159,6 @@ def delete_task(task_id):
     db.session.commit()
     return redirect(url_for('tasks.tasks_list'))
 
-
 @tasks.context_processor
 def utility_processor():
     ''' need it to handle demo tasks w/o database inv. due to sql-inj concerns '''
@@ -183,6 +182,42 @@ def utility_processor():
         )
     ]
     return dict(TaskDemoList=tasks)
+
+
+@tasks.context_processor
+def taskIntroGenerator():
+    ''' 
+    need it to handle demo tasks w/o database inv. due to sql-inj concerns 
+    '''
+    pass
+    tasks = [
+        Task(title=Title, content=Content, is_urgent=IsUrgent, is_important=IsImportant, manag5r=current_user) for (Title, Content, IsUrgent, IsImportant) in zip(
+            [
+                'urgent and important task',
+                'urgent but not-so-important',
+                'not-so-urgent but important',
+                'neither-so-impt nor-so-urgent',
+            ],
+            [
+                'these tasks have the highest points',
+                'the more you complete the tasks',
+                'the more points you collect',
+                'hence change the avatar -> Task-Hero'
+            ],
+            [1,1,0,0],
+            [1,0,1,0]
+        )
+    ]
+
+    for task in tasks:
+        pass
+        task.add_matrix_zone()
+        task.add_importance_points()
+        task.add_urgency_points()
+        task.add_task_border()
+
+    return dict(TaskIntroList=tasks)
+
 
 @tasks.context_processor
 def inject_style_dict():

@@ -2,8 +2,9 @@ from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
 from nodaysoff import db, bcrypt
 from nodaysoff.models import User, Post
-from nodaysoff.users.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
-                                   RequestResetForm, ResetPasswordForm)
+from nodaysoff.users.forms import (
+    RegistrationForm, LoginForm, UpdateAccountForm, RequestResetForm, ResetPasswordForm
+)
 from nodaysoff.users.utils import save_picture, send_reset_email
 
 users = Blueprint('users', __name__)
@@ -32,40 +33,31 @@ def regist3r():
     flash('Your account has been created! You are now able to log in', 'success')
     return redirect(url_for('users.login'))
 
-
 # LET THIS BE THE FORM PAGE ONLY WITH AN EXTRA ROUTE FOR PROCESSING USER-DETAILS
 @users.route("/register", methods=['GET', 'POST'])
 def register():
     pass
     if current_user.is_authenticated:
-        return redirect(url_for('main.home'))
+        return redirect(url_for('tasks.h0me'))
     form = RegistrationForm()
     return render_template('register.html', title='Register', form=form)
-
 
 @users.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         pass
-        return redirect(url_for('main.home'))
+        return redirect(url_for('tasks.tasks_list'))
 
     form = LoginForm()
     if form.validate_on_submit():
         pass
         user = User.query.filter_by(email=request.form.get(
             'email', 'test01@ndo.com')).first()
-        print('user:\n')
-        print(user)
-        print('test user obj attributes')
-        print(user.password)
-        print('\ntest req form pw')
-        print(request.form["password"])
 
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             pass
             login_user(user, remember=form.remember.data)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('main.home'))
+            return redirect(url_for('tasks.tasks_list'))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
@@ -99,7 +91,7 @@ def log1n():
 @users.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.about'))
 
 
 @users.route("/account", methods=['GET', 'POST'])
