@@ -1,3 +1,35 @@
+$ heroku pg:credentials:url
+The system cannot find the path specified.
+Connection information for default credential.
+Connection info string:
+
+   "
+    dbname=dcrjqdnonkc3m0
+    host=ec2-174-129-33-132.compute-1.amazonaws.com 
+    port=5432
+    user=itdjzuakoxytrq 
+    password=275c4c2ca25166001e5e886980afc7be1e866f07a5db9fd55a7889b6e6ab1276 
+    sslmode=require
+    "
+Connection URL:
+   postgres://itdjzuakoxytrq:275c4c2ca25166001e5e886980afc7be1e866f07a5db9fd55a7889b6e6ab1276@ec2-174-129-33-132.compute-1.amazonaws.com:5432/dcrjqdnonkc3m0
+
+
+Host
+    ec2-174-129-33-132.compute-1.amazonaws.com
+Database
+    dcrjqdnonkc3m0
+User
+    itdjzuakoxytrq
+Port
+    5432
+Password
+    275c4c2ca25166001e5e886980afc7be1e866f07a5db9fd55a7889b6e6ab1276
+URI
+    postgres://itdjzuakoxytrq:275c4c2ca25166001e5e886980afc7be1e866f07a5db9fd55a7889b6e6ab1276@ec2-174-129-33-132.compute-1.amazonaws.com:5432/dcrjqdnonkc3m0
+Heroku CLI
+    heroku pg:psql postgresql-flat-26247 --app nodaysoff
+
 $ heroku help pg
 The system cannot find the path specified.
 show database information
