@@ -1,0 +1,355 @@
+
+{% extends "layout.html" %} 
+{% block content %}
+<!-- MODULE ICON AND GENERAL INFO -->
+<div class="row">
+	<div class="col-sm-3">
+		<img
+			class="ml-4 mb-2"
+			src="https://raw.githubusercontent.com/attila5287/task_app_img/master/ndo_proday_icon.png"
+			alt=""
+			style="height: 3rem;"
+		/>
+		<ul class="fa-ul">
+			<li>
+				<span class="fa-li"
+					><i class="fas fa-football-ball fa-rotate-90"></i
+				></span>
+				Welcome to Proday! A NoDaysOff module
+			</li>
+		</ul>
+	</div>
+	<div class="col-sm-5">
+		<ul class="fa-ul">
+			<li>
+				<span class="fa-li"
+					><i class="fas fa-puzzle-piece fa-rotate-0"></i
+				></span>
+				Proday, daily productivity tracker, will enable you plan a productive
+				day ahead and will also help you count your score
+			</li>
+			<li>
+				<span class="fa-li"
+					><i class="fas fa-puzzle-piece fa-rotate-180"></i
+				></span>
+				First you will plan a pro-day by adding four activities/actions under
+				four categories
+			</li>
+		</ul>
+	</div>
+	<div class="col-sm-4">
+		<ul class="fa-ul">
+			<li>
+				<span class="fa-li"
+					><i class="fas fa-puzzle-piece fa-rotate-90"></i
+				></span>
+				Categories include mind, body, spirit, recharge
+			</li>
+			<li>
+				<span class="fa-li"
+					><i class="fas fa-puzzle-piece fa-rotate-180"></i
+				></span>
+				Mind is for mind-occupying actions i.e. catching a deadline at work or
+				taking kids to school
+			</li>
+		</ul>
+	</div>
+</div>
+	<div class="container-fluid text-center">
+		<div class="row">
+			<div class="col-sm-4 text-center">
+				<!-- PRODAY TITLE, DESC AND PROGRESS BAR -->
+				<div class="card border-body mb-3">
+					<div
+						class="card-header bg-gold text-right border-dark"
+						style="border-width: medium;"
+					>
+						<i class="fas fa-football-ball float-left mt-2">
+							{{proday.count_done}} /
+						</i>
+						<i class="fas fa-clipboard-list float-left mt-2 ml-2">
+							{{proday.count_total}} completed
+						</i>
+						<a
+							href=""
+							class="btn btn-danger btn-sm"
+						>
+							<i class="fas fa-times float-right" href="/">
+							</i>
+						<a
+							href=""
+							class="btn btn-secondary btn-sm ml-auto"
+							><i class="fas fa-edit" href="/"></i
+						></a>
+					</div>
+					<div class="card-body bg-body p-1">
+						<a
+							class="card-title my-1"
+							href=""
+							>{{ proday.title }}</a
+						>
+						<div class="container-fluid m-1">
+							<div class="progress my-3">
+								<div
+									class="progress-bar progress-bar-striped bg-gold  border-dark"
+									role="progressbar"
+									style="width:{{proday.perc_done|string}}%"
+									aria-valuenow="{{proday.perc_done|string}}"
+									aria-valuemin="0"
+									aria-valuemax="100"
+								></div>
+							</div>
+							<p class="card-text text-muted">{{proday.message_total}}.<i>JR</i></p>
+						</div>
+						<div class="container-fluid text-center">
+							
+								<img
+									src="https://raw.githubusercontent.com/attila5287/task_app_img/master/footballoffense0{{proday.count_done|string}}.png"
+									class="img-fluid float-left"
+									alt=""
+									style="max-height: 5rem;"
+								/>
+								{{ proday.desc }}
+								<img
+									src="https://raw.githubusercontent.com/attila5287/task_app_img/master/footballdefense0{{proday.count_done|string}}.png"
+									class="img-fluid"
+									alt=""
+									style="max-height: 5rem;"
+								/>
+						</div>							
+						<i class="text-muted text-center mb-1" style="font-size: smaller;"
+							>@{{ proday.date_posted.strftime('%Y-%m-%d') }}</i
+						>
+					</div>
+				</div>
+				<!-- PRODAY Acts Per CATEGORIES, COUNT_DONE, COUNT_CAT -->
+				<div class="card-group my-2">
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-header bg-gold p-0">
+									<h6 class="m-1">mind</h6>
+								</div>
+								<div class="card-body bg-body p-0">
+									<i class="fas fa-drafting-compass fa-3x fa-fw m-1">
+										{{ proday.countD_c01 }}</i
+									>
+									<i
+										class="fas fa-clipboard-list fa-fw m-1 float-right text-dark"
+									>
+										{{ proday.count_c01 }}
+									</i>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-header bg-gold p-0">
+									<h6 class="m-1">body</h6>
+								</div>
+								<div class="card-body bg-body p-0">
+									<i class="fas fa-walking fa-fw fa-3x m-1"> {{ proday.countD_c02 }}</i>
+									<i
+										class="fas fa-clipboard-list fa-fw m-1 float-right text-dark"
+									>
+										{{ proday.count_c02 }}
+									</i> 
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card mt-2">
+								<div class="card-header bg-gold p-0">
+									<h6 class="m-1">spirit</h6>
+								</div>
+								<div class="card-body bg-body p-1">
+									<i class="fas fa-spa fa-fw fa-3x m-1">
+										{{ proday.countD_c03 }}</i
+									>
+									<i
+										class="fas fa-clipboard-list fa-fw   m-1 float-right text-dark"
+									>
+										{{ proday.count_c03 }}
+									</i>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card mt-2">
+								<div class="card-header bg-gold p-0">
+									<h6 class="m-1">recharge</h6>
+								</div>
+								<div class="card-body bg-body p-1">
+									<i class="fas fa-battery-quarter fa-fw fa-3x m-1">
+										{{ proday.countD_c04 }}</i
+									>
+									<i class="fas fa-clipboard-list fa-fw m-1 float-right text-dark">
+										{{ proday.count_c04 }}
+									</i>
+								</div>
+							</div>
+						</div>
+						<div class="card p-0 my-2">
+							<div class="card-body bg-bisque">
+								<p class="card-text">{{proday.message_total}}. <i> JR</i></p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="col-sm-8">
+				<!-- PRODAY ACTIONS LIST -->
+				<div class="row">
+					<div class="container-fluid">
+						<ul
+							class="list-group list-
+			group-hover bg-grass px-4 py-3"
+						>
+							<li class="list-group-item active border-light py-4 mx-3 my-0">
+								<img
+									src="https://raw.githubusercontent.com/attila5287/task_app_img/master/noDaysOff_task_score.ico"
+									class="img-fluid text-center"
+									alt=""
+									style="max-height: 3rem;"
+								/>
+							</li>
+
+							<li class="list-group-item bg-grass border-light m-3">
+								<a class="float-left">
+									<i class="fas fa-{{ proday.icon01 }} fa-2x m-1"> </i>
+								</a>
+								<strong class="text-center" style="font-size: larger;">
+									{% if proday.done01 %}<strike
+										>{% endif %} {{proday.act01}} {% if proday.done01 %}</strike
+									>{% endif %}
+								</strong>
+
+								<a
+									href="{{ url_for('prodays.first_act_done', proday_id=proday.id) }}"
+									class="btn btn-light btn-sm float-right"
+								>
+									{% if proday.done01 %}
+									<i class="fas fa-check" href="/"></i>
+									{% else %}
+									<i class="fas fa-expand"></i>
+									{% endif %}
+								</a>
+							</li>
+							<li class="list-group-item bg-grass border-light m-3">
+								<a class="float-left">
+									<i class="fas fa-{{ proday.icon02 }} fa-3x m-1"> </i>
+								</a>
+
+								<strong class="text-center" style="font-size: larger;">
+									{% if proday.done02 %}<strike
+										>{% endif %} {{proday.act02}} {% if proday.done02 %}</strike
+									>{% endif %}
+								</strong>
+
+								<a
+									href="{{ url_for('prodays.second_act_done', proday_id=proday.id) }}"
+									class="btn btn-light btn-sm float-right"
+								>
+									{% if proday.done02 %}
+									<i class="fas fa-check" href="/"></i>
+									{% else %}
+									<i class="fas fa-expand"></i>
+									{% endif %}
+								</a>
+							</li>
+							<li class="list-group-item bg-grass border-light m-3">
+								<a class="float-left">
+									<i class="fas fa-{{ proday.icon03 }} fa-2x m-1"> </i>
+								</a>
+
+								<strong class="text-center" style="font-size: larger;">
+									{% if proday.done03 %}<strike
+										>{% endif %} {{proday.act03}} {% if proday.done03 %}</strike
+									>{% endif %}
+								</strong>
+
+								<a
+									href="{{ url_for('prodays.third_act_done', proday_id=proday.id) }}"
+									class="btn btn-light btn-sm float-right"
+								>
+									{% if proday.done03 %}
+									<i class="fas fa-check" href="/"></i>
+									{% else %}
+									<i class="fas fa-expand"></i>
+									{% endif %}
+								</a>
+							</li>
+
+							<li class="list-group-item bg-grass border-light m-3">
+								<a class="float-left">
+									<i class="fas fa-{{ proday.icon04 }} fa-3x m-1"> </i>
+								</a>
+
+								<strong class="text-center" style="font-size: larger;">
+									{% if proday.done04 %}<strike
+										>{% endif %} {{proday.act04}} {% if proday.done04 %}</strike
+									>{% endif %}
+								</strong>
+
+								<a
+									href="{{ url_for('prodays.fourth_act_done', proday_id=proday.id) }}"
+									class="btn btn-light btn-sm float-right"
+								>
+									{% if proday.done04 %}
+									<i class="fas fa-check" href="/"></i>
+									{% else %}
+									<i class="fas fa-expand"></i>
+									{% endif %}
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<style>
+		i {
+			font-family: monospace;
+		}
+        .img-hor-vert {
+            -moz-transform: scale(-1, 1);
+            -o-transform: scale(-1, 1);
+            -webkit-transform: scale(-1, 1);
+            transform: scale(-1, 1);
+        }
+        .fa-ul li {
+            color: grey;
+        }
+        .list-group-hover li:hover a {
+            background-color: rgba(243, 200, 100, 0.772);
+        }
+        .list-group-hover li:hover strong {
+            background-color: rgba(243, 200, 100, 0.772);
+        }
+    
+        .list-group-hover li:hover i {
+            background-color: rgba(243, 200, 100, 0.772);
+        }
+        a.card-title {
+            color: black;
+            font-size: 1.5rem;
+            font-family: cursive;
+        }
+        a.card-title:hover {
+            color: #428bca;
+            text-decoration: none;
+        }
+        strong {
+            font-family: cursive;
+        }
+        .bg-body {
+            background-color: #fecd82;
+        }
+        .border-body {
+            border-color: #fecd82;
+            border-width: medium;
+        }
+    </style>
+{% endblock content %}

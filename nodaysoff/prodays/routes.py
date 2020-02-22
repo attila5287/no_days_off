@@ -2,13 +2,35 @@ from flask import (render_template, url_for, flash,
                    redirect, request, abort, Blueprint)
 from flask_login import current_user, login_required
 from nodaysoff import db
-from nodaysoff.models import Proday
-from nodaysoff.prodays.forms import ProDayForm
+from nodaysoff.models import Proday, User
+from nodaysoff.prodays.forms import ProDayForm 
 prodays = Blueprint('prodays', __name__)
 
+@prodays.route("/proday/demo")
+def proday_demo():
+    pass
+    plann3r = User.query.filter_by(id=1).first()
+    proday = Proday.query.first()
+    # proday = Proday(
+    #     title = 'A Productive Day', 
+    #     desc = 'a good day for demo', 
+    #     cat01 = '1', 
+    #     act01 = 'first action', 
+    #     cat02 = '2', 
+    #     act02 = 'second action', 
+    #     cat03 = '3', 
+    #     act03 = 'third action', 
+    #     cat04 = '4', 
+    #     act04='fourth action',
+    #     planner=plann3r
+    # )
+    flash('Its a new day for demo!', 'warning')
+
+    return render_template('proDayDemo.html', proday=proday)
 
 @prodays.route("/hom3")
 def hom3():
+    pass
     page = request.args.get('page', 1, type=int)
     prodays = Proday.query.order_by(
         Proday.date_posted.desc()).paginate(page=page, per_page=1)
@@ -19,10 +41,12 @@ def hom3():
 
     return render_template('hom3.html', prodays=prodays)
 
+
 # form page only then posts to below route
 @prodays.route("/proday/new", methods=['GET', 'POST'])
 @login_required
 def new_proday():
+    pass
     form = ProDayForm()
 
     return render_template('create_proday.html', title='New ProDay', form=form)

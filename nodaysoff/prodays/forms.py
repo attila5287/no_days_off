@@ -23,3 +23,5 @@ class ProDayForm(FlaskForm):
     cat04 = SelectField('Category', choices = [('1', 'Mind'), ('2', 'Body'), 
                             ('3', 'Spirit'), ('4', 'Recharge')], default='4')        
     act04 = StringField('An Action', validators=[DataRequired()], default='test action')        
+
+

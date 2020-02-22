@@ -67,7 +67,6 @@ list_of_quotes = [
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-
 class User(db.Model, UserMixin):
     ''' user with tasks, prodays, posts, collecting points per completion along with profile pic, hashed password etc. '''
     id = db.Column(db.Integer, primary_key=True)
@@ -238,6 +237,7 @@ class User(db.Model, UserMixin):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
 class Proday(db.Model):
+    pass
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     desc = db.Column(db.String(100), nullable=False)
@@ -462,7 +462,6 @@ class TaskDemo():
             is_important=self.is_important            
         )
         
-# ========== 
 class UserDemo():
     ''' DUMMY OBJECT TO DEMONSTRATE TASK HERO GAME TO GUESTS '''
     id = 99  # same for all cls mmbrs
@@ -554,5 +553,3 @@ class UserDemo():
 
     def __repr__(self):
         print('demo mode: {}'.format(self.username))
- 
- 

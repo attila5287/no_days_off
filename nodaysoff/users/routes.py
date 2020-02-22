@@ -12,6 +12,7 @@ users = Blueprint('users', __name__)
 
 @users.route("/regist3r", methods=['POST'])
 def regist3r():
+    pass
     hashed_password = bcrypt.generate_password_hash(
         request.form['password']).decode('utf-8')
     print('test pw')
