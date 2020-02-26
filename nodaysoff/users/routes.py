@@ -34,7 +34,7 @@ def regist3r():
     flash('Your account has been created! You are now able to log in', 'success')
     return redirect(url_for('users.login'))
 
-# LET THIS BE THE FORM PAGE ONLY WITH AN EXTRA ROUTE FOR PROCESSING USER-DETAILS
+
 @users.route("/register", methods=['GET', 'POST'])
 def register():
     pass
